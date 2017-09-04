@@ -7,5 +7,9 @@ namespace xpPortal.DAL
 {
     public class DataAccessLayer
     {
+        public DataAccessLayer()
+        {
+         
+        }
     }
 }
