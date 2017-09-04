@@ -107,6 +107,26 @@ GO
 SET ANSI_PADDING ON
 
 GO
+
+CREATE TABLE tbl_Templates
+(
+	TemplateId int primary key identity(1,1),
+	TemplateName Varchar(200) not null,
+	TemplateContents nvarchar(max)
+)
+
+CREATE TABLE tbl_JoineeEmailTriggered
+(
+	EmailId varchar(100) not null,
+	TemplateID int,
+	Flag bit,
+	Foreign key(TemplateId) references tbl_Templates(TemplateId)
+)
+
+
+
+
+
 /****** Object:  Index [Uc_EmailId]    Script Date: 8/31/2017 2:12:06 PM ******/
 ALTER TABLE [dbo].[tbl_User_LoginDetails] ADD  CONSTRAINT [Uc_EmailId] UNIQUE NONCLUSTERED 
 (
@@ -130,19 +150,7 @@ GO
 ALTER DATABASE [Xp_Connect] SET  READ_WRITE 
 GO
 
-CREATE TABLE tbl_JoineeEmailTriggered
-(
-	EmailId varchar(100) not null,
-	TemplateID int,
-	Flag bit,
-	Foreign key(TemplateId) references tbl_Templates(TemplateId)
-)
 
-CREATE TABLE tbl_Templates
-(
-	TemplateId int primary key identity(1,1),
-	TemplateName Varchar(200) not null,
-	TemplateContents nvarchar(max)
-)
+
 
 
