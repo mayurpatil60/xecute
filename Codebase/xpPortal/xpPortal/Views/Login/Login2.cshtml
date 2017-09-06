@@ -1,0 +1,88 @@
+﻿@model HPTools.Dashboard.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title | Dashboard</title>
+
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body style="background:url('../Content/Images/Dashboard_bg.jpg') no-repeat ;background-size:100%">
+
+
+    <div class="login">
+        <div class="Loginwrapper">
+            <div class="loginContainer">
+
+                <div class="login_heading">
+                    <span>Quality Dashboard</span>
+                </div>
+
+                <form id="LoginForm" action="@Url.Content("~/Account/Login")" method="post" accept-charset="utf-8">
+                    @Html.ValidationSummary(true)
+                    @Html.Hidden("returnUrl", this.Request.QueryString["returnUrl"])
+
+                    <div class="login_fields">
+                        <div class="input username">
+
+                            @Html.TextBoxFor(m => m.UserName, new { tabindex = "1", placeholder = "User Name" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+
+                        </div>
+
+                        <div class="input password">
+
+                            @Html.PasswordFor(m => m.Password, new { tabindex = "2", placeholder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password)
+
+
+                        </div>
+
+                    </div>
+                    <!-- .login_fields -->
+
+                    <div style="float:left;padding-left:33%;">
+                        @Html.AntiForgeryToken()
+                        <table align="right" border="0" cellpadding="5" style="padding-top:8%;">
+                            <tr>
+                                <td align="center">
+                                    <a class="LoginButton" style="text-decoration:none; font-family: hpsimplified; align-self:center" href="javascript:document.getElementById('LoginForm').submit()">Sign In</a>
+                                </td>
+                                <td align="center">
+                                    <a class="LoginButton pCancel" style="text-decoration:none; font-family: hpsimplified;" href="@Url.Content("~/Director/ProgramDefectTrendReport")">Cancel</a>
+                                </td>
+
+                            </tr>
+                        </table>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script language="javascript">
+    $(document).ready(function () {
+
+        $('.login').keypress(function (event) {
+
+            if (event.keyCode == 13) {
+
+                        javascript: document.getElementById('LoginForm').submit();
+            }
+        });
+    });
+</script>
+
