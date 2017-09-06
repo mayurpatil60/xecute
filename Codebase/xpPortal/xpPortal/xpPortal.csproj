@@ -117,7 +117,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\blue-theme.css" />
+    <Content Include="Content\bootstrap-reset.css" />
+    <Content Include="Content\bootstrap-switch.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\bucket-ico-fonts.css" />
+    <Content Include="Content\clndr.css" />
+    <Content Include="Content\default-theme.css" />
+    <Content Include="Content\green-theme.css" />
+    <Content Include="Content\invoice-print.css" />
+    <Content Include="Content\jquery.steps.css" />
+    <Content Include="Content\orange-theme.css" />
+    <Content Include="Content\purple-theme.css" />
+    <Content Include="Content\style-responsive.css" />
+    <Content Include="Content\Style.css" />
+    <Content Include="Content\table-responsive.css" />
+    <Content Include="Content\turquoise-theme.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +162,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap\bootstrap.css.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -151,7 +179,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Home\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

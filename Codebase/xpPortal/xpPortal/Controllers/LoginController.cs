@@ -11,7 +11,10 @@ namespace xpPortal.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            return View("Login");
         }
+        
     }
+
+
 }
