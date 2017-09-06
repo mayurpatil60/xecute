@@ -123,8 +123,21 @@ CREATE TABLE tbl_JoineeEmailTriggered
 	Foreign key(TemplateId) references tbl_Templates(TemplateId)
 )
 
-
-
+create table tbl_user_basicInfo
+(
+	UserId int not null,
+	BloodGroup varchar(20),
+	RhGroup varchar(50),
+	CurrentAddress nvarchar(max),
+	PermanantAddress nvarchar(max),
+	EmergrncyContactPersonName varchar(100),
+	EmergencyContactNumber varchar(20),
+	EmergencyContactRelationship varchar(100),
+	PassportNumber varchar(50),
+	ExpiryDate date,
+	Flag bit,  -- set 1 if all information is submitted
+	foreign key(UserId) references tbl_User_LoginDetails(UserId)
+)
 
 
 /****** Object:  Index [Uc_EmailId]    Script Date: 8/31/2017 2:12:06 PM ******/
