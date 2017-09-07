@@ -1,4 +1,4 @@
-﻿using HPTools.DataAccess.MSSQL;
+﻿using XP.DataAccess.MSSQL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using xpPortal.Models;
 
 namespace xpPortal.DAL
 {
@@ -27,6 +28,11 @@ namespace xpPortal.DAL
 
             pDBName = WebConfigurationManager.AppSettings["DBName"];
             pDBServer = WebConfigurationManager.AppSettings["DBServer"];
+        }
+
+        public bool ValidateUser(LoginViewModel model)
+        {
+            throw new NotImplementedException();
         }
         #region Public Methods
 

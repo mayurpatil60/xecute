@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using xpPortal.BL;
 using xpPortal.Models;
 
 namespace xpPortal.Controllers
@@ -24,10 +25,20 @@ namespace xpPortal.Controllers
             return View();
         }
 
+        [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Login(LoginViewModel model)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            BusinessLayer blObject = new BusinessLayer();
+            bool isValiduser=blObject.ValidateUser(model);
+
+            if(isValiduser)
+                return RedirectToAction("Dashboard","Home"); 
+            else
+                ModelState.AddModelError("", "Invalid username or password.");
+            
             return View();
         }
 
