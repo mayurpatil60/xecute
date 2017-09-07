@@ -1,4 +1,4 @@
-﻿
+﻿@model xpPortal.Models.LoginViewModel
 @{
     Layout = null;
 }
@@ -17,6 +17,7 @@
 <link href="~/Content/style-responsive.css" rel="stylesheet" />
 <link href="~/Content/table-responsive.css" rel="stylesheet" />
 <link href="~/Content/turquoise-theme.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.2.1.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,15 +49,22 @@
 </head>
 <body class="login-body">
     <div class="container">
-        <form class="form-signin" action="basic_information.html">
+        <form class="form-signin" action="@Url.Content("~/Login/Login")" method="post" accept-charset="utf-8">
             <h2 class="form-signin-heading">sign in now</h2>
+            @Html.ValidationSummary(true)
             <div class="login-wrap">
+                
                 <div class="user-login-info">
-                    <input id="txtUserName" type="text" class="form-control" placeholder="User ID" autofocus>
-                    <input id="txtPassword" type="password" class="form-control" placeholder="Password">
+                    @*<input id="txtUserName" type="text" class="form-control" placeholder="User ID" autofocus>*@
+                    @Html.TextBoxFor(m => m.UserName, new { tabindex = "1", placeholder = "Email", @class="form-control" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+
+                    @Html.PasswordFor(m => m.Password, new { tabindex = "2", placeholder = "Password", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                    @*<input id="txtPassword" type="password" class="form-control" placeholder="Password">*@
                 </div>
                 <label class="checkbox">
-                    <input type="checkbox" value="remember-me"> Remember me
+                    <input id="chkRemember" type="checkbox" value="remember-me"> Remember me
                     <span class="pull-right">
                         <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
                     </span>
@@ -82,9 +90,11 @@
                             <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
                         </div>
                         <div class="modal-footer">
+                            @Html.AntiForgeryToken()
                             <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
                             <button class="btn btn-success" type="button">Submit</button>
                         </div>
+                        
                     </div>
                 </div>
             </div>

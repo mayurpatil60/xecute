@@ -35,11 +35,11 @@ namespace xpPortal.Controllers
             bool isValiduser=blObject.ValidateUser(model);
 
             if(isValiduser)
-                return RedirectToAction("Dashboard","Home"); 
+                return RedirectToAction("Index","Home"); 
             else
                 ModelState.AddModelError("", "Invalid username or password.");
             
-            return View();
+            return View("Index");
         }
 
         //
@@ -48,7 +48,7 @@ namespace xpPortal.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login2(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {

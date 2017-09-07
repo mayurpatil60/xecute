@@ -76,6 +76,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -148,7 +149,13 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\DataTables.js" />
+    <Content Include="Scripts\data-tables\DT_bootstrap.css" />
+    <Content Include="Scripts\data-tables\DT_bootstrap.js" />
+    <Content Include="Scripts\data-tables\images\sort_asc.png" />
+    <Content Include="Scripts\data-tables\images\sort_both.png" />
+    <Content Include="Scripts\data-tables\images\sort_desc.png" />
+    <Content Include="Scripts\data-tables\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\EmailHelper.cs" />
+    <Compile Include="Helper\GenericHelper.cs" />
     <Compile Include="Models\Constant.cs" />
     <Compile Include="Models\EmailData.cs" />
     <Compile Include="Models\Enum.cs" />
@@ -212,6 +220,7 @@
     <Content Include="Content\font-awesome\scss\_spinning.scss" />
     <Content Include="Content\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\font-awesome\scss\_variables.scss" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -221,8 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Dashboard\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="HPTools.DataAccess\HPTools.DataAccess\XP.DataAccess.csproj">
