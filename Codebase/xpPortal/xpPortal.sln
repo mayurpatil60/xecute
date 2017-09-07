@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xpPortal", "xpPortal\xpPortal.csproj", "{18D19C45-FC68-4C5D-8056-C8400184C592}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HPTools.DataAccess", "xpPortal\HPTools.DataAccess\HPTools.DataAccess\HPTools.DataAccess.csproj", "{C08E7EF2-79B3-4B66-9C15-89EEEBD50199}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XP.DataAccess", "xpPortal\HPTools.DataAccess\HPTools.DataAccess\XP.DataAccess.csproj", "{C08E7EF2-79B3-4B66-9C15-89EEEBD50199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

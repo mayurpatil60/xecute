@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Data.Common;
 using System.Configuration;
 
-namespace HPTools.DataAccess.MSSQL
+namespace XP.DataAccess.MSSQL
 {
 
 

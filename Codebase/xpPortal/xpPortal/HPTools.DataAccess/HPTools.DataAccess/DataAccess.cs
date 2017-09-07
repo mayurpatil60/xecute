@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace HPTools.DataAccess
+namespace XP.DataAccess
 {
     /// <summary>
     /// Common interface for database access methods.

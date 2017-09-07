@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HPTools.DataAccess
+namespace XP.DataAccess
 {
     /// <summary>
     /// Class to set parameter values
