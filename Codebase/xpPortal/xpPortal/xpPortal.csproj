@@ -156,12 +156,14 @@
     <Content Include="Scripts\data-tables\images\sort_desc.png" />
     <Content Include="Scripts\data-tables\jquery.dataTables.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
+    <None Include="Views\Upload\UploadDocument.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\BusinessLayer.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="DAL\DataAccessLayer.cs" />
     <Compile Include="Global.asax.cs">
@@ -221,6 +223,7 @@
     <Content Include="Content\font-awesome\scss\_stacked.scss" />
     <Content Include="Content\font-awesome\scss\_variables.scss" />
     <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\ApplicantDashboard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -230,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="HPTools.DataAccess\HPTools.DataAccess\XP.DataAccess.csproj">

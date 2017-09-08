@@ -51,7 +51,7 @@
     <div class="container">
         <form class="form-signin" action="@Url.Content("~/Login/Login")" method="post" accept-charset="utf-8">
             <h2 class="form-signin-heading">sign in now</h2>
-            @Html.ValidationSummary(true)
+            <span style="color:red;">@Html.ValidationSummary(true)</span>
             <div class="login-wrap">
                 
                 <div class="user-login-info">

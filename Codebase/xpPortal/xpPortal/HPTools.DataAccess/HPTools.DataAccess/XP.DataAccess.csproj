@@ -7,8 +7,8 @@
     <ProjectGuid>{C08E7EF2-79B3-4B66-9C15-89EEEBD50199}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HPTools.DataAccess</RootNamespace>
-    <AssemblyName>HPTools.DataAccess</AssemblyName>
+    <RootNamespace>XP.DataAccess</RootNamespace>
+    <AssemblyName>XP.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
