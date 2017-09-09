@@ -11,7 +11,7 @@ namespace xpPortal.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View("ApplicantDashboard");
+            return View("Dashboard");
         }
     }
 }

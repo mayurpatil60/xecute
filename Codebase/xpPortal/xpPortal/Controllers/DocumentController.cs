@@ -25,22 +25,22 @@ namespace xpPortal.Controllers
             return View("UploadDocument");
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
-        public ActionResult Login(LoginViewModel model)
-        {
-            BusinessLayer blObject = new BusinessLayer();
-            bool isValiduser=blObject.ValidateUser(model);
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //[ValidateInput(false)]
+        //public ActionResult Login(LoginViewModel model)
+        //{
+        //    BusinessLayer blObject = new BusinessLayer();
+        //    bool isValiduser=blObject.ValidateUser(model);
 
-            if(isValiduser)
-                return RedirectToAction("Index","Home"); 
-            else
-                ModelState.AddModelError("", "Invalid username or password.");
+        //    if(isValiduser)
+        //        return RedirectToAction("Index","Home"); 
+        //    else
+        //        ModelState.AddModelError("", "Invalid username or password.");
             
-            return View("Index");
-        }
+        //    return View("Index");
+        //}
     }
 
 

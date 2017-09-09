@@ -33,9 +33,19 @@ namespace xpPortal.DAL
             mdb = new DBAccess(pDBServer, pDBName);
         }
 
+        public void ResetPassword(LoginViewModel model)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+            
+            spParameters.Add(new XP.DataAccess.DbParameter("username", model.UserName));
+            spParameters.Add(new XP.DataAccess.DbParameter("password", model.Password));
+
+            mdb.ExecuteStoredProcedure("spResetPassword", spParameters);
+        }
+
 
         #region Public Methods
-        public bool ValidateUser(LoginViewModel model)
+        public DataTable ValidateUser(LoginViewModel model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
             
@@ -45,10 +55,10 @@ namespace xpPortal.DAL
             //spParameters.Add(new XP.DataAccess.DbParameter("salt", salt));
             spParameters.Add(new XP.DataAccess.DbParameter("password", model.Password));
 
-            bool isValid= (int)mdb.ExecuteScalar("spValidateLoginInfo", spParameters) > 0 ?true:false;
+            DataTable dt = mdb.GetDataTable("spValidateLoginInfo", spParameters);
             //string decryptPassword=GenericHelper.Decrypt(mdb.ExecuteScalar("spValidateLoginInfo", spParameters).ToString(),salt);
             //bool isValid = decryptPassword.CompareTo(model.Password) == 0 ? true : false;
-            return isValid;
+            return dt;
         }
 
         //private long int GetSalt()
@@ -59,7 +69,7 @@ namespace xpPortal.DAL
 
         //    mdb.ExecuteScalar("spGetUserSalt", spParameters);
         //}
-        public bool SaveUser(LoginViewModel model)
+        public DataTable SaveUser(LoginViewModel model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
             mdb = new DBAccess(pDBServer, pDBName);
@@ -69,9 +79,9 @@ namespace xpPortal.DAL
             //spParameters.Add(new XP.DataAccess.DbParameter("password", encryptedPassword));
             spParameters.Add(new XP.DataAccess.DbParameter("password", model.Password));
 
-            var isValid = mdb.ExecuteScalar("spSaveNewJoineeInfo", spParameters);
+            DataTable dt = mdb.GetDataTable("spSaveNewJoineeInfo", spParameters);
 
-            return (bool)isValid;
+            return dt;
         }
 
         /// <summary>

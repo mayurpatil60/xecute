@@ -32,10 +32,13 @@ namespace xpPortal.Controllers
         public ActionResult Login(LoginViewModel model)
         {
             BusinessLayer blObject = new BusinessLayer();
-            bool isValiduser=blObject.ValidateUser(model);
+            bool isPasswordSet = false;
+            bool isValiduser=blObject.ValidateUser(model,out isPasswordSet);
 
-            if(isValiduser)
+            if (isValiduser && isPasswordSet)
                 return RedirectToAction("Index","Home"); 
+            else if (isValiduser && !isPasswordSet)
+                return RedirectToAction("ResetPassword",model);
             else
                 ModelState.AddModelError("", "Invalid username or password.");
             
@@ -118,11 +121,19 @@ namespace xpPortal.Controllers
             return RedirectToAction("SignIn", "Login");
         }
 
-        public ActionResult Home()
+        public ActionResult ResetPassword(LoginViewModel model)
         {
-            return View();
+            return View(model);
         }
+        [HttpPost]
+        public ActionResult SetPassword(LoginViewModel model)
+        {
 
+            BusinessLayer blObject = new BusinessLayer();
+            blObject.ResetPassword(model);
+
+            return RedirectToAction("Index", "Home");
+        }
 
 
 
