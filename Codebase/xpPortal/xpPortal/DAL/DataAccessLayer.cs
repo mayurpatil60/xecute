@@ -75,10 +75,10 @@ namespace xpPortal.DAL
         }
 
         /// <summary>
-        /// Saves NoteData
+        /// Saves User
         /// </summary>
         /// <returns></returns>
-        public void AddUser(string noteContent, string user, int releaseId)
+        public void AddUser(string user)
         {
             //List<DbParameter> spParameter = new List<DbParameter>();
             //spParameter.Add(new XP.DataAccess.DbParameter("Note", noteContent));

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HPTools.DataAccess")]
+[assembly: AssemblyTitle("XP.DataAccess")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BLRSCCMCAS01")]
-[assembly: AssemblyProduct("HPTools.DataAccess")]
+[assembly: AssemblyProduct("XP.DataAccess")]
 [assembly: AssemblyCopyright("Copyright © BLRSCCMCAS01 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
