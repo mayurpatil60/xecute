@@ -10,11 +10,11 @@ using xpPortal.Models;
 namespace xpPortal.Controllers
 {
     //[Authorize]
-    public class UploadController : Controller
+    public class DocumentController : Controller
     {
        
         
-        public UploadController()
+        public DocumentController()
         {
 
         }
