@@ -1097,7 +1097,7 @@
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.eot" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.ttf" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.woff" />
-    <None Include="Views\Upload\UploadDocument.cshtml" />
+    <None Include="Views\Document\UploadDocument.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1106,7 +1106,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BL\BusinessLayer.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="DAL\DataAccessLayer.cs" />
     <Compile Include="Global.asax.cs">
