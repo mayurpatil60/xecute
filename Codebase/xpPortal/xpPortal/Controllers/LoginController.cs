@@ -36,7 +36,7 @@ namespace xpPortal.Controllers
             bool isValiduser=blObject.ValidateUser(model,out isPasswordSet);
 
             if (isValiduser && isPasswordSet)
-                return RedirectToAction("Index","Home"); 
+                return RedirectToAction("Index","Home",model); 
             else if (isValiduser && !isPasswordSet)
                 return RedirectToAction("ResetPassword",model);
             else

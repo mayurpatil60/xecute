@@ -24,6 +24,33 @@ namespace xpPortal.BL
             return isValidUser;
         }
 
+        public void AddApplicantBasicDetailsAndSendMail(UserDetails userDetails)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            dalObject.AddApplicantBasicDetails(userDetails);
+        }
+
+        public UserDetails GetApplicantBasicDetails(string email)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable dt= dalObject.GetApplicantBasicDetails(email);
+
+            UserDetails details = new UserDetails();
+
+            details.FirstName = dt.Rows[0]["FirstName"].ToString();
+            details.LastName = dt.Rows[0]["LastName"].ToString();
+            details.PhoneNo = dt.Rows[0]["PhoneNo"]!=null?dt.Rows[0]["PhoneNo"].ToString():"";
+
+            return details;
+        }
+
+        public void SendMailToApplicant(UserDetails userDetails)
+        {
+            
+        }
+        
         public void ResetPassword(LoginViewModel model)
         {
             DataAccessLayer dalObject = new DataAccessLayer();

@@ -1,4 +1,4 @@
-﻿
+﻿@model xpPortal.Models.UserDetails
 @{
     Layout = null;
 }
@@ -27,7 +27,8 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
+    <!--common script init for all pages-->
+    <script src="~/Content/js/scripts.js"></script>
 </head>
 <body>
     <section id="container">
@@ -36,7 +37,7 @@
             <!--logo start-->
             <div class="brand">
 
-                <a href="index.html" class="logo" style="color:#fff">
+                <a href="#" class="logo" style="color:#fff">
                     XpConnect
                 </a>
                 <div class="sidebar-toggle-box">
@@ -52,7 +53,7 @@
                         <button data-dismiss="alert" class="close close-sm" type="button">
                             <i class="fa fa-times"></i>
                         </button>
-                        <strong>Documents!</strong> Please upload your remaining documents <a href="#" class="btn btn-link btn-xs">Click Here</a>
+                        <strong>Documents!</strong> Please upload your remaining documents <a href="~/Document/UploadDocument" class="btn btn-link btn-xs">Click Here</a>
                     </div>
                 </ul>
                 <!--  notification end -->
@@ -63,9 +64,10 @@
                 <ul class="nav pull-right top-menu">
                     <!-- user login dropdown start-->
                     <li class="dropdown">
+
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <img alt="" src="images/avatar1_small.jpg">
-                            <span class="username">John Doe</span>
+                            <span class="username"> @Model.FirstName</span>
                         </a>
                     </li>
                     <!-- user login dropdown end -->
@@ -98,6 +100,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="profile.html">
+                                <i class="fa fa-user"></i>
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="login.html">
                                 <i class="fa fa-user"></i>
                                 <span>Buddy</span>
@@ -106,15 +114,22 @@
                         <li>
                             <a href="registration.html">
                                 <i class="fa fa-user"></i>
-                                <span>Events</span>
+                                <span>Relocation Assistant</span>
                             </a>
                         </li>
                         <li>
                             <a href="registration.html">
                                 <i class="fa fa-user"></i>
-                                <span>Accomodation</span>
+                                <span>Refer &amp; Earn</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="registration.html">
+                                <i class="fa fa-user"></i>
+                                <span>Events</span>
+                            </a>
+                        </li>
+                      
                         <li>
                             <a href="registration.html">
                                 <i class="fa fa-user"></i>
@@ -139,8 +154,9 @@
                         <div class="mini-stat clearfix">
                             <span class="mini-stat-icon orange"><i class="ico-clock2"></i></span>
                             <div class="mini-stat-info">
-                                <span>2<small>d</small>:5<small>h</small>:30<small>m</small></span>
-                                Time to Join
+                                @*<span>2<small>d</small>:5<small>h</small>:30<small>m</small></span>*@
+                                <span>12</span>
+                                Days to Join
                             </div>
                         </div>
                     </div>
@@ -148,8 +164,8 @@
                         <div class="mini-stat clearfix">
                             <span class="mini-stat-icon tar"><i class="fa fa-tag"></i></span>
                             <div class="mini-stat-info">
-                                <span>650</span>
-                                Employee
+                                <span>In progress</span>
+                                Overall Status
                             </div>
                         </div>
                     </div>
@@ -169,14 +185,14 @@
                     <div class="col-md-6">
                         <!--todolist start-->
                         <section class="panel">
-                            <header class="panel-heading">
+                            <header class="panel-heading" style="cursor:pointer">
                                 Documents
                                 <!--<span class="tools pull-right">
                                 <a href="javascript:;" class="fa fa-chevron-down"></a>
                                 <a href="javascript:;" class="fa fa-cog"></a>
                                 <a href="javascript:;" class="fa fa-times"></a>
                                 </span>-->
-                                <a style="text-decoration:underline;color:blue;float:right;" href="~/Document/UploadDocument">Upload Documents here</a>
+                                @*<a style="text-decoration:underline;color:blue;float:right;" href="~/Document/UploadDocument">Upload Documents here</a>*@
                             </header>
                             <div class="panel-body profile-nav">
                                 <ul class="nav nav-pills nav-stacked">
@@ -197,14 +213,13 @@
                             </header>
                             <div class="panel-body">
                                 <p>
-                                    Buddy will help you in your queries, below is the details of buddy that you assigned to.
-                                </p>
+                                    No need to worry, we got you covered. Your Buddy will help you out. </p>
                                 <div class="user-heading alt">
                                     <a href="#">
                                         <img alt="" src="images/lock_thumb.jpg">
                                     </a>
                                     <h1>Jim Doe</h1>
-                                    <p>Project Manager</p>
+                                    <p>Resource Team</p>
                                 </div>
                                 <div class="weather-category twt-category">
                                     <ul>
@@ -235,7 +250,7 @@
                             <div class="wdgt-row">
                                 <img src="images/weather_image.jpg" height="243" alt="">
                                 <div class="wdt-head">
-                                    Our Events
+                                    Upcoming Events
                                 </div>
                                 <!--<div class="country-select">
                                     <select class="styled">
@@ -256,10 +271,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <ul>
-                                            <li>
-                                                <h2>Ceremony</h2>
-                                                <i class=" ico-cloudy text-primary"></i>
-                                            </li>
+                                            
                                             <li>
                                                 <h2>Events</h2>
                                                 <i class=" ico-rainy2 text-danger"></i>
@@ -296,14 +308,14 @@
                             </header>
                             <div class="panel-body">
                                 <p>
-                                    Contact Person will help you in queries related to pending documents, accodomation, offer.
+                                    Contact Person will help you out in queries related to documents.
                                 </p>
                                 <div class="user-heading alt">
                                     <a href="#">
                                         <img alt="" src="images/avatar-mini-2.jpg">
                                     </a>
                                     <h1>Jane Doe</h1>
-                                    <p>Recrutor</p>
+                                    <p>Recruitment Team</p>
                                 </div>
                                 <div class="weather-category twt-category">
                                     <ul>
@@ -617,8 +629,7 @@
     <script src="~/Content/js/flot-chart/jquery.flot.growraf.js"></script>
     <script src="~/Content/js/dashboard.js"></script>
     <script src="~/Content/js/jquery.customSelect.min.js"></script>
-    <!--common script init for all pages-->
-    <script src="~/Content/js/scripts.js"></script>
+    
     <!--script for this page-->
 </body>
 </html>
