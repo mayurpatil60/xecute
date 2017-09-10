@@ -1197,6 +1197,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedDocuments\" />
     <Folder Include="Views\Joinee\" />
     <Folder Include="Views\Recruiter\" />
     <Folder Include="Views\UserDetail\" />
