@@ -1107,6 +1107,7 @@
     <Compile Include="BL\BusinessLayer.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\JoineeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RecruiterController.cs" />
     <Compile Include="DAL\DataAccessLayer.cs" />
@@ -1177,6 +1178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Joinee\" />
     <Folder Include="Views\Recruiter\" />
   </ItemGroup>
   <ItemGroup>

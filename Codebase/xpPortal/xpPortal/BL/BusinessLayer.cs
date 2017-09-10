@@ -24,6 +24,12 @@ namespace xpPortal.BL
             return isValidUser;
         }
 
+        public void SubmitQuery(string query)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            dalObject.SubmitQuery(query);
+        }
+
         public void AddApplicantBasicDetailsAndSendMail(UserDetails userDetails)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
