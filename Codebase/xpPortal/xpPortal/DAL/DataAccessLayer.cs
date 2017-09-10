@@ -33,6 +33,11 @@ namespace xpPortal.DAL
             mdb = new DBAccess(pDBServer, pDBName);
         }
 
+        public void SubmitQuery(string query)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddApplicantBasicDetails(UserDetails model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();

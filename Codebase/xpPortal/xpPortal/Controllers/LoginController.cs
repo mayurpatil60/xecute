@@ -128,11 +128,10 @@ namespace xpPortal.Controllers
         [HttpPost]
         public ActionResult SetPassword(LoginViewModel model)
         {
-
             BusinessLayer blObject = new BusinessLayer();
             blObject.ResetPassword(model);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home",model);
         }
 
 

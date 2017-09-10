@@ -15,6 +15,8 @@ namespace xpPortal.Models
         public string PhoneNo { get; set; }
         public string Gender { get; set; }
         public DateTime DOB{ get; set; }
+        public DateTime JoiningDate { get; set; }
+        public int DaysRemainToJoin { get; set; }
         public string CurrentAddress { get; set; }
         public string PermanentAddress { get; set; }
         public string PassportNo { get; set; }
