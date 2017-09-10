@@ -48,8 +48,31 @@ namespace xpPortal.BL
             details.FirstName = dt.Rows[0]["FirstName"].ToString();
             details.LastName = dt.Rows[0]["LastName"].ToString();
             details.PhoneNo = dt.Rows[0]["PhoneNo"]!=null?dt.Rows[0]["PhoneNo"].ToString():"";
-
+            details.Email = dt.Rows[0]["EmailId"].ToString();
             return details;
+        }
+
+
+        public UserDetails GetApplicantDetails(string email)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable dt = dalObject.GetApplicantDetails(email);
+
+            UserDetails details = new UserDetails();
+
+            details.FirstName = dt.Rows[0]["FirstName"].ToString();
+            details.LastName = dt.Rows[0]["LastName"].ToString();
+            details.PhoneNo = dt.Rows[0]["PhoneNo"] != null ? dt.Rows[0]["PhoneNo"].ToString() : "";
+            details.Email = dt.Rows[0]["EmailId"].ToString();
+            return details;
+        }
+
+        public void AddApplicantDetailedInfomation(UserDetails userDetails)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            dalObject.AddApplicantDetailedInfomation(userDetails);
         }
 
         public void SendMailToApplicant(UserDetails userDetails)

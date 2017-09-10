@@ -122,6 +122,8 @@
     <Content Include="Content\blue-theme.css" />
     <Content Include="Content\bootstrap-reset.css" />
     <Content Include="Content\bootstrap-switch.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
@@ -1032,6 +1034,7 @@
     <Content Include="Content\js\validation-init.js" />
     <Content Include="Content\orange-theme.css" />
     <Content Include="Content\purple-theme.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\style-responsive.css" />
     <Content Include="Content\Style.css" />
     <Content Include="Content\StyleSheet2.css" />
@@ -1093,11 +1096,16 @@
     <Content Include="Scripts\data-tables\images\sort_both.png" />
     <Content Include="Scripts\data-tables\images\sort_desc.png" />
     <Content Include="Scripts\data-tables\jquery.dataTables.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.eot" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.ttf" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.woff" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Views\Document\UploadDocument.cshtml" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1110,12 +1118,14 @@
     <Compile Include="Controllers\JoineeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RecruiterController.cs" />
+    <Compile Include="Controllers\UserDetailedInfoController.cs" />
     <Compile Include="DAL\DataAccessLayer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\GenericHelper.cs" />
+    <Compile Include="Models\BasicInfoModel.cs" />
     <Compile Include="Models\Constant.cs" />
     <Compile Include="Models\EmailData.cs" />
     <Compile Include="Models\Enum.cs" />
@@ -1169,6 +1179,9 @@
     <Content Include="Content\font-awesome\scss\_variables.scss" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\UserDetailedInfo\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1181,6 +1194,7 @@
     <Folder Include="UploadedDocuments\" />
     <Folder Include="Views\Joinee\" />
     <Folder Include="Views\Recruiter\" />
+    <Folder Include="Views\UserDetail\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="HPTools.DataAccess\HPTools.DataAccess\XP.DataAccess.csproj">

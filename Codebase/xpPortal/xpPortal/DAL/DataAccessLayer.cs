@@ -46,10 +46,26 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("FirstName", model.FirstName));
             spParameters.Add(new XP.DataAccess.DbParameter("MiddleName", model.MiddleName));
             spParameters.Add(new XP.DataAccess.DbParameter("LastName", model.LastName));
-
+            spParameters.Add(new XP.DataAccess.DbParameter("PhoneNo", model.PhoneNo));
             mdb.ExecuteStoredProcedure("spAddApplicantBasicDetails", spParameters);
         }
+
+        public void AddApplicantDetailedInfomation(UserDetails model)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+            spParameters.Add(new XP.DataAccess.DbParameter("PassportNo", model.PassportNo));
+            spParameters.Add(new XP.DataAccess.DbParameter("CurrentAddress", model.CurrentAddress));
+            spParameters.Add(new XP.DataAccess.DbParameter("BloodGroup", model.BloodGroup));
+            spParameters.Add(new XP.DataAccess.DbParameter("Gender", model.Gender));
+            spParameters.Add(new XP.DataAccess.DbParameter("EmergencyContactNumber", model.EmergencyContactNo));
+            spParameters.Add(new XP.DataAccess.DbParameter("DOB", model.DOB));
+            spParameters.Add(new XP.DataAccess.DbParameter("Email", model.Email));
+            mdb.ExecuteStoredProcedure("spAddApplicantDetailedInfo", spParameters);
+        }
+
         
+
         public DataTable GetApplicantBasicDetails(string email)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
@@ -59,6 +75,17 @@ namespace xpPortal.DAL
             return mdb.GetDataTable("spGetApplicantBasicDetails", spParameters);
         }
 
+        public DataTable GetApplicantDetails(string email)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+            spParameters.Add(new XP.DataAccess.DbParameter("Email", email));
+
+            return mdb.GetDataTable("spGetApplicantDetailedInfo", spParameters);
+        }
+
+        
+
         public DataTable GetApplicantDetailedInfo(string email)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
@@ -66,24 +93,6 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("Email", email));
             
             return mdb.GetDataTable("spGetApplicantDetailedInfo", spParameters);
-        }
-
-        public void AddApplicantDetailedInfo(UserDetails model)
-        {
-            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
-
-            spParameters.Add(new XP.DataAccess.DbParameter("PhoneNo", model.PhoneNo));
-            spParameters.Add(new XP.DataAccess.DbParameter("Gender", model.Gender));
-            spParameters.Add(new XP.DataAccess.DbParameter("DOB", model.DOB));
-            spParameters.Add(new XP.DataAccess.DbParameter("CurrentAddress", model.CurrentAddress));
-            spParameters.Add(new XP.DataAccess.DbParameter("PermanentAddress", model.PermanentAddress));
-            spParameters.Add(new XP.DataAccess.DbParameter("PassportNo", model.PassportNo));
-            spParameters.Add(new XP.DataAccess.DbParameter("PassportExpiry", model.PassportExpiry));
-            spParameters.Add(new XP.DataAccess.DbParameter("EmergencyContactName", model.EmergencyContactName));
-            spParameters.Add(new XP.DataAccess.DbParameter("EmergencyContactNo", model.EmergencyContactNo));
-            spParameters.Add(new XP.DataAccess.DbParameter("BloodGroup", model.BloodGroup));
-
-            mdb.ExecuteStoredProcedure("spAddApplicantDetailedInfo", spParameters);
         }
 
         public void ResetPassword(LoginViewModel model)
