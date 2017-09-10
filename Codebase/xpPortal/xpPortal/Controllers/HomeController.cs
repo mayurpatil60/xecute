@@ -11,6 +11,7 @@ namespace xpPortal.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        
         public ActionResult Index(LoginViewModel model)
         {
             BusinessLayer bl = new BusinessLayer();

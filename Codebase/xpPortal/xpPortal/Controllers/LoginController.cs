@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -33,8 +34,9 @@ namespace xpPortal.Controllers
         {
             BusinessLayer blObject = new BusinessLayer();
             bool isPasswordSet = false;
-            bool isValiduser=blObject.ValidateUser(model,out isPasswordSet);
+            bool isValiduser=blObject.ValidateUser(model,out isPasswordSet);         ;
 
+            model.Password = "";
             if (isValiduser && isPasswordSet)
                 return RedirectToAction("Index","Home",model); 
             else if (isValiduser && !isPasswordSet)
@@ -44,7 +46,7 @@ namespace xpPortal.Controllers
             
             return View("Index");
         }
-
+        
         //
         // POST: /Account/Login
         [HttpPost]

@@ -24,10 +24,30 @@ namespace xpPortal.BL
             return isValidUser;
         }
 
-        public void SubmitQuery(string query)
+        public void SubmitQuery(string query, LoginViewModel model)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
-            dalObject.SubmitQuery(query);
+            dalObject.SubmitQuery(query,model);
+        }
+
+        public List<Query> GetQueries()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable dt = dalObject.GetQuery();
+            List<Query> queryList = new List<Query>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Query queryObj = new Query();
+                queryObj.Id = int.Parse(dr["QueryId"].ToString());
+                queryObj.Subject = dr["Subject"].ToString();
+                queryObj.DateCreated = DateTime.Parse(dr["DateCreated"].ToString()).ToShortDateString();
+                queryObj.IsAnswered = bool.Parse(dr["IsAnswered"].ToString());
+                queryList.Add(queryObj);
+            }
+            
+            return queryList;
         }
 
         public void AddApplicantBasicDetailsAndSendMail(UserDetails userDetails)

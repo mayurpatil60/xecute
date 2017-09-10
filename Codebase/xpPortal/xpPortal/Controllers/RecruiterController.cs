@@ -23,5 +23,14 @@ namespace xpPortal.Controllers
             bl.AddApplicantBasicDetailsAndSendMail(userDetails);
             return View();
         }
+
+        public ActionResult GetQueries()
+        {
+            BusinessLayer bl = new BusinessLayer();
+            
+            return View("Queries",bl.GetQueries());
+        }
+
+
     }
 }

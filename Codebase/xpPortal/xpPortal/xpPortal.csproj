@@ -1093,11 +1093,20 @@
     <Content Include="Scripts\data-tables\images\sort_both.png" />
     <Content Include="Scripts\data-tables\images\sort_desc.png" />
     <Content Include="Scripts\data-tables\jquery.dataTables.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.eot" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.ttf" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.woff" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Views\Document\UploadDocument.cshtml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1120,6 +1129,7 @@
     <Compile Include="Models\EmailData.cs" />
     <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Query.cs" />
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1169,6 +1179,7 @@
     <Content Include="Content\font-awesome\scss\_variables.scss" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Recruiter\Queries.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1179,7 +1190,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Joinee\" />
-    <Folder Include="Views\Recruiter\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="HPTools.DataAccess\HPTools.DataAccess\XP.DataAccess.csproj">
