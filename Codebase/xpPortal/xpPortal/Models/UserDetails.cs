@@ -25,6 +25,10 @@ namespace xpPortal.Models
         public string BloodGroup { get; set; }
         public bool AllDetailsFlag { get; set; }
         public bool AllDocumentsFlag { get; set; }
+        public int SelectedMonth { get; set; }
+        public int SelectedYear { get; set; }
+        public int SelectedDay { get; set; }
+
 
     }
 }
