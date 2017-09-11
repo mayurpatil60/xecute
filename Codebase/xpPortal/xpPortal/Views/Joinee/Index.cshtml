@@ -38,34 +38,34 @@
                                 <form id="submitBasic" class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">First Name:</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Middle Name:</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
                                         </div>
                                     </div>
                                    
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label" >Last Name:</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="@Model.LastName">
                                           
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Contact Number:</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control" placeholder="Contact Number" name="PhoneNo" value="@Model.PhoneNo">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Email Address:</label>
-                                        <div class="col-lg-8">
-                                            <input type="text"  style="position: relative;float: left;" class="form-control" placeholder="Email Address" id="emailName" name="Email" value="@Model.Email">
+                                        <div class="col-lg-6">
+                                            <input type="text"  style="position: relative;float: left;width: 65%;" class="form-control" placeholder="Email Address" id="emailName" name="Email" value="@Model.Email">
                                             <button class="btn btn-lg btn-login btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
                                             padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 10px;background-color: lawngreen;" type="submit">Save</button>
                                         </div>
@@ -77,20 +77,20 @@
                                 <form id="submitFull" class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Passport:</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control" placeholder="Passport" name="PassportNo" value="@Model.PassportNo">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Gender:</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             @Html.RadioButtonFor(model => model.Gender, "Male", new { @checked = true }) Male
                                             @Html.RadioButtonFor(model => model.Gender, "Female", new { @checked = true }) Female
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">DOB:</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             @Html.DropDownListFor(model => model.SelectedDay, (IEnumerable<SelectListItem>)ViewBag.Days, "Day")
                                             @Html.DropDownListFor(model => model.SelectedMonth, (IEnumerable<SelectListItem>)ViewBag.Months, "Month")
                                             @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
@@ -98,23 +98,23 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Emergency Contact Number:</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control" placeholder="Mobile" name="EmergencyContactNo" value="@Model.EmergencyContactNo">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Blood Group</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control" placeholder="Blood Group" name="BloodGroup" value="@Model.BloodGroup">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Address</label>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-4">
                                             <textarea class="form-control" cols="60" rows="5" name="CurrentAddress" value="@Model.CurrentAddress"></textarea>
                                         </div>
                                         <button class="btn btn-lg btn-login btn-block" style="position: relative;float: left;width: 20%;
-                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 144px;margin-top: 20px;background-color: lawngreen;" 
+                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 185px;margin-top: 20px;background-color: lawngreen;" 
                                                 id="submitFullButton" type="submit">Save</button>
                                     </div>
                                 </form>
@@ -136,7 +136,7 @@
             var $this = $(this);
             var dataToPost = $(this).serialize();
 
-            $.post("UserDetailedInfo/SaveBasicInfo", dataToPost)
+            $.post("Joinee/SaveBasicInfo", dataToPost)
                 .done(function (response, status, jqxhr) {
                     alert("Your Details are Successfully Updated.");
                 })
@@ -152,7 +152,7 @@
             var email = document.getElementById("emailName").value;
             var dataToPost = $(this).serialize();
             dataToPost = dataToPost+ "&Email="+email;
-            $.post("UserDetailedInfo/SaveDetailInfo", dataToPost)
+            $.post("Joinee/SaveDetailInfo", dataToPost)
                 .done(function (response, status, jqxhr) {
                     alert("Your Details are Successfully Updated.");
                 })

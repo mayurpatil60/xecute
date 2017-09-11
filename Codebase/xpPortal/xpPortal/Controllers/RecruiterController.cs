@@ -32,5 +32,19 @@ namespace xpPortal.Controllers
         }
 
 
+        public ActionResult AddNewJoinee()
+        {
+            UserDetails model = new UserDetails();
+            return View("AddNewJoinee",model);
+        }
+
+
+        public ActionResult SaveNewJoinee(UserDetails basicInfo)
+        {
+            UserDetails model = new UserDetails();
+            BusinessLayer blObject = new BusinessLayer();
+            blObject.AddNewJoinee(basicInfo);
+            return View("AddNewJoinee", model);
+        }
     }
 }

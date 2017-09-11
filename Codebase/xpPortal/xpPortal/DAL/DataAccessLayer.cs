@@ -60,6 +60,17 @@ namespace xpPortal.DAL
             mdb.ExecuteStoredProcedure("spAddApplicantBasicDetails", spParameters);
         }
 
+        public void AddNewJoinee(UserDetails model)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+            spParameters.Add(new XP.DataAccess.DbParameter("Email", model.Email));
+            spParameters.Add(new XP.DataAccess.DbParameter("FirstName", model.FirstName));
+            spParameters.Add(new XP.DataAccess.DbParameter("MiddleName", model.MiddleName));
+            spParameters.Add(new XP.DataAccess.DbParameter("LastName", model.LastName));
+            mdb.ExecuteStoredProcedure("spAddNewJoinee", spParameters);
+        }
+
         public void AddApplicantDetailedInfomation(UserDetails model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
