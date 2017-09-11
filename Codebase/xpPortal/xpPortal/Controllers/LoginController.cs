@@ -38,13 +38,21 @@ namespace xpPortal.Controllers
 
             model.Password = "";
             if (isValiduser && isPasswordSet)
-                return RedirectToAction("Index","Home",model); 
+            {
+                SetSessionVariables(model);
+                return RedirectToAction("Index", "Home", model);
+            }
             else if (isValiduser && !isPasswordSet)
-                return RedirectToAction("ResetPassword",model);
+                return RedirectToAction("ResetPassword", model);
             else
                 ModelState.AddModelError("", "Invalid username or password.");
             
             return View("Index");
+        }
+
+        private void SetSessionVariables(LoginViewModel model)
+        {
+            Session["userName"] = model.UserName;
         }
         
         //
@@ -112,15 +120,13 @@ namespace xpPortal.Controllers
         }
 
         //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-
+        // GET: /Account/LogOff
+        
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("SignIn", "Login");
+            return RedirectToAction("Index", "Login");
         }
 
         public ActionResult ResetPassword(LoginViewModel model)

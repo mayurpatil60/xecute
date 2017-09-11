@@ -26,7 +26,7 @@ namespace xpPortal.BL
             return isValidUser;
         }
 
-        public void SubmitQuery(string query, LoginViewModel model)
+        public void SubmitQuery(Query query, LoginViewModel model)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
             dalObject.SubmitQuery(query,model);
@@ -36,7 +36,7 @@ namespace xpPortal.BL
         {
             DataAccessLayer dalObject = new DataAccessLayer();
 
-            DataTable dt = dalObject.GetQuery();
+            DataTable dt = dalObject.GetQueries();
             List<Query> queryList = new List<Query>();
 
             foreach (DataRow dr in dt.Rows)
@@ -44,7 +44,8 @@ namespace xpPortal.BL
                 Query queryObj = new Query();
                 queryObj.Id = int.Parse(dr["QueryId"].ToString());
                 queryObj.Subject = dr["Subject"].ToString();
-                queryObj.DateCreated = DateTime.Parse(dr["DateCreated"].ToString()).ToShortDateString();
+                queryObj.QueryDetail= dr["Query"].ToString();
+                queryObj.DateCreated = DateTime.Parse(dr["DateCreated"].ToString()).ToString();
                 queryObj.IsAnswered = bool.Parse(dr["IsAnswered"].ToString());
                 queryList.Add(queryObj);
             }

@@ -1,653 +1,218 @@
-﻿    @{TempData.Keep();}
+﻿@{
+    Layout = null;
+}
+@Html.AntiForgeryToken()
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Quality Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>XpConnect</title>
+    <!--Core CSS -->
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-reset.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/Style.css" rel="stylesheet" />
-    <link href="~/Content/all.css" rel="stylesheet" />
-    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/dataTables/demo_page.css" rel="stylesheet" />
-    <link href="~/Content/dataTables/demo_table.css" rel="stylesheet" />
-    <link href="~/Content/dataTables/demo_table_jui.css" rel="stylesheet" />
-    <link href="~/Content/DataTables.css" rel="stylesheet" />
-    <link href="~/Content/themes/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
-    <script src="~/Scripts/jquery-ui.min.js"></script>
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/Highcharts-4.0.1/js/highcharts-all.js"></script>
-    @*<script src="~/Scripts/highstock.js"></script>*@
-    <script src="~/Scripts/jquery.js" type="text/javascript"></script>
-    <script src="~/Scripts/DataTables.js"></script>
-    <script src="~/Scripts/Helper.js"></script>
+    <link href="~/Content/style-responsive.css" rel="stylesheet" />
 
-    @*<script src="~/Scripts/highcharts.js"></script>*@
-    <script type="text/javascript">
-
-        function showAbout() {
-            sURL = "../Shared/About";
-            //Set options
-
-            var sOptions = 'dialogWidth:470px; dialogHeight:100%; dialogLeft:500px; dialogTop:100px; status:no; scroll:no; help:no; resizable:no';
-            //Open dialog
-            var oValue = window.showModalDialog(sURL, 'About', sOptions);
-
-        }
-        function showlookup() {
-
-            sURL = "../Shared/L2lookup";
-            //Set options
-
-            var sOptions = 'dialogWidth:400px; dialogHeight:100%; dialogLeft:500px; dialogTop:250px; status:no; scroll:no; help:no; resizable:No';
-            //Open dialog
-            var oValue = window.showModalDialog(sURL, 'L2 lookup', sOptions);
-
-        }
-
-        var _paq = _paq || [];
-        _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
-        _paq.push(["setCookieDomain", "*.vdu-crt-iis-01.americas.hpqcorp.net"]);
-        _paq.push(["setDomains", ["*.vdu-crt-iis-01.americas.hpqcorp.net", "*.ctaf-dashboard.uk.rdlabs.hpecorp.net", "*.quality-dashboard.uk.rdlabs.hpecorp.net", "*.quality-dashboard.us.rdlabs.hpecorp.net"]]);
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function () {
-            var u = "//ctaf-statistics.uk.rdlabs.hpecorp.net/piwik/";
-            _paq.push(['setTrackerUrl', u + 'piwik.php']);
-            _paq.push(['setSiteId', 3]);
-            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-            g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
-        })();
-
-
-    </script>
-    <noscript><p><img src="//ctaf-statistics.gbr.hp.com/piwik/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]>
+    <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!--common script init for all pages-->
+    <script src="~/Content/js/scripts.js"></script>
 </head>
-
-<body style="margin:0;height:100%;width:100%;">
-
-    <div style="min-height:100%;position:relative;">
-
-        <div style="padding-bottom:5%;">
-            <table style="min-height:100%; position:relative;width:100%;">
-                <tr>
-                    <td>
-                        <div class="ParentDiv">
-
-                            <div class="HeaderBlock" style="display:inline;">
-
-                                <div style="padding-left:0%;border-bottom:2px solid;border-bottom-color:lightgray;height:47px;">
-                                    <div style="float:left;padding-left:2%;padding-top:0.3%">
-                                        <img src="../Content/images/HP_White_RGB_140_MD.png">
-                                    </div>
-                                    <div class="dash_title" style="float:left">Quality Dashboard<span style="font-size:large;margin-left:1%">@System.Web.Configuration.WebConfigurationManager.AppSettings["MajorVersion"].@System.Web.Configuration.WebConfigurationManager.AppSettings["MinorVersion"].@System.Web.Configuration.WebConfigurationManager.AppSettings["FixVersion"]</span></div>
-
-                                    <div class="mainheadercontainer">
-                                        <span style="height:4px;width:1.3%;position:relative;z-index:100;float:right;right:16.6%;top:3px">
-                                            <img id="imgMarker" src="..//Content/images/marker.jpg" style="height:15px">
-                                        </span>
-
-                                        <div class="hRight">
-                                            <div class="hLinks">
-                                                <li>
-                                                    <a class="hUser " href="#" title="Profile"></a>
-                                                    <div class="profilediv hdropdown">
-                                                        <div class="spacing">
-                                                            <table width="100%" class="zeroMargin">
-                                                                @if (!string.IsNullOrEmpty(@HttpContext.Current.User.Identity.Name))
-                                                                {
-                                                                    <tr>
-                                                                        <td width="30%">User</td>
-
-                                                                        <td class="uInfo" width="70%">@HttpContext.Current.User.Identity.Name</td>
-                                                                    </tr>
-                                                                    <tr></tr>
-                                                                    <tr>
-                                                                        <td>Signed In </td>
-                                                                        <td class="uInfo">@System.DateTime.Now</td>
-                                                                    </tr>
-                                                                }
-                                                                <tr>
-                                                                    <td colspan="3" align="right">
-                                                                        <a class="pButton pCancel floatR zeroMarginR" style="margin: 10px 17px 0px 0px">Cancel</a>
-
-                                                                        @{
-                                                                            if (Request.IsAuthenticated)
-                                                                            {
-                                                                                if (Session["UserName"] == null)
-                                                                                {
-                                                                                    @*<a class="pButton marginL10 floatR" style="margin: 10px 17px 0px 0px" href="@Url.Content("~/account/login")">Sign In</a>*@
-                                                                                    <script>
-
-                                                                                        //$('.spacing table tbody tr:eq(0)').remove();
-                                                                                        //$('.spacing table tbody tr:eq(0)').remove();
-                                                                                        //$('.spacing table tbody tr:eq(0)').remove();
-                                                                                    </script>
-                                                                                }
-                                                                                else
-                                                                                {
-
-                                                                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                                                                                    {
-                                                                                        @Html.AntiForgeryToken()
-                                                                                        <a class="pButton marginL10 floatR" style="margin: 10px 17px 0px 0px" href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a>
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                <a class="pButton marginL10 floatR" style="margin: 10px 17px 0px 0px" href="@Url.Content("~/account/login")">Sign In</a>
-                                                                            }
-                                                                        }
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-
-
-                                                        <span class="uparrow"></span>
-                                                    </div>
-                                                </li>
-
-                                                @{
-                                                    var authenticate = TempData.Peek("Authenticate") as string;
-                                                    var adminRole = Session["AdminRole"] as string;
-
-                                                    if (adminRole == "vduDashboard-Admin")
-                                                    {
-                                                        <li>
-
-                                                            <a class="admin_icon" href="#" title="Admin"></a>
-                                                            <div class="helpDropdown hdropdown">
-                                                                <ul>
-                                                                    <li><a href="@Url.Content("~/Admin/Programs")" class="Program"> Programs </a></li>
-                                                                    <li><a href="@Url.Content("~/Admin/Releases")" class="Program"> Releases</a></li>
-                                                                    <li><a href="@Url.Content("~/Admin/Phases")" class="Program"> Phases</a></li>
-                                                                    <li><a href="@Url.Content("~/Admin/TestTeams")" class="Program"> Test Teams</a></li>
-                                                                    <li><a href="@Url.Content("~/Admin/TestTeamgroups")" class="Program"> Test Team Groups</a></li>
-                                                                    <li><a href="@Url.Content("~/Admin/Synchronize")" class="Program"> Synchronize</a></li>
-                                                                    <li><a href="@Url.Content("~/Admin/Notes")" class="Program"> Status Update</a></li>
-                                                                </ul>
-                                                                <span></span>
-                                                            </div>
-                                                        </li>
-                                                        <script>
-                                                            $('#imgMarker').show();
-                                                            UpdateAdminFlag(1);
-                                                        </script>
-                                                    }
-                                                    else
-                                                    {
-                                                        <script>
-                                                            $('#imgMarker').hide();
-                                                            UpdateAdminFlag(0);
-                                                        </script>
-                                                    }
-
-                                                }
-                                                <li>
-                                                    <a class="help" href="#" title="Help"></a>
-                                                    <div class="helpDropdown hdropdown">
-                                                        <ul>
-                                                            <li> <a style="cursor:pointer" onclick="OpenHelp('../Help/Help#@ViewData["Page"]');" id="lnkHelp">Help</a></li>
-                                                            <li><a href="#" id="lnkAbout" onclick="javascript:showAbout();">About</a></li>
-                                                        </ul>
-                                                        <span></span>
-                                                    </div>
-                                                </li>
-                                            </div>
-                                        </div>
-                                        <div class="hRight" id="UserName">
-
-                                            Welcome, @if (Request.IsAuthenticated)
-                                            {
-                                                if (Session["UserName"] == null)
-                                                {
-                                                    <span> Guest</span>
-                                                    FormsAuthentication.SignOut();
-
-                                                    Response.Redirect("~/account/Login");
-                                                }
-                                                else
-                                                {
-                                                    @Session["UserName"];
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <span> Guest</span>
-                                            }
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="wrapper">
-                                <div class="container">
-                                    <div class="navbar">
-                                        <div class="nav" style="width:100%">
-                                            <div class="tlinks">
-                                                <ul>
-                                                    <li>
-                                                        <a class="director_iconA"><span class="director_icon">Director</span></a>
-                                                        <ul>
-                                                            <li><a href="@Url.Content("../Director/ProgramDefectTrendReport")" onclick="SetUrl('../Director/ProgramDefectTrendReport', 2)" class="Director DefectTrend"> Program Defect Trend Report</a></li>
-                                                            <li><a href="@Url.Content("../Director/ProgramTestingProgressReport")" onclick="SetUrl('../Director/ProgramTestingProgressReport', 1)" class="Director Testprogress"> Program Testing Progress Report</a></li>
-                                                            <li><a href="@Url.Content("~/Director/ReleaseReadiness")" onclick="SetUrl('../Director/ReleaseReadiness', 5)" class="Testprogress">Release Readiness Report</a></li>
-                                                            <li><a href="@Url.Content("~/Director/Notes")" onclick="SetUrl('../Director/Notes', 2)" class="Director"> Status Update</a></li>
-
-                                                        </ul>
-
-                                                    </li>
-                                                    <li>
-                                                        <a class="program_iconA"><span class="program_icon">Program</span></a>
-                                                        <ul>
-                                                            <li><a href="@Url.Content("../Program/DefectBedrockSummary")" onclick="SetUrl('../Program/DefectBedrockSummary', 3)" class="Program"> Defect Bedrock Summary </a></li>
-                                                            <li><a href="@Url.Content("../Program/IncomingDefectReportByZone")" onclick="SetUrl('../Program/IncomingDefectReportByZone', 3)" class="Program DefectTrend"> Incoming Defect Report By Zone</a></li>
-                                                            @*<li><a href="@Url.Content("~/Program/FeatureTeamDefectTrendReport")" onclick="CallController()"  class="Program DefectTrend">Feature Team Defect Trend Report</a></li>*@
-                                                            <li><a href="@Url.Content("../Program/FeatureTeamDefectTrendReport")" onclick="SetUrl('../Program/FeatureTeamDefectTrendReport', 1)" class="Program DefectTrend">Feature Team Defect Trend Report</a></li>
-                                                            <li><a href="@Url.Content("../Program/ProgramDefectTrendReport")" onclick="SetUrl('../Program/ProgramDefectTrendReport', 2)" class="Program DefectTrend">Program Defect Trend Report</a></li>
-                                                            <li><a href="@Url.Content("../Program/ProgramTestingProgressReport")" onclick="SetUrl('../Program/ProgramTestingProgressReport', 1)" class="Program Testprogress"> Program Testing Progress Report</a></li>
-                                                            <li><a href="@Url.Content("../Program/DefectBacklogByZone")" onclick="SetUrl('../Program/DefectBacklogByZone', 2)" class="Program DefectTrend">Open Defects By Zone</a></li>
-                                                            <li><a href="@Url.Content("../Program/DefectsToBeFixed")" onclick="SetUrl('../Program/DefectsToBeFixed', 2)" class="Program DefectTrend">Defect To Be Fixed</a></li>
-                                                            <li><a href="@Url.Content("../Program/DefectsToBeVerified")" onclick="SetUrl('../Program/DefectsToBeVerified', 2)" class="Program DefectTrend">Defect To Be Verified</a></li>
-                                                            <li><a href="~/Integrity%20Checker/VDU%20Bugzilla%20Analysis%20-%201.7.xlsm">Download Integrity Checker</a></li>
-                                                            <li><a href="~/Unknown%20Case%20Metrics/Unknown%20Case%20Metrics.xlsm">Download Unknown Case Metrics</a></li>
-
-                                                        </ul>
-
-                                                    </li>
-                                                    <li>
-                                                        <a class="engineer_iconA"><span class="engineer_icon">Engineer</span></a>
-                                                        <ul>
-
-                                                            <li><a href="@Url.Content("../Engineer/FeatureTeamDefectTrendReport")" onclick="SetUrl('../Engineer/FeatureTeamDefectTrendReport', 1)" class="DefectTrend"> Feature Team Defect Trend Report</a></li>
-                                                            <li><a href="@Url.Content("../Engineer/ProgramTestingProgressReport")" onclick="SetUrl('../Engineer/ProgramTestingProgressReport', 1)" class="Testprogress">Program Testing Progress Report</a></li>
-
-                                                        </ul>
-                                                    </li>
-
-                                                    <li>
-                                                        <a class="metrics_iconA"><span class="metrics_icon">Metrics</span></a>
-                                                        <ul>
-                                                            <li><a href="@Url.Content("~/Metrics/TeamByPriorityReport")" onclick="SetUrl('../Metrics/TeamByPriorityReport', 4)">Team by Priority</a></li>
-                                                            <li><a href="@Url.Content("~/Metrics/RedZoneByTeam")" onclick="SetUrl('../Metrics/RedZoneByTeam', 4)">Red Zone by Team</a></li>
-                                                            <li><a href="@Url.Content("~/Metrics/DefectTypeByFeatureTeamReport")" onclick="SetUrl('../Metrics/DefectTypeByFeatureTeamReport', 4)">Defect Type by Feature Team</a></li>
-                                                            <li><a href="@Url.Content("~/Metrics/TeamDefectMetric")" onclick="SetUrl('../Metrics/TeamDefectMetric', 4)">Team Defect Metric</a></li>
-                                                            <li><a href="@Url.Content("~/Metrics/PriorityOfPileReport")" onclick="SetUrl('../Metrics/PriorityOfPileReport', 4)">Priority of Pile</a></li>
-                                                            <li><a href="@Url.Content("~/Metrics/AllG3Bugs")" onclick="SetUrl('../Metrics/AllG3Bugs', 4)">All G3 Bugs</a></li>
-
-
-
-                                                        </ul>
-                                                    </li>
-
-                                                    @{
-
-                                                        adminRole = Session["AdminRole"] as string;
-                                                        var auomtaionAccess = Session["AutomationAccess"] as string;
-                                                        if (auomtaionAccess == "True")
-                                                        {
-
-                                                            <li>
-                                                                <a class="automation_iconA"><span class="automation_icon">Automation</span></a>
-                                                                <ul>
-                                                                    <li><a href="@Url.Content("~/Automation/AutomationMetrics?type=goals")" onclick="SetUrl('../Automation/AutomationMetrics', 4)">Automation Goals</a></li>
-                                                                    <li><a href="@Url.Content("~/Automation/AutomationMetrics?type=percentage")" onclick="SetUrl('../Automation/AutomationMetrics', 4)">Automation Percentage</a></li>
-
-                                                                </ul>
-                                                            </li>
-                                                        }
-                                                    }
-
-                                                    <li>
-                                                        <a class="reports_iconA"><span class="reports_icon">Reports</span></a>
-                                                        <ul>
-                                                            <li><a href="@Url.Content("~/CustomizeReport/CustomizeReportView")">Customized Reports</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li style="float:right">
-                                                        <div style="margin-left:auto; margin-top:6px;" class="dropdown">
-
-
-
-                                                            @if (Session["ArchivedProgramNames"] == null && TempData["ProgramNames"] != null)
-                                                            {
-                                                                <span style="margin-right:5px">Program Name:  </span>
-                                                                <select id="ProgramNames" onchange="SetDefectMetricChangeFlag('Trend')">
-                                                                    @foreach (var data in TempData["ProgramNames"] as List<SelectListItem>)
-                                                                    {
-                                                                        <option value=@data.Value selected=@data.Selected class="optClass"> @data.Text</option>
-                                                                    }
-                                                                </select>
-                                                            }
-                                                            else
-                                                            {
-                                                                if (TempData["ProgramNames"] != null)
-                                                                {
-                                                                    <span style="margin-right:5px">Program Name:  </span>
-                                                                    <select id="ProgramNames">
-                                                                        <optgroup class="optClass" label="Current Programs">
-                                                                            @foreach (var data in TempData["ProgramNames"] as List<SelectListItem>)
-                                                                            {
-                                                                                <option value=@data.Value selected=@data.Selected>&nbsp;&nbsp;&nbsp;&nbsp;@data.Text</option>
-                                                                            }
-                                                                        </optgroup>
-
-
-                                                                        <optgroup class="tempOptGrp" label="Archived Programs">
-                                                                            @foreach (var data in Session["ArchivedProgramNames"] as List<SelectListItem>)
-                                                                            {
-                                                                                <option value=@data.Value selected=@data.Selected>&nbsp;&nbsp;&nbsp;&nbsp;@data.Text</option>
-                                                                            }
-                                                                        </optgroup>
-
-
-                                                                    </select>
-                                                                }
-                                                            }
-
-
-                                                        </div>
-
-
-                                                    </li>
-
-                                                </ul>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    @if (Session["ArchivedProgramNames"] == null)
-                                    {
-                                        <div id="divArchive" style="float:right;margin-right:2%"><a id="ViewArchived" style="vertical-align:top;cursor:pointer" onclick="ViewArchivedData()">View Archived</a></div>
-                                    }
-                                    else
-                                    {
-                                        <div id="divArchive" style="float:right;margin-right:2%"><a id="ViewArchived" style="vertical-align: top; cursor: pointer" onclick="ViewArchivedData()">Hide Archived</a></div>
-
-                                    }
-
-                                    <!-- .grid -->
-                                </div>
-
-                            </div>
-
-                            <div align="center" style="width:99%;" id="LayoutMasterParentDiv">
-                                @RenderBody()
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="Footer" style="width:98%;position:relative;background-color:white;bottom:0px;left:0px;text-align:left;border-top:2px solid;border-top-color:lightgray;padding-left:1%;">
-            <table width="99%" align="center" style="display:block">
-                <tr>
-                    <td style="width:5%"> <img src="../Content/images/HPLogo.png" class="HPLogo"></td>
-                    <td style="vertical-align: top;width:90%">
-                        <div class="FooterBlock">
-                            <span><b>Quality Dashboard</b> | </span><span> &copy; 2016 Hewlett Packard Enterprise Company, L.P.</span>
-                        </div>
-                    </td>
-                    <td align="right" style="vertical-align: top; width: 5%"><a href="#">Top</a></td>
-
-                </tr>
-            </table>
-
-
-        </div>
-    </div>
-    @Html.Partial("SuccessMsg")
-    <script src="~/Scripts/ReportState.js"></script>
-
-    <script type="text/javascript">
-
-
-        $('#okSuccessMessageBox').click(function () {
-            $('#dvSuccessMessageBox').dialog('close');
-        });
-
-        function OpenHelp(url) {
-            ht = $(window).height() * .7;
-            wd = $(window).width() * .7;
-
-            window.open(url, 'mywin', 'left=20,top=20,width=' + wd + ',height=' + ht + ',toolbar=0,resizable=1,scrollbars=1');
-            return false;
-        }
-        Highcharts.setOptions({
-            global: {
-                useUTC: false
-            }
-        });
-
-        if (GetActiveController() == 'Director' || GetActiveController() == 'Program' || GetActiveController() == 'Engineer')
-            GetDefectMetricChangeFlag();
-
-        function SetDefectMetricChangeFlag(reportType) {
-            if (reportType == 'Trend') {
-                localStorage.setItem("TrendChangeFlag", true);
-            }
-            else {
-                localStorage.setItem("MetricChangeFlag", true);
-            }
-        }
-
-
-        function GetDefectMetricChangeFlag() {
-            var count = 0;
-            if (localStorage.getItem("MetricChangeFlag") == "true") {
-                if (localStorage.getItem("TrendChangeFlag") == "true") {
-
-
-                    $('#ProgramNames').addClass('highlighted');
-
-                    var count = 0;
-
-                    var interval = setInterval(function () {
-                        $('#ProgramNames').removeClass('highlighted');
-
-                        if (count === 2) {
-                            clearInterval(interval);
-
-                        } else {
-                            setTimeout(function () {
-                                $('#ProgramNames').addClass('highlighted');
-                            }, 1000)
-                            count++;
-                        }
-                    }, 2000);
-
-                    localStorage.setItem("TrendChangeFlag", false);
-                    localStorage.setItem("MetricChangeFlag", false);
-
-                }
-            }
-        }
-
-
-
-        if (GetActiveController() == 'Director' || GetActiveController() == 'Program' || GetActiveController() == 'Engineer')
-            appendUrlOnRefresh();
-
-
-        function appendUrlOnRefresh() {
-
-            var currURLAppend;
-            currURLAppend = window.location.href.split('?')[1];
-            if (window.location.href.split('?')[1] != undefined) {
-                localStorage.setItem("urlType", window.location.href.split('?')[1]);
-            }
-
-        }
-
-        $(document).ready(function () {
-
-            GetCurrentPageDetails();
-            GetReportsState();
-            $('.highcharts-title').css('font-family', 'HPSimplified');
-            $('.highcharts-legend').css('font-family', 'HPSimplified');
-
-            var text = '@TempData["ProgramReleaseName"]';
-            $('#ProgramNames option:contains("' + text + '")').attr('selected', 'selected');
-
-            var bottomPosition = window.innerHeight;
-
-            if (bottomPosition > 0 || bottomPosition != undefined) {
-                $('#LayoutMasterParentDiv').css('min-height', bottomPosition - 265);
-            }
-            else {
-                $('#LayoutMasterParentDiv').css('min-height', "350px");
-            }
-
-        });
-
-        var tmpUrl, reportUrlType;
-
-        function SetUrl(strUrl, type) {
-
-            tmpUrl = strUrl;
-            reportUrlType = type;
-
-
-        }
-
-        //debugger;
-        function GetCurrentPageDetails() {
-            CurrentPageDetails["CurrentPage"] = '@ViewData["Page"]';
-            CurrentPageDetails["DefectTrend"] = '@TempData["DefectTrendState"]';
-            CurrentPageDetails["TestProgress"] = '@TempData["TestProgressState"]';
-        }
-
-        function GetActiveController() {
-            var controller = '@ViewContext.RouteData.Values["controller"].ToString()';
-            return controller;
-        }
-
-        function ViewArchivedData() {
-
-            var ViewArchived = "View Archived";
-            var hideArchived = "Hide Archived";
-
-            var list = "";
-
-            if ($('#ViewArchived').text() == ViewArchived) {
-
-                $.ajax({
-                    url: "../Application/GetArchivedReleases?&releaseID=" + $('#ProgramNames').val(),
-                    type: "POST",
-                    async: false,
-                    datatype: "JSON",
-                    traditional: true,
-                    success: function (data) {
-
-                        list = data;
-                    }
-                });
-                var list1 = JSON.parse('@Html.Raw(Json.Encode(this.TempData["ProgramNames"]))');
-
-                $('option.optClass').remove();
-                //  var $optGroup = $.find('optgroup.optClass');
-                //Append current group
-                var $selectGrp = $.find('select#ProgramNames');
-                var $currGrp = $('<optgroup class="tempOptGrp">').attr('label', 'Current Programs').appendTo($selectGrp);
-                $.each(list1, function (index, value) {
-
-                    $('<option>').html('&nbsp;&nbsp;&nbsp;&nbsp;' + value.Text).val(value.Value).appendTo($currGrp);
-                });
-                //Append archived group
-                var $archivedGrp = $('<optgroup class="tempOptGrp">').attr('label', 'Archived Programs').appendTo($selectGrp);
-                $.each(list, function (index, value) {
-
-                    $('<option>').html('&nbsp;&nbsp;&nbsp;&nbsp;' + value.Text).val(value.Value).appendTo($archivedGrp);
-                });
-                var text = '@TempData["ProgramReleaseName"]';
-
-                $('#ProgramNames option:contains("' + text + '")').attr('selected', 'selected');
-                $('#ViewArchived').text(hideArchived);
-
-
-
-            }
-            else {
-
-                // var temp= $.find('optgroup.tempOptGrp');
-                $('optgroup.tempOptGrp').remove();
-                $('#ViewArchived').text(ViewArchived);
-
-                $.ajax({
-                    url: "../Application/ResetArchivedReleases",
-                    type: "POST",
-                    async: false,
-                    datatype: "JSON",
-                    traditional: true,
-                    success: function (data) {
-                        list = data;
-                    }
-                });
-
-                var currURL = window.location.href.split('?')[0];
-
-                window.location.href = currURL + "?releaseID=" + @TempData["TempReleaseID"] + "&recordType=" + $('#drpRecordType').val();
-
-
-            }
-
-
-        }
-
-        $('div.tlinks ul li ul li a').click(function () {
-
-            var appendUrl;
-
-            var controller = tmpUrl.split('/')[1];
-            if (controller == 'Director' || controller == 'Program' || controller == 'Engineer' || controller == 'Metrics') {
-
-                var currURL = tmpUrl;
-
-                appendUrl = localStorage["urlType"] == "" ? "" : "?" + localStorage["urlType"];
-
-                if (reportUrlType == 4) {
-                    if ('@TempData["SelectedprogramIdMetric"]' != '') {
-                        if ('@TempData["SelectedMetric"]' == '') {
-                            appendUrl = "";
-                        }
-                        else {
-                            appendUrl = "?programId=" + '@TempData["SelectedprogramIdMetric"]';
-                        }
-                    }
-
-                    else
-                        appendUrl = "";
-
-                    $(this).attr('href', currURL + appendUrl);
-                }
-
-                else if (reportUrlType != localStorage.getItem("PreviousType")) {
-
-                    appendUrl = localStorage["urlType"] == "" ? "" : "?" + localStorage.getItem("urlType").split('&')[0];
-                }
-
-
-                if (localStorage.getItem("TrendChangeFlag") == "true" && localStorage.getItem("MetricChangeFlag") == "true") {
-
-                }
-
-                else if (localStorage.getItem("TrendChangeFlag") == "false" && localStorage.getItem("MetricChangeFlag") == "false") {
-                    appendUrl = "";
-                }
-
-                else {
-                    $(this).attr('href', currURL + appendUrl);
-                }
-
-                localStorage.setItem("PreviousType", reportUrlType);
-            }
-        });
-    </script>
+<body>
+    <section id="container">
+        <!--header start-->
+        <header class="header fixed-top clearfix">
+            <!--logo start-->
+            <div class="brand">
+                <a href="#" class="logo" style="color:#fff">
+                    XpConnect
+                </a>
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars"></div>
+                </div>
+            </div>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu container-fluid">
+                    <div class="alert alert-block alert-danger fade in" style="padding: 3px 19px; margin-bottom: 0;">
+                        <button data-dismiss="alert" class="close close-sm" type="button">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <strong>Documents!</strong> Please upload your remaining documents <a href="~/Document/UploadDocument" class="btn btn-link btn-xs">Click Here</a>
+                    </div>
+                </ul>
+                <!--  notification end -->
+            </div>
+            <div class="top-nav clearfix">
+                <!--search & user info start-->
+                <ul class="nav pull-right top-menu">
+                    <!-- user login dropdown start-->
+                    <li>Notifications</li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" src="~/images/avatar1_small.jpg">
+                            <span class="username"> @Session["firstName"]</span>
+                        </a>
+                    </li>
+                    <!-- user login dropdown end -->
+                    <li>
+                        
+                        <a href="@Url.Content("~/Login/LogOff")" style="cursor: pointer; display: inline-block; font-size: 13px;padding: 8px">
+                            <i class="fa fa-key"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+                <!--search & user info end-->
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse">
+                <!-- sidebar menu start-->
+                <div class="leftside-navigation" style="overflow-y:auto">
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li>
+                            <a class="active" href="~/Home/Index">
+                                <i class="fa fa-dashboard"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="profile.html">
+                                <i class="fa fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        @*<li>
+                            <a href="profile.html">
+                                <i class="fa fa-user"></i>
+                                <span>Notifications</span>
+                            </a>
+                        </li>*@
+                        <li>
+                            <a href="login.html">
+                                <i class="fa fa-user"></i>
+                                <span>Buddy</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Joinee/SubmitQuery">
+                                <i class="fa fa-user"></i>
+                                <span>Raise Query</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Recruiter/GetQueries">
+                                <i class="fa fa-user"></i>
+                                <span>Queries(Tobe moved-recruiter)</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="registration.html">
+                                <i class="fa fa-user"></i>
+                                <span>Relocation Assistant</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="registration.html">
+                                <i class="fa fa-user"></i>
+                                <span>Refer &amp; Earn</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="registration.html">
+                                <i class="fa fa-user"></i>
+                                <span>Interview Feedback</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="registration.html">
+                                <i class="fa fa-user"></i>
+                                <span>Events</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="registration.html">
+                                <i class="fa fa-user"></i>
+                                <span>Help</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="registration.html">
+                                <i class="fa fa-user"></i>
+                                <span>Contact Us</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                @RenderBody()
+            </section>
+
+            <!--main content end-->
+        </section>
+    </section>
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <!--Core js-->
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+    <script src="~/Content/bs3/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="~/Content/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Content/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
+    <script src="~/Content/js/jquery.nicescroll.js"></script>
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+    <script src="~/Content/js/skycons/skycons.js"></script>
+    <script src="~/Content/js/jquery.scrollTo/jquery.scrollTo.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="~/Content/js/calendar/clndr.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="~/Content/js/calendar/moment-2.2.1.js"></script>
+    <script src="~/Content/js/evnt.calendar.init.js"></script>
+    <script src="~/Content/js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content/js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
+    <script src="~/Content/js/gauge/gauge.js"></script>
+    <!--clock init-->
+    <script src="~/Content/js/css3clock/js/css3clock.js"></script>
+    <!--Easy Pie Chart-->
+    <script src="~/Content/js/easypiechart/jquery.easypiechart.js"></script>
+    <!--Sparkline Chart-->
+    <script src="~/Content/js/sparkline/jquery.sparkline.js"></script>
+    <!--Morris Chart-->
+    <script src="~/Content/js/morris-chart/morris.js"></script>
+    <script src="~/Content/js/morris-chart/raphael-min.js"></script>
+    <!--jQuery Flot Chart-->
+    <script src="~/Content/js/flot-chart/jquery.flot.js"></script>
+    <script src="~/Content/js/flot-chart/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Content/js/flot-chart/jquery.flot.resize.js"></script>
+    <script src="~/Content/js/flot-chart/jquery.flot.pie.resize.js"></script>
+    <script src="~/Content/js/flot-chart/jquery.flot.animator.min.js"></script>
+    <script src="~/Content/js/flot-chart/jquery.flot.growraf.js"></script>
+    <script src="~/Content/js/dashboard.js"></script>
+    <script src="~/Content/js/jquery.customSelect.min.js"></script>
+
+    <!--script for this page-->
 
 </body>
-
 </html>

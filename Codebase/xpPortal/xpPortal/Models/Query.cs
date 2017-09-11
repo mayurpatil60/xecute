@@ -12,5 +12,6 @@ namespace xpPortal.Models
         public string QueryDetail { get; set; }
         public bool IsAnswered { get; set; }
         public string DateCreated { get; set; }
+        public LoginViewModel login { get; set; }
     }   
 }

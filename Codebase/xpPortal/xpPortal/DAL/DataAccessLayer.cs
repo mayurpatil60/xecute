@@ -33,19 +33,21 @@ namespace xpPortal.DAL
             mdb = new DBAccess(pDBServer, pDBName);
         }
 
-        public void SubmitQuery(string query, LoginViewModel model)
+        public void SubmitQuery(Query query, LoginViewModel model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
 
             spParameters.Add(new XP.DataAccess.DbParameter("Email", model.UserName));
-            spParameters.Add(new XP.DataAccess.DbParameter("Query", query));
-            
+            spParameters.Add(new XP.DataAccess.DbParameter("Query", query.QueryDetail));
+            spParameters.Add(new XP.DataAccess.DbParameter("Subject", query.Subject));
+            spParameters.Add(new XP.DataAccess.DbParameter("IsAnswered", query.IsAnswered));
+
             mdb.ExecuteStoredProcedure("spSaveQuery", spParameters);
         }
 
-        public DataTable GetQuery()
+        public DataTable GetQueries()
         {
-            return mdb.GetDataTable("spGetQuery");
+            return mdb.GetDataTable("spGetQueries");
         }
 
         public void AddApplicantBasicDetails(UserDetails model)
