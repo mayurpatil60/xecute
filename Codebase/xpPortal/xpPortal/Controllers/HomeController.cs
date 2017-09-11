@@ -11,15 +11,18 @@ namespace xpPortal.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        
+
         public ActionResult Index(LoginViewModel model)
         {
             BusinessLayer bl = new BusinessLayer();
-            
-            UserDetails details = bl.GetApplicantBasicDetails(model.UserName);
 
-            SetSessionVariables(details);
+            UserDetails details = new UserDetails();
 
+            if (model.UserName != null)
+            {
+                details = bl.GetApplicantBasicDetails(model.UserName);
+                SetSessionVariables(details);
+            }
             if (model.UserName == null)
                 model.UserName = Session["userName"].ToString();
 
