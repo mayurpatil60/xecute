@@ -52,7 +52,7 @@
     <div class="container">
         <form class="form-signin" id="LoginForm" action="@Url.Content("~/Login/Login")" method="post" accept-charset="utf-8">
             <h2 class="form-signin-heading">sign in now</h2>
-            <span style="color:red;">@Html.ValidationSummary(true)</span>
+            @*<span style="color:red;">@Html.ValidationSummary(true)</span>*@
             <div class="login-wrap">
                 
                 <div class="user-login-info">
@@ -63,6 +63,7 @@
                     @Html.PasswordFor(m => m.Password, new { tabindex = "2", placeholder = "Password", @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Password)
                     @*<input id="txtPassword" type="password" class="form-control" placeholder="Password">*@
+                    <span style="color:red;">@Html.ValidationSummary(true)</span>
                 </div>
                 <label class="checkbox">
                     <input id="chkRemember" type="checkbox" value="remember-me"> Remember me

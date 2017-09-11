@@ -18,9 +18,11 @@ namespace xpPortal.BL
             DataAccessLayer dalObject = new DataAccessLayer();
 
             DataTable dt= dalObject.ValidateUser(model);
-            isValidUser = int.Parse(dt.Rows[0][0].ToString())>0?true:false;
-            isPasswordSet = bool.Parse(dt.Rows[0]["IsPasswordSet"].ToString());
-
+            if (dt != null && dt.Rows.Count != 0 && int.Parse(dt.Rows[0][0].ToString()) != 0)
+            {
+                isValidUser = int.Parse(dt.Rows[0][0].ToString()) > 0 ? true : false;
+                isPasswordSet = bool.Parse(dt.Rows[0]["IsPasswordSet"].ToString());
+            }
             return isValidUser;
         }
 

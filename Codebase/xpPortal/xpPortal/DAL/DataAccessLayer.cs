@@ -93,9 +93,7 @@ namespace xpPortal.DAL
 
             return mdb.GetDataTable("spGetApplicantDetailedInfo", spParameters);
         }
-
         
-
         public DataTable GetApplicantDetailedInfo(string email)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();

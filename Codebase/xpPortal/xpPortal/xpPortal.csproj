@@ -1123,14 +1123,12 @@
     <Compile Include="Controllers\JoineeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RecruiterController.cs" />
-    <Compile Include="Controllers\UserDetailedInfoController.cs" />
     <Compile Include="DAL\DataAccessLayer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\GenericHelper.cs" />
-    <Compile Include="Models\BasicInfoModel.cs" />
     <Compile Include="Models\Constant.cs" />
     <Compile Include="Models\EmailData.cs" />
     <Compile Include="Models\Enum.cs" />
@@ -1186,8 +1184,7 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Recruiter\Queries.cshtml" />
-    
-    <Content Include="Views\UserDetailedInfo\Index.cshtml" />
+    <Content Include="Views\Joinee\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1198,9 +1195,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedDocuments\" />
-    <Folder Include="Views\Joinee\" />
-    <Folder Include="Views\Recruiter\" />
-    <Folder Include="Views\UserDetail\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="HPTools.DataAccess\HPTools.DataAccess\XP.DataAccess.csproj">
