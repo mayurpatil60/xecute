@@ -60,6 +60,13 @@ namespace xpPortal.BL
             dalObject.AddApplicantBasicDetails(userDetails);
         }
 
+        public void AddNewJoinee(UserDetails userDetails)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            dalObject.AddNewJoinee(userDetails);
+        }
+
         public UserDetails GetApplicantBasicDetails(string email)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
@@ -88,6 +95,19 @@ namespace xpPortal.BL
             details.LastName = dt.Rows[0]["LastName"].ToString();
             details.PhoneNo = dt.Rows[0]["PhoneNo"] != null ? dt.Rows[0]["PhoneNo"].ToString() : "";
             details.Email = dt.Rows[0]["EmailId"].ToString();
+            details.BloodGroup = dt.Rows[0]["BloodGroup"] != null ? dt.Rows[0]["BloodGroup"].ToString():"";
+            details.EmergencyContactNo = dt.Rows[0]["EmergencyContactNumber"] !=null ? dt.Rows[0]["EmergencyContactNumber"].ToString():"";
+            details.CurrentAddress = dt.Rows[0]["CurrentAddress"] !=null? dt.Rows[0]["CurrentAddress"].ToString():"";
+            details.Gender = dt.Rows[0]["Gender"] !=null? dt.Rows[0]["Gender"].ToString():"";
+            details.PassportNo = dt.Rows[0]["PassportNumber"] !=null? dt.Rows[0]["PassportNumber"].ToString():"";
+            if (dt.Rows[0]["DOB"].ToString() != null)
+            {
+                details.DOB = DateTime.Parse(dt.Rows[0]["DOB"].ToString());
+            }
+            else
+            {
+                details.DOB = DateTime.Now;
+            }
             return details;
         }
 
