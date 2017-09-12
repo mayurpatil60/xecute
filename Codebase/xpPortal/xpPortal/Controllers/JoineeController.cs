@@ -18,7 +18,7 @@ namespace xpPortal.Controllers
         {
             UserDetails bcInfo = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
-            bcInfo = blObject.GetApplicantDetails("parv14feb@gmail.com");
+            bcInfo = blObject.GetApplicantBasicDetails("amit1990libra@gmail.com");
 
             #region yeardata
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
@@ -50,7 +50,7 @@ namespace xpPortal.Controllers
         {
             BusinessLayer blObject = new BusinessLayer();
             blObject.AddApplicantBasicDetailsAndSendMail(basicInfo);
-            basicInfo = blObject.GetApplicantDetails("parv14feb@gmail.com");
+            basicInfo = blObject.GetApplicantDetails("amit1990libra@gmail.com");
 
             #region yeardata
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
@@ -112,7 +112,7 @@ namespace xpPortal.Controllers
               }), "Value", "Text");
             #endregion
 
-            details = blObject.GetApplicantDetails("parv14feb@gmail.com");
+            details = blObject.GetApplicantDetails("amit1990libra@gmail.com");
             details.SelectedMonth = details.DOB.Month;
             details.SelectedYear = details.DOB.Year;
             details.SelectedDay = details.DOB.Day;
