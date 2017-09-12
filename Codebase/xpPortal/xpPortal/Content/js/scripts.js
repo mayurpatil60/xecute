@@ -283,6 +283,30 @@
 
         $('.popovers').popover();
 
+        $('#btnSubmitQuery').click(function () {
+
+            var url = "../Joinee/SubmitQuery";
+            
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: JSON.stringify({ subject: $('#txtSubject').val(), queryDetail: $('#txtQueryDetail').val()}),
+                datatype: "JSON",
+                contentType: 'application/json',
+                traditional: true,
+                success: function () {
+
+                    var content = $('#txtQueryDetail').val();
+                    var ele = $('.timeline').find('article')[1];
+                    var elementClone = $(ele).clone();
+                    $(elementClone).find('p').html(content);
+                    $(elementClone).find('h1').html('Just now');
+                    $(elementClone).insertBefore($(ele));
+                }
+            });
+
+            
+        });
 
     });
 

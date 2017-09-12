@@ -33,7 +33,7 @@ namespace xpPortal.DAL
             mdb = new DBAccess(pDBServer, pDBName);
         }
 
-        public void SubmitQuery(Query query, LoginViewModel model)
+        public DataTable SubmitQuery(Query query, LoginViewModel model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
 
@@ -42,7 +42,7 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("Subject", query.Subject));
             spParameters.Add(new XP.DataAccess.DbParameter("IsAnswered", query.IsAnswered));
 
-            mdb.ExecuteStoredProcedure("spSaveQuery", spParameters);
+            return mdb.GetDataTable("spSaveQuery", spParameters);
         }
 
         public DataTable GetQueries()

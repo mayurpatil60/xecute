@@ -121,14 +121,24 @@ namespace xpPortal.Controllers
 
 
 
+        //[HttpPost]
+        //public ActionResult SubmitQuery(Query query)
+        //{
+        //    LoginViewModel model = new LoginViewModel();
+        //    model.UserName = Session["userName"].ToString();
+        //    BusinessLayer bl = new BusinessLayer();
+        //    bl.SubmitQuery(query,model);
+        //    return View();
+        //}
+
         [HttpPost]
         public ActionResult SubmitQuery(Query query)
         {
             LoginViewModel model = new LoginViewModel();
             model.UserName = Session["userName"].ToString();
             BusinessLayer bl = new BusinessLayer();
-            bl.SubmitQuery(query,model);
-            return View();
+            bl.SubmitQuery(query, model);
+            return Json(model,JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SubmitQuery()

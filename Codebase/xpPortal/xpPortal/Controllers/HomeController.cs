@@ -23,8 +23,13 @@ namespace xpPortal.Controllers
                 details = bl.GetApplicantBasicDetails(model.UserName);
                 SetSessionVariables(details);
             }
-            if (model.UserName == null)
+            if (model.UserName == null && Session["userName"] != null)
+            {
                 model.UserName = Session["userName"].ToString();
+            }
+            else if(model.UserName == null && Session["userName"] == null)
+                return RedirectToActionPermanent("Index", "Login");
+                
 
             return View("Dashboard", details);
         }
