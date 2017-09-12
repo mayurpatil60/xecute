@@ -219,6 +219,30 @@ namespace XP.DataAccess.MSSQL
             return dataTable;
         }
 
+
+
+        /// <summary>
+        /// Returns Datatable on passing procedure name and list of parameters 
+        /// </summary>
+        /// <param name="procedureName"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public DataTable GetDataTableWithoutParameter(string procedureName)
+        {
+            DataTable dataTable = new DataTable();
+            pConnection = new SqlConnection(pConnectionString);
+
+            pSqlCommand = new SqlCommand(procedureName, pConnection);
+            pSqlCommand.CommandType = CommandType.StoredProcedure;
+            pConnection.Open();
+          
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(pSqlCommand);
+            pSqlCommand.CommandTimeout = 120;
+            sqlDataAdapter.Fill(dataTable);
+            pConnection.Close();
+            return dataTable;
+        }
+
         /// <summary>
         /// Executes procedure on passing the procedure name and list of paramters
         /// </summary>
