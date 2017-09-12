@@ -26,10 +26,35 @@ namespace xpPortal.BL
             return isValidUser;
         }
 
-        public void SubmitQuery(Query query, LoginViewModel model)
+        public int SubmitQuery(Query query, LoginViewModel model)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
-            dalObject.SubmitQuery(query,model);
+            int recordsInserted= dalObject.SubmitQuery(query,model);
+
+            return recordsInserted;
+        }
+
+        public List<Query> GetUserSpecificQueriesAndReplies(string userName)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            DataTable dt = dalObject.GetUserSpecificQueriesAndReplies(userName);
+
+            List<Query> queryList = new List<Query>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Query queryObj = new Query();
+                queryObj.Id = int.Parse(dr["QueryId"].ToString());
+                queryObj.Subject = dr["Subject"].ToString();
+                queryObj.QueryDetail = dr["Query"].ToString();
+                queryObj.CreatedDateTime = DateTime.Parse(dr["CreatedDateTime"].ToString()).ToString();
+                queryObj.IsAnswered = bool.Parse(dr["IsAnswered"].ToString());
+                queryObj.Reply = dr["Reply"] != DBNull.Value ? (dr["Reply"].ToString()) : "";
+                queryObj.ReplyDateTime = dr["ReplyDateTime"] != DBNull.Value ? DateTime.Parse(dr["ReplyDateTime"].ToString()).ToString() : "";
+                queryList.Add(queryObj);
+            }
+
+            return queryList;
         }
 
         public List<Query> GetQueries()
@@ -45,7 +70,7 @@ namespace xpPortal.BL
                 queryObj.Id = int.Parse(dr["QueryId"].ToString());
                 queryObj.Subject = dr["Subject"].ToString();
                 queryObj.QueryDetail= dr["Query"].ToString();
-                queryObj.DateCreated = DateTime.Parse(dr["DateCreated"].ToString()).ToString();
+                queryObj.CreatedDateTime = DateTime.Parse(dr["CreatedDateTime"].ToString()).ToString();
                 queryObj.IsAnswered = bool.Parse(dr["IsAnswered"].ToString());
                 queryList.Add(queryObj);
             }
@@ -65,15 +90,6 @@ namespace xpPortal.BL
             DataAccessLayer dalObject = new DataAccessLayer();
 
             dalObject.AddNewJoinee(userDetails);
-        }
-
-        public DataRowCollection GetNewJoineeList()
-        {
-            DataAccessLayer dalObject = new DataAccessLayer();
-
-           DataTable da= dalObject.GetNewJoineeList();
-            DataRowCollection drc = da.Rows;
-            return drc;
         }
 
         public UserDetails GetApplicantBasicDetails(string email)
@@ -109,7 +125,7 @@ namespace xpPortal.BL
             details.CurrentAddress = dt.Rows[0]["CurrentAddress"] !=null? dt.Rows[0]["CurrentAddress"].ToString():"";
             details.Gender = dt.Rows[0]["Gender"] !=null? dt.Rows[0]["Gender"].ToString():"";
             details.PassportNo = dt.Rows[0]["PassportNumber"] !=null? dt.Rows[0]["PassportNumber"].ToString():"";
-            if (dt.Rows[0]["DOB"].ToString() != "")
+            if (dt.Rows[0]["DOB"].ToString() != null)
             {
                 details.DOB = DateTime.Parse(dt.Rows[0]["DOB"].ToString());
             }

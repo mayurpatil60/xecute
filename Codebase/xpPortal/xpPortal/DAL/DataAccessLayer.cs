@@ -32,8 +32,8 @@ namespace xpPortal.DAL
             pDBServer = WebConfigurationManager.AppSettings["DBServer"];
             mdb = new DBAccess(pDBServer, pDBName);
         }
-
-        public DataTable SubmitQuery(Query query, LoginViewModel model)
+        #region Public Methods
+        public int SubmitQuery(Query query, LoginViewModel model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
 
@@ -42,7 +42,16 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("Subject", query.Subject));
             spParameters.Add(new XP.DataAccess.DbParameter("IsAnswered", query.IsAnswered));
 
-            return mdb.GetDataTable("spSaveQuery", spParameters);
+            return int.Parse(mdb.ExecuteScalar("spSaveQuery", spParameters).ToString());
+        }
+
+        public DataTable GetUserSpecificQueriesAndReplies(string userName)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+            spParameters.Add(new XP.DataAccess.DbParameter("Email", userName));
+            
+            return mdb.GetDataTable("spGetUserSpecificQueriesAndReplies", spParameters);
         }
 
         public DataTable GetQueries()
@@ -60,11 +69,6 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("LastName", model.LastName));
             spParameters.Add(new XP.DataAccess.DbParameter("PhoneNo", model.PhoneNo));
             mdb.ExecuteStoredProcedure("spAddApplicantBasicDetails", spParameters);
-        }
-
-        public DataTable GetNewJoineeList()
-        {
-           return mdb.GetDataTableWithoutParameter("spGetNewJoineeList");
         }
 
         public void AddNewJoinee(UserDetails model)
@@ -132,7 +136,7 @@ namespace xpPortal.DAL
         }
 
 
-        #region Public Methods
+      
         public DataTable ValidateUser(LoginViewModel model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();

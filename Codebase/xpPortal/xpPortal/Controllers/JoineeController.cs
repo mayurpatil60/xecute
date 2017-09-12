@@ -18,7 +18,7 @@ namespace xpPortal.Controllers
         {
             UserDetails bcInfo = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
-            bcInfo = blObject.GetApplicantBasicDetails("amit1990libra@gmail.com");
+            bcInfo = blObject.GetApplicantDetails("parv14feb@gmail.com");
 
             #region yeardata
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
@@ -50,7 +50,7 @@ namespace xpPortal.Controllers
         {
             BusinessLayer blObject = new BusinessLayer();
             blObject.AddApplicantBasicDetailsAndSendMail(basicInfo);
-            basicInfo = blObject.GetApplicantDetails("amit1990libra@gmail.com");
+            basicInfo = blObject.GetApplicantDetails("parv14feb@gmail.com");
 
             #region yeardata
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
@@ -112,7 +112,7 @@ namespace xpPortal.Controllers
               }), "Value", "Text");
             #endregion
 
-            details = blObject.GetApplicantDetails("amit1990libra@gmail.com");
+            details = blObject.GetApplicantDetails("parv14feb@gmail.com");
             details.SelectedMonth = details.DOB.Month;
             details.SelectedYear = details.DOB.Year;
             details.SelectedDay = details.DOB.Day;
@@ -137,8 +137,26 @@ namespace xpPortal.Controllers
             LoginViewModel model = new LoginViewModel();
             model.UserName = Session["userName"].ToString();
             BusinessLayer bl = new BusinessLayer();
-            bl.SubmitQuery(query, model);
-            return Json(model,JsonRequestBehavior.AllowGet);
+            int recordsAffected = bl.SubmitQuery(query, model);
+            return Json(recordsAffected, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult GetUserSpecificQueriesAndReplies()
+        {
+            string userName = string.Empty;
+
+            if (userName == "" && Session["userName"] != null)
+            {
+                userName = Session["userName"].ToString();
+            }
+            else if (userName == null && Session["userName"] == null)
+                return RedirectToActionPermanent("Index", "Login");
+            
+            BusinessLayer bl = new BusinessLayer();
+            List<Query> queriesWithReplyList = bl.GetUserSpecificQueriesAndReplies(userName);
+            
+            return Json(queriesWithReplyList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult SubmitQuery()
