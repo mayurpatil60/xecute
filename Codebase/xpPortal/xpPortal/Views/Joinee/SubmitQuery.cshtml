@@ -4,46 +4,39 @@
     Layout = "~/Views/Shared/LayoutMaster.cshtml";
 }
 
-
-
-@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 <script src="~/Scripts/jquery-3.2.1.js"></script>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Query</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @id = "txtSubject" } })
-                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-            </div>
-        </div>
+@Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.QueryDetail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.QueryDetail, 5, 125, htmlAttributes: new { @class = "form-control", @id = "txtQueryDetail" })
-                @Html.ValidationMessageFor(model => model.QueryDetail, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input value="Submit" class="btn btn-primary" id="btnSubmitQuery" />
-            </div>
+<div class="form-horizontal">
+    <h4>Query</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @id = "txtSubject" } })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
         </div>
     </div>
-}
 
-<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.QueryDetail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.QueryDetail, 5, 125, htmlAttributes: new { @class = "form-control", @id = "txtQueryDetail" })
+            @Html.ValidationMessageFor(model => model.QueryDetail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input value="Submit" class="btn btn-primary" id="btnSubmitQuery" />
+        </div>
+    </div>
+</div>
+
+<div class="row" id="QueryContainer">
     <div class="col-sm-12">
         <div class="timeline">
             <article class="timeline-item alt">
@@ -53,62 +46,47 @@
                     </div>
                 </div>
             </article>
-            @*<article class="timeline-item alt">
-                <div class="timeline-desk">
-                    <div class="panel">
-                        <div class="panel-body">
-                            <span class="arrow-alt"></span>
-                            <span class="timeline-icon yellow">
-                                <i class="fa fa-comment-o"></i>
-                            </span>
-                            <span class="timeline-date">12:25 am</span>
-                            <h1 class="yellow">1 hour ago</h1>
-                            <p>Thanks. </p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <article class="timeline-item ">
-                <div class="timeline-desk">
-                    <div class="panel">
-                        <div class="panel-body">
-                            <span class="arrow"></span>
-                            <span class="timeline-icon light-green">
-                                <i class="fa fa-comments"></i>
-                            </span>
-                            <span class="timeline-date">10:00 am</span>
-                            <h1 class="green">2 hours ago</h1>
-                            <p>OK, no issue. Whenever you reveive them, please submit them as soon as possible. You can submit rest of the documents for time being.</p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="timeline-item alt">
-                <div class="timeline-desk">
-                    <div class="panel">
-                        <div class="panel-body">
-                            <span class="arrow-alt"></span>
-                            <span class="timeline-icon yellow">
-                                <i class="fa fa-comment-o"></i>
-                            </span>
-                            <span class="timeline-date">08:25 am</span>
-                            <h1 class="yellow">3 hour ago</h1>
-                            <p>I don't have few documents with me. I'll be receiving my service letter and experience letter after 1 month of my last working day. Can I submit rest of the documents as of now? </p>
-                        </div>
-                    </div>
-                </div>
-            </article>*@
         </div>
     </div>
 </div>
 
 <script>
+    var userQueryElement = $('<article class="timeline-item alt">' +
+            '<div class="timeline-desk">' +
+                '<div class="panel">' +
+                    '<div class="panel-body">' +
+                        '<span class="arrow-alt"></span>' +
+                        '<span class="timeline-icon yellow">' +
+                            '<i class="fa fa-comment-o"></i>' +
+                        '</span>' +
+                        '<span class="timeline-date">12:25 am</span>' +
+                        '<h1 class="yellow">1 hour ago</h1>' +
+                        '<p>Thanks. </p>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</article>');
+
+    var queryReplyElement = $('<article class="timeline-item">' +
+        '<div class="timeline-desk">' +
+            '<div class="panel">' +
+                '<div class="panel-body">' +
+                    '<span class="arrow"></span>' +
+                    '<span class="timeline-icon light-green">' +
+                        '<i class="fa fa-comments"></i>' +
+                    '</span>' +
+                    '<span class="timeline-date">12:25 am</span>' +
+                    '<h1 class="yellow">1 hour ago</h1>' +
+                    '<p>Thanks. </p>' +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+    '</article>');
 
     $(document).ready(function () {
 
         GetUserSpecificQueriesAndReplies();
- 
+
     });
 
     $('#btnSubmitQuery').click(function () {
@@ -123,15 +101,17 @@
             contentType: 'application/json',
             traditional: true,
             success: function (data) {
-                
+                debugger
                 if (data > 0) {
-                
                     var content = $('#txtQueryDetail').val();
-                    var ele = $('.timeline').find('article')[1];
-                    var elementClone = $(ele).clone();
+                    
+                    var ele = $('.timeline').find('article')[0];
+                    var elementClone = $(userQueryElement).clone();
+                    $(elementClone).attr('id', 999);
                     $(elementClone).find('p').html(content);
                     $(elementClone).find('h1').html('Just now');
-                    $(elementClone).insertBefore($(ele));
+                    $(elementClone).insertAfter($(ele));
+                    $('#QueryContainer').show();
 
                     $('#txtSubject').val('');
                     $('#txtQueryDetail').val('');
@@ -151,56 +131,32 @@
             contentType: 'application/json',
             traditional: true,
             success: function (data) {
-                
-                DisplayQuerySection(data);
+                debugger
+                if (data.length > 0) {
+                    $('#QueryContainer').show();
+                    DisplayQuerySection(data);
+
+                }
+                else {
+                    $('#QueryContainer').hide();
+                }
+
             }
         });
     }
 
     function DisplayQuerySection(data) {
 
-        var userQueryElement=$('<article class="timeline-item alt">'+
-            '<div class="timeline-desk">'+
-                '<div class="panel">'+
-                    '<div class="panel-body">'+
-                        '<span class="arrow-alt"></span>'+
-                        '<span class="timeline-icon yellow">'+
-                            '<i class="fa fa-comment-o"></i>'+
-                        '</span>'+
-                        '<span class="timeline-date">12:25 am</span>'+
-                        '<h1 class="yellow">1 hour ago</h1>'+
-                        '<p>Thanks. </p>'+
-                    '</div>'+
-                '</div>' +
-            '</div>'+
-        '</article>');
-
-        var queryReplyElement = $('<article class="timeline-item">' +
-            '<div class="timeline-desk">' +
-                '<div class="panel">' +
-                    '<div class="panel-body">' +
-                        '<span class="arrow"></span>' +
-                        '<span class="timeline-icon light-green">' +
-                            '<i class="fa fa-comments"></i>' +
-                        '</span>' +
-                        '<span class="timeline-date">12:25 am</span>' +
-                        '<h1 class="yellow">1 hour ago</h1>' +
-                        '<p>Thanks. </p>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-        '</article>');
-        
         for (var i = 0; i < data.length; i++) {
             var query = data[i].QueryDetail;
             var createdDateTime = data[i].CreatedDateTime;
 
             var ele = $('.timeline').find('article')[0];
-            //var elementClone = $(ele).clone();
-            $(userQueryElement).attr('id', i);
-            $(userQueryElement).find('p').html(query);
-            $(userQueryElement).find('h1').html('Just now');
-            $(userQueryElement).insertAfter($(ele));
+            var elementClone = $(userQueryElement).clone();
+            $(elementClone).attr('id', i);
+            $(elementClone).find('p').html(query);
+            $(elementClone).find('h1').html('Just now');
+            $(elementClone).insertAfter($(ele));
 
             if (data[i].Reply!='') {
                 var queryReply = data[i].Reply;
@@ -213,6 +169,6 @@
 
         }
     }
-    
+
 
 </script>

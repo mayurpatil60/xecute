@@ -1104,6 +1104,7 @@
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.ttf" />
     <Content Include="Content\bucket-ico-fonts\bucket-ico-font.woff" />
     <!--<Content Include="Scripts\jquery-1.10.2.min.map" />-->
+    <None Include="Properties\PublishProfiles\xpconnect.pubxml" />
     <None Include="Views\Document\UploadDocument.cshtml" />
     <!--<Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1186,11 +1187,10 @@
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Recruiter\Queries.cshtml" />
     <Content Include="Views\Joinee\Index.cshtml" />
-    
     <Content Include="Views\Recruiter\AddNewJoinee.cshtml" />
-    <Content Include="Views\Joinee\SubmitQuery.cshtml" />
     <Content Include="Views\Shared\LayoutMaster.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Joinee\SubmitQuery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
