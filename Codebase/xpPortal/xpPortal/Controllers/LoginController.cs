@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -37,6 +38,9 @@ namespace xpPortal.Controllers
             bool isValiduser=blObject.ValidateUser(model,out isPasswordSet);         ;
 
             model.Password = "";
+            if (isValiduser)
+            { CreateSessionForUser(model.UserName); }
+
             if (isValiduser && isPasswordSet)
             {
                 SetSessionVariables(model);
@@ -140,6 +144,20 @@ namespace xpPortal.Controllers
             blObject.ResetPassword(model);
 
             return RedirectToAction("Index", "Home",model);
+        }
+
+
+        public void CreateSessionForUser(string username)
+        {
+            BusinessLayer blObject = new BusinessLayer();
+            DataTable dtUserDetails = blObject.GetUserDetails(username);
+            if (dtUserDetails != null && dtUserDetails.Rows.Count > 0)
+            {
+                Session["LoginID"] = dtUserDetails.Rows[0]["loginID"].ToString();
+                Session["RoleName"] = dtUserDetails.Rows[0]["RoleName"].ToString();                
+                Session["FirstName"] = dtUserDetails.Rows[0]["FirstName"].ToString();
+                Session["LastName"] = dtUserDetails.Rows[0]["LastName"].ToString();                
+            }
         }
 
 

@@ -195,6 +195,22 @@ namespace xpPortal.DAL
             //mdb.ExecuteStoredProcedure("spSaveNote", spParameter);
         }
 
+        public DataTable GetUserDetails(string username)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+            mdb = new DBAccess(pDBServer, pDBName);
+            spParameters.Add(new XP.DataAccess.DbParameter("Username", username));
+            
+            DataTable dt = mdb.GetDataTable("spGetUserDetails", spParameters);
+
+            return dt;
+        }
+
+        public void InsertIntoTable(string InsertQuery)
+        {          
+            mdb.ExecuteNonQuery(InsertQuery);
+        }
+
         #endregion
 
     

@@ -163,5 +163,18 @@ namespace xpPortal.BL
 
             dalObject.ResetPassword(model);
         }
+
+        public DataTable GetUserDetails(string username)
+        {          
+            DataAccessLayer dalObject = new DataAccessLayer();
+            DataTable dt = dalObject.GetUserDetails(username);            
+            return dt;
+        }
+
+        public void InsertIntoTable(string InsertQuery)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            dalObject.InsertIntoTable(InsertQuery);
+        }
     }
 }

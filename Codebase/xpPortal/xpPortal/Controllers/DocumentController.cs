@@ -51,7 +51,7 @@ namespace xpPortal.Controllers
         }
 
         [HttpPost]
-        public JsonResult UploadHomeReport()
+        public JsonResult DocumentUpload()
         {
             try
             {///http://www.c-sharpcorner.com/uploadfile/manas1/upload-files-through-jquery-ajax-in-asp-net-mvc/
@@ -73,10 +73,13 @@ namespace xpPortal.Controllers
                         {
                             fname = file.FileName;
                         }
-
-                        // Get the complete folder path and store the file inside it.  
-                        fname = Path.Combine(Server.MapPath("~/UploadedDocuments/"), fname);
-                        file.SaveAs(fname);
+                    fname = Session["LoginID"].ToString() +"_"+ Request.Form["ControlName"].ToString() + "_" + fname;
+                    string documentLink = fname;
+                    // Get the complete folder path and store the file inside it.  
+                    fname = Path.Combine(Server.MapPath("~/UploadedDocuments/"), fname);
+                    file.SaveAs(fname);
+                    BusinessLayer objBl = new BusinessLayer();
+                    objBl.InsertIntoTable("insert into document(DocumentName, DocumentType, DocumentLink, UserLoginId, Status) values ('" + Request.Form["ControlName"].ToString() + "', '" + Request.Form["ControlName"].ToString() + "', '" + documentLink + "', " + Session["LoginID"].ToString() + ", 0);");
                     }
                     // Returns message that successfully uploaded  
                     return Json("1");                               
