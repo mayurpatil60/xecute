@@ -130,7 +130,7 @@ namespace xpPortal.Controllers
         //    bl.SubmitQuery(query,model);
         //    return View();
         //}
-
+        
         [HttpPost]
         public ActionResult SubmitQuery(Query query)
         {
