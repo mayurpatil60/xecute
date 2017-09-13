@@ -1135,6 +1135,7 @@
     <Compile Include="Models\EmailData.cs" />
     <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\NewJoinee.cs" />
     <Compile Include="Models\Query.cs" />
     <Compile Include="Models\Referral.cs" />
     <Compile Include="Models\UserDetails.cs" />
@@ -1191,6 +1192,9 @@
     <Content Include="Views\Shared\LayoutMaster.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Joinee\SubmitQuery.cshtml" />
+    <Content Include="Views\Joinee\NewJoineeList.cshtml" />
+    <Content Include="Views\Recruiter\NewJoineeList.cshtml" />
+    <Content Include="Views\Recruiter\NewJoineeDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

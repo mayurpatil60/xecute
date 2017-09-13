@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,11 +40,46 @@ namespace xpPortal.Controllers
             return View("AddNewJoinee",model);
         }
 
-        public void GetNewJoineeList()
+        public ActionResult GetNewJoineeList()
         {
-            UserDetails model = new UserDetails();
+            NewJoinee model = new NewJoinee();
             BusinessLayer blObject = new BusinessLayer();
-            DataRowCollection drc = blObject.GetNewJoineeList();
+            model.NewJoineeList = blObject.GetNewJoineeList();
+            return View("NewJoineeList", model);
+        }
+
+        public ActionResult GetDetailInfo(string EmailId)
+        {
+            #region yeardata
+            BusinessLayer blObject = new BusinessLayer();
+            ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
+             new SelectListItem()
+             {
+                 Text = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedMonthNames[x - 1],
+                 Value = x.ToString()
+             }), "Value", "Text");
+
+            ViewBag.Years = new SelectList(Enumerable.Range(1980, 2000).Select(x =>
+               new SelectListItem()
+               {
+                   Text = x.ToString(),
+                   Value = x.ToString()
+               }), "Value", "Text");
+
+            ViewBag.Days = new SelectList(Enumerable.Range(1, 31).Select(x =>
+              new SelectListItem()
+              {
+                  Text = x.ToString(),
+                  Value = x.ToString()
+              }), "Value", "Text");
+            #endregion
+            UserDetails details = new UserDetails();
+            details = blObject.GetApplicantDetails("amit1990libra@gmail.com");
+            details.SelectedMonth = details.DOB.Month;
+            details.SelectedYear = details.DOB.Year;
+            details.SelectedDay = details.DOB.Day;
+            return View("NewJoineeDetail", details);
+
         }
 
         public ActionResult SaveNewJoinee(UserDetails basicInfo)
