@@ -71,6 +71,11 @@ namespace xpPortal.DAL
             mdb.ExecuteStoredProcedure("spAddApplicantBasicDetails", spParameters);
         }
 
+        public DataTable GetNewJoineeList()
+        {
+            return mdb.GetDataTableWithoutParameter("spGetNewJoineeList");
+        }
+
         public void AddNewJoinee(UserDetails model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();

@@ -92,6 +92,15 @@ namespace xpPortal.BL
             dalObject.AddNewJoinee(userDetails);
         }
 
+        public DataRowCollection GetNewJoineeList()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable da = dalObject.GetNewJoineeList();
+            DataRowCollection drc = da.Rows;
+            return drc;
+        }
+
         public UserDetails GetApplicantBasicDetails(string email)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
@@ -125,7 +134,7 @@ namespace xpPortal.BL
             details.CurrentAddress = dt.Rows[0]["CurrentAddress"] !=null? dt.Rows[0]["CurrentAddress"].ToString():"";
             details.Gender = dt.Rows[0]["Gender"] !=null? dt.Rows[0]["Gender"].ToString():"";
             details.PassportNo = dt.Rows[0]["PassportNumber"] !=null? dt.Rows[0]["PassportNumber"].ToString():"";
-            if (dt.Rows[0]["DOB"].ToString() != null)
+            if (dt.Rows[0]["DOB"].ToString() != "")
             {
                 details.DOB = DateTime.Parse(dt.Rows[0]["DOB"].ToString());
             }

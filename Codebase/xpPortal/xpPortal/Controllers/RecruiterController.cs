@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -38,11 +39,18 @@ namespace xpPortal.Controllers
             return View("AddNewJoinee",model);
         }
 
+        public void GetNewJoineeList()
+        {
+            UserDetails model = new UserDetails();
+            BusinessLayer blObject = new BusinessLayer();
+            DataRowCollection drc = blObject.GetNewJoineeList();
+        }
 
         public ActionResult SaveNewJoinee(UserDetails basicInfo)
         {
             UserDetails model = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
+            GetNewJoineeList();
             blObject.AddNewJoinee(basicInfo);
             return View("AddNewJoinee", model);
         }
