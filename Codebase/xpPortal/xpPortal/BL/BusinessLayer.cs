@@ -101,6 +101,18 @@ namespace xpPortal.BL
             return drc;
         }
 
+        //public List<UserDetails> GetNewJoineeList2()
+        //{
+        //    DataAccessLayer dalObject = new DataAccessLayer();
+        //    List<UserDetails> list = new List<UserDetails>();
+        //    DataTable da = dalObject.GetNewJoineeList();
+
+        //    foreach (DataRow dr in da.Rows)
+        //    {
+        //        list.Add(new UserDetails { FirstName = dr["FirstName"].ToString(), MiddleName = dr["MiddleName"].ToString(), LastName = dr["LastName"].ToString(), Email = dr["Email"].ToString(), JoiningDate = DateTime.Parse(dr["JoiningDate"].ToString()) });
+        //    }
+        //    return list;
+        //}
         public UserDetails GetApplicantBasicDetails(string email)
         {
             DataAccessLayer dalObject = new DataAccessLayer();

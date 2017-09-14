@@ -30,6 +30,13 @@ namespace xpPortal.Models
         public int SelectedMonth { get; set; }
         public int SelectedYear { get; set; }
         public int SelectedDay { get; set; }
+        public bool BasicInfoStatus { get; set; }
+        public bool DetailedInfoStatus { get; set; }
+        public bool DocumentStatus { get; set; }
+        public bool IsBasicInfoComplete { get; set; }
+        public bool IsDetailedInfoComplete { get; set; }
+        public bool AreDocumentsComplete { get; set; }
+
 
 
     }

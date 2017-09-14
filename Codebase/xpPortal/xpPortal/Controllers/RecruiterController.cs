@@ -40,14 +40,15 @@ namespace xpPortal.Controllers
             return View("AddNewJoinee",model);
         }
 
-        public ActionResult GetNewJoineeList()
-        {
-            NewJoinee model = new NewJoinee();
-            BusinessLayer blObject = new BusinessLayer();
-            model.NewJoineeList = blObject.GetNewJoineeList();
-            return View("NewJoineeList", model);
-        }
+        //public ActionResult GetNewJoineeList()
+        //{
+        //    List<UserDetails> joineeList = new List<UserDetails>();
+        //    BusinessLayer blObject = new BusinessLayer();
+        //    joineeList = blObject.GetNewJoineeList();
+        //    return Json(model.joineeList, JsonRequestBehavior.AllowGet);
+        //}
 
+         
         public ActionResult GetDetailInfo(string EmailId)
         {
             #region yeardata
@@ -74,7 +75,7 @@ namespace xpPortal.Controllers
               }), "Value", "Text");
             #endregion
             UserDetails details = new UserDetails();
-            details = blObject.GetApplicantDetails("amit1990libra@gmail.com");
+            details = blObject.GetApplicantDetails(EmailId);
             details.SelectedMonth = details.DOB.Month;
             details.SelectedYear = details.DOB.Year;
             details.SelectedDay = details.DOB.Day;
@@ -86,7 +87,7 @@ namespace xpPortal.Controllers
         {
             UserDetails model = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
-            GetNewJoineeList();
+            //GetNewJoineeList();
             blObject.AddNewJoinee(basicInfo);
             return View("AddNewJoinee", model);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,21 +18,29 @@ namespace xpPortal.Controllers
             BusinessLayer bl = new BusinessLayer();
 
             UserDetails details = new UserDetails();
-
+            string roleName = string.Empty;
             if (model.UserName != null)
             {
                 details = bl.GetApplicantBasicDetails(model.UserName);
                 SetSessionVariables(details);
+                roleName = Session["RoleName"].ToString();
             }
             if (model.UserName == null && Session["userName"] != null)
             {
+                roleName = Session["RoleName"].ToString();
                 model.UserName = Session["userName"].ToString();
             }
-            else if(model.UserName == null && Session["userName"] == null)
+            else if (model.UserName == null && Session["userName"] == null)
                 return RedirectToActionPermanent("Index", "Login");
-                
 
-            return View("Dashboard", details);
+            if (roleName == Models.Enum.Roles.Recruiter.ToString())
+            {
+                NewJoinee collection = new NewJoinee();
+                collection.NewJoineeList=bl.GetNewJoineeList();
+                return View("RecruiterDashboard", collection);
+            }
+            else
+                return View("Dashboard");
         }
 
         private void SetSessionVariables(UserDetails model)
