@@ -1186,12 +1186,29 @@ h3.timeline-title {
     vertical-align:top;
     width:50%;
 }
+.recruiter-timeline-desk {
+    /*display:table-cell;*/
+    vertical-align:top;
+    /*width:100%;*/
+}
 .timeline-desk h1 {
     font-size:16px;
     font-weight:300;
     margin:0 0 5px;
 }
+.recruiter-timeline-desk h1 {
+    font-size:16px;
+    font-weight:300;
+    margin:0 0 5px;
+}
 .timeline-desk .panel {
+    display:block;
+    margin-left:45px;
+    position:relative;
+    text-align:left;
+    background:#fff;
+}
+.recruiter-timeline-desk .panel {
     display:block;
     margin-left:45px;
     position:relative;
@@ -1208,7 +1225,20 @@ h3.timeline-title {
     top:13px;
     width:0;
 }
+.recruiter-timeline-item .timeline-desk .arrow {
+    border-bottom:8px solid transparent;
+    border-top:8px solid transparent;
+    display:block;
+    height:0;
+    left:-7px;
+    position:absolute;
+    top:13px;
+    width:0;
+}
 .timeline-item .timeline-desk .arrow {
+    border-right:8px solid #fff !important;
+}
+.timeline-item .recruiter-timeline-desk .arrow {
     border-right:8px solid #fff !important;
 }
 .timeline-item.alt .timeline-desk .arrow-alt {
@@ -1222,7 +1252,22 @@ h3.timeline-title {
     width:0;
     left:auto;
 }
+
+.timeline-item.alt .recruiter-timeline-desk .arrow-alt {
+    border-bottom:8px solid transparent;
+    border-top:8px solid transparent;
+    display:block;
+    height:0;
+    right:-7px;
+    position:absolute;
+    top:13px;
+    width:0;
+    left:auto;
+}
 .timeline-item.alt .timeline-desk .arrow-alt {
+    border-left:8px solid #fff !important;
+}
+.timeline-item.alt .recruiter-timeline-desk .arrow-alt {
     border-left:8px solid #fff !important;
 }
 .timeline .timeline-icon {
@@ -1237,6 +1282,9 @@ h3.timeline-title {
 .timeline-desk span a {
     text-transform:uppercase;
 }
+.recruiter-timeline-desk span a {
+    text-transform:uppercase;
+}
 .timeline-desk h1.red,.timeline-desk span a.red {
     color:#EF6F66;
 }
@@ -1246,6 +1294,9 @@ h3.timeline-title {
 .timeline-desk h1.blue,.timeline-desk span a.blue {
     color:#56C9F5;
 }
+.recruiter-timeline-desk h1.blue,.recruiter-timeline-desk span a.blue {
+    color:#56C9F5;
+}
 .timeline-desk h1.purple,.timeline-desk span a.purple {
     color:#8074C6;
 }
@@ -1253,6 +1304,9 @@ h3.timeline-title {
     color:#A8D76F;
 }
 .timeline-desk h1.yellow,.timeline-desk span a.yellow {
+    color:#fed65a;
+}
+.recruiter-timeline-desk h1.yellow,.recruiter-timeline-desk span a.yellow {
     color:#fed65a;
 }
 .timeline .timeline-icon.red {
