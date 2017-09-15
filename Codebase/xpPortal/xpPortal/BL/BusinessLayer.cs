@@ -85,11 +85,29 @@ namespace xpPortal.BL
             dalObject.AddApplicantBasicDetails(userDetails);
         }
 
+         public void SaveFeedback(string feedback,string email)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            dalObject.SaveFeedback(feedback, email);
+        }
+
+        
+
         public void AddNewJoinee(UserDetails userDetails)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
 
             dalObject.AddNewJoinee(userDetails);
+        }
+
+        public DataRowCollection GetFeedbackList()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable da= dalObject.GetFeedbackList();
+            DataRowCollection drc = da.Rows;
+            return drc;
         }
 
         public DataRowCollection GetNewJoineeList()

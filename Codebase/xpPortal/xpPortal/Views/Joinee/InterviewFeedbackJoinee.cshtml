@@ -1,0 +1,99 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutMaster.cshtml";
+    ViewBag.Title = "InterViewFeedback";
+}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>Login</title>
+    <!--Core CSS -->
+    @*<link href="bs3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-reset.css" rel="stylesheet">
+        <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />*@
+
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-reset.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Content/Style.css" rel="stylesheet">
+    <link href="~/Content/style-responsive.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+</head>
+<section id="main-content" class="merge-left">
+    <section class="wrapper" style="margin-top: 27px;">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-8">
+                <section class="basic-info-wrapper">
+                    <div class="basic-info">
+                        <div id="wizard">
+                            <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 14px;height: 41px;padding-top: 3px;margin-bottom: 23px;margin-left:-92px;margin-top:-18px;">
+                                Interview Feedback
+                            </h2>
+                            <section>
+                                <form id="submitBasic" class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-lg-12" style="margin-left: -47px;">
+                                            <textarea class="form-control" cols="600" rows="20" id="textAreaFeedback" name="feedback" placeholder="Your Feedback will serve us so that we can serve you better.."></textarea>
+                                        </div>
+
+                                    </div>
+                                    <button class="btn btn-lg btn-login btn-block" style="width: 24%;
+                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 243px;margin-top: 29px;background-color: lawngreen;"
+                                            id="submitFullButton" type="submit">
+                                        Submit
+                                    </button>
+                                  
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<script language="javascript">
+    $(document).ready(function () {
+        $("#submitBasic").on('submit', function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var dataToPost = $(this).serialize();
+
+            $.post("SaveInterviewFeedbackForm", dataToPost)
+                .done(function (response, status, jqxhr) {
+                    alert("Your Details are Successfully Updated.");
+                    $('#textAreaFeedback').val('');
+                })
+                .fail(function (jqxhr, status, error) {
+                    // this is the ""error"" callback
+                })
+        })
+
+        //$("#submitFull").on('submit', function (e) {
+        //    debugger;
+        //    e.preventDefault();
+        //    var $this = $(this);
+        //    var email = document.getElementById("emailName").value;
+        //    var dataToPost = $(this).serialize();
+        //    dataToPost = dataToPost + "&Email=" + email;
+        //    $.post("Joinee/SaveDetailInfo", dataToPost)
+        //        .done(function (response, status, jqxhr) {
+        //            alert("Your Details are Successfully Updated.");
+        //        })
+        //        .fail(function (jqxhr, status, error) {
+        //            // this is the ""error"" callback
+        //        })
+        //})
+    });
+</script>
+
+
+
