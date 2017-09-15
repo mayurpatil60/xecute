@@ -40,13 +40,13 @@ namespace xpPortal.Controllers
             return View("AddNewJoinee",model);
         }
 
-        //public ActionResult GetNewJoineeList()
-        //{
-        //    NewJoinee model = new NewJoinee();
-        //    BusinessLayer blObject = new BusinessLayer();
-        //    model.NewJoineeList = blObject.GetNewJoineeList();
-        //    return View("NewJoineeList", model);
-        //}
+        public ActionResult GetNewJoineeList()
+        {
+            NewJoinee model = new NewJoinee();
+            BusinessLayer blObject = new BusinessLayer();
+            model.NewJoineeList = blObject.GetNewJoineeList();
+            return View("NewJoineeList", model);
+        }
 
 
         public ActionResult GetDetailInfo(string EmailId)
@@ -87,9 +87,16 @@ namespace xpPortal.Controllers
         {
             UserDetails model = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
-            //GetNewJoineeList();
             blObject.AddNewJoinee(basicInfo);
             return View("AddNewJoinee", model);
+        }
+
+        public ActionResult GetAllFeedback()
+        {
+            BusinessLayer blObject = new BusinessLayer();
+            FeedbackModel model = new FeedbackModel();
+            model.FeedbackList=blObject.GetFeedbackList();
+            return View("FeedbackList", model);
         }
     }
 }

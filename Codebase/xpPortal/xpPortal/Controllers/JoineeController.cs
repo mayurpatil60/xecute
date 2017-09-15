@@ -159,6 +159,19 @@ namespace xpPortal.Controllers
             return Json(queriesWithReplyList, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetInterviewFeedbackForm()
+        { 
+            return View("InterviewFeedbackJoinee");
+        }
+
+        public ActionResult SaveInterviewFeedbackForm(string feedback)
+        {
+            string email = Session["userName"].ToString();
+            BusinessLayer bl = new BusinessLayer();
+            bl.SaveFeedback(feedback, email);
+            return View("InterviewFeedbackJoinee");
+        }
+
         public ActionResult SubmitQuery()
         {
                                       

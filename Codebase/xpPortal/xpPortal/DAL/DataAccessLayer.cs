@@ -59,6 +59,15 @@ namespace xpPortal.DAL
             return mdb.GetDataTable("spGetQueries");
         }
 
+        public void SaveFeedback(string feedback,string email)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+            spParameters.Add(new XP.DataAccess.DbParameter("Email", email));
+            spParameters.Add(new XP.DataAccess.DbParameter("Feedback",feedback));
+            mdb.ExecuteStoredProcedure("spSaveFeedback", spParameters);
+        }
+
         public void AddApplicantBasicDetails(UserDetails model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
@@ -85,6 +94,11 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("MiddleName", model.MiddleName));
             spParameters.Add(new XP.DataAccess.DbParameter("LastName", model.LastName));
             mdb.ExecuteStoredProcedure("spAddNewJoinee", spParameters);
+        }
+
+        public DataTable GetFeedbackList()
+        {
+           return mdb.GetDataTableWithoutParameter("spGetFeedbackList");
         }
 
         public void AddApplicantDetailedInfomation(UserDetails model)
