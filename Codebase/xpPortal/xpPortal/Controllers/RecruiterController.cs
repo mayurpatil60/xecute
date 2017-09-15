@@ -42,13 +42,13 @@ namespace xpPortal.Controllers
 
         //public ActionResult GetNewJoineeList()
         //{
-        //    List<UserDetails> joineeList = new List<UserDetails>();
+        //    NewJoinee model = new NewJoinee();
         //    BusinessLayer blObject = new BusinessLayer();
-        //    joineeList = blObject.GetNewJoineeList();
-        //    return Json(model.joineeList, JsonRequestBehavior.AllowGet);
+        //    model.NewJoineeList = blObject.GetNewJoineeList();
+        //    return View("NewJoineeList", model);
         //}
 
-         
+
         public ActionResult GetDetailInfo(string EmailId)
         {
             #region yeardata
