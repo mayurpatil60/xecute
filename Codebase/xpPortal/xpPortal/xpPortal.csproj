@@ -1200,6 +1200,18 @@
     <Content Include="Views\Home\RecruiterDashboard - Copy.cshtml" />
     <Content Include="Views\Joinee\InterviewFeedbackJoinee.cshtml" />
     <Content Include="Views\Recruiter\FeedbackList.cshtml" />
+    <Content Include="Views\Joinee\Profile.cshtml" />
+    <Content Include="Views\Joinee\Buddy.cshtml" />
+    <Content Include="Views\Recruiter\Buddy.cshtml" />
+    <Content Include="Views\Recruiter\ManageJoinees.cshtml" />
+    <Content Include="Views\Recruiter\Events.cshtml" />
+    <Content Include="Views\Joinee\Events.cshtml" />
+    <Content Include="Views\Joinee\ContactUs.cshtml" />
+    <Content Include="Views\Joinee\Refer.cshtml" />
+    <Content Include="Views\Joinee\RelocationAssistant.cshtml" />
+    <Content Include="Views\Recruiter\FeedbackList - Copy.cshtml" />
+    <Content Include="Views\Recruiter\Profile.cshtml" />
+    <Content Include="Views\Recruiter\ManageRecruiter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -46,6 +46,36 @@ namespace xpPortal.Controllers
             return View("Index", bcInfo);
         }
 
+        public ActionResult Profile()
+        {
+
+            return View("");
+        }
+
+        public ActionResult Buddy()
+        {
+
+            return View("");
+        }
+        public ActionResult RelocationAssistant()
+        {
+            return View();
+        }
+        public ActionResult Refer()
+        {
+            return View();
+        }
+        public ActionResult Events()
+        {
+
+            return View("");
+        }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
         public ActionResult SaveBasicInfo(UserDetails basicInfo)
         {
             BusinessLayer blObject = new BusinessLayer();

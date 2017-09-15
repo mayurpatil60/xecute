@@ -18,6 +18,37 @@ namespace xpPortal.Controllers
             return View();
         }
 
+        public ActionResult Buddy()
+        {
+            return View();
+        }
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
+        public ActionResult ManageJoinees()
+        {
+            return View();
+        }
+
+        public ActionResult RelocationAssistant()
+        {
+            return View();
+        }
+        public ActionResult Refer()
+        {
+            return View();
+        }
+        public ActionResult Events()
+        {
+            return View();
+        }
+        public ActionResult ManageRecruiter()
+        {
+            return View();
+        }
+
         public ActionResult AddApplicantAndSendMail(UserDetails userDetails)
         {
             BusinessLayer bl = new BusinessLayer();

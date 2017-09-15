@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/RecruiterLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel">
+            <div class="panel-body profile-information">
+                <div class="col-md-3">
+                    <div class="profile-pic text-center">
+                        <img src="~/images/lock_thumb.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-desk">
+                        <h1>David Rojormillan</h1>
+                        <span class="text-muted">Product Manager</span>
+                        <p>
+                            Expertise in product end to end management, product enhancement and development. Responsible for product delivery and support.
+                        </p>
+                        <!--<a href="#" class="btn btn-primary">View Profile</a>-->
+                        <a href="~/Views/Recruiter/Profile.cshtml">~/Views/Recruiter/Profile.cshtml</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="profile-statistics">
+                        <h1>10</h1>
+                        <p>year's of experience</p>
+                        <h1>12 Sep 2017</h1>
+                        <p>Joining Date</p>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-12">
+        <section class="panel">
+            <header class="panel-heading tab-bg-dark-navy-blue">
+                <ul class="nav nav-tabs nav-justified ">
+                    <li class="active">
+                        <a data-toggle="tab" href="#overview">
+                            Overview
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#job-history">
+                            Job History
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#documents">
+                            Documents
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#contacts" class="contact-map">
+                            Contacts
+                        </a>
+                    </li>
+                    <!--<li>
+                        <a data-toggle="tab" href="#settings">
+                            Settings
+                        </a>
+                    </li>-->
+                </ul>
+            </header>
+            <div class="panel-body">
+                <div class="tab-content tasi-tab">
+
+                    <div id="overview" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="prf-box">
+                                    <h3 class="prf-border-head">Details</h3>
+                                    <div class=" wk-progress">
+                                        <div class="col-md-5">Personal Information</div>
+                                        <div class="col-md-5">
+                                            <div class="progress  ">
+                                                <div style="width: 90%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success">
+                                                    <span class="sr-only">90% Complete (success)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">90%</div>
+                                    </div>
+                                    <div class=" wk-progress">
+                                        <div class="col-md-5">Documents</div>
+                                        <div class="col-md-5">
+                                            <div class="progress ">
+                                                <div style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
+                                                    <span class="sr-only">50% Complete (success)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">50%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--overview tab-->
+
+                    <div id="job-history" class="tab-pane ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="timeline-messages">
+                                    <!--<h3>Take a Tour</h3>-->
+                                    <!-- Comment -->
+                                    <div class="msg-time-chat">
+                                        <div class="message-body msg-in">
+                                            <span class="arrow"></span>
+                                            <div class="text">
+                                                <div class="first">
+                                                    13 January 2013
+                                                </div>
+                                                <div class="second bg-terques ">
+                                                    Joined Persistance Systems as Product Asst. Manager
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /comment -->
+                                    <!-- Comment -->
+                                    <div class="msg-time-chat">
+                                        <div class="message-body msg-in">
+                                            <span class="arrow"></span>
+                                            <div class="text">
+                                                <div class="first">
+                                                    10 February 2012
+                                                </div>
+                                                <div class="second bg-red">
+                                                    Completed Provition period and Appointed as a permanent Employee at Wipro
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /comment -->
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--job-history tab-->
+
+                    <div id="documents" class="tab-pane ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="prf-box">
+                                    <h3 class="prf-border-head">Documents</h3>
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 1 <span class="badge label-success pull-right r-activity">Approved</span></a></li>
+                                        <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 2 <span class="badge label-danger pull-right r-activity">Rejected</span></a></li>
+                                        <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 3 <span class="badge label-success pull-right r-activity">Approved</span></a></li>
+                                        <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 4 <span class="badge label-warning pull-right r-activity">In Progress</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--documents tab-->
+
+                    <div id="contacts" class="tab-pane ">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="prf-contacts">
+                                    <h2> <span><i class="fa fa-map-marker"></i></span> location</h2>
+                                    <div class="location-info">
+                                        <p>
+                                            Postal Address<br>
+                                            PO Box 16122 Collins Street West<br>
+                                            Victoria 8007 Australia
+                                        </p>
+                                    </div>
+                                    <h2> <span><i class="fa fa-phone"></i></span> contacts</h2>
+                                    <div class="location-info">
+                                        <p>
+                                            Phone	: +61 3 8376 6284 <br>
+                                            Cell		: +61 3 8376 6284
+                                        </p>
+                                        <p>
+                                            Email		: david@themebucket.net<br>
+                                            Skype		: david.rojormillan
+                                        </p>
+                                        <p>
+                                            Facebook	: https://www.facebook.com/themebuckets <br>
+                                            Twitter	: https://twitter.com/theme_bucket
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="map-canvas"></div>
+                            </div>
+                        </div>
+                    </div><!--contacts tab-->
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- page end-->
