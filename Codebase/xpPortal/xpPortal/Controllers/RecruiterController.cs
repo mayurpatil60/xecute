@@ -60,15 +60,15 @@ namespace xpPortal.Controllers
         public ActionResult GetQueries()
         {
             BusinessLayer bl = new BusinessLayer();
-            
-            return View("Queries",bl.GetQueries());
+
+            return View("Queries", bl.GetQueries());
         }
 
 
         public ActionResult AddNewJoinee()
         {
             UserDetails model = new UserDetails();
-            return View("AddNewJoinee",model);
+            return View("AddNewJoinee", model);
         }
 
         public ActionResult GetNewJoineeList()
@@ -126,8 +126,30 @@ namespace xpPortal.Controllers
         {
             BusinessLayer blObject = new BusinessLayer();
             FeedbackModel model = new FeedbackModel();
-            model.FeedbackList=blObject.GetFeedbackList();
+            model.FeedbackList = blObject.GetFeedbackList();
             return View("FeedbackList", model);
         }
+
+
+        public ActionResult JobListForReferAndEarn(string feedback)
+        {
+            BusinessLayer bl = new BusinessLayer();
+            ReferAndEarnModel model = new ReferAndEarnModel();
+            model.JobList = bl.GetJobListForReferAndEarn();
+            return View("ReferAndEarn", model);
+        }
+
+        public ActionResult SaveNewJob(NewJobRefer model)
+        {
+            Random random = new Random();
+            int num = random.Next();
+            model.JobId = num;
+            BusinessLayer bl = new BusinessLayer();
+            bl.SaveNewJob(model);
+            return RedirectToAction("JobListForReferAndEarn");
+        }
+
+
+
     }
 }

@@ -54,6 +54,11 @@ namespace xpPortal.DAL
             return mdb.GetDataTable("spGetUserSpecificQueriesAndReplies", spParameters);
         }
 
+        public DataTable GetJobListForReferAndEarn()
+        {
+            return mdb.GetDataTableWithoutParameter("spGetJobListForReferAndEarn");
+        }
+
         public DataTable GetQueries()
         {
             return mdb.GetDataTable("spGetQueries");
@@ -78,6 +83,17 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("LastName", model.LastName));
             spParameters.Add(new XP.DataAccess.DbParameter("PhoneNo", model.PhoneNo));
             mdb.ExecuteStoredProcedure("spAddApplicantBasicDetails", spParameters);
+        }
+
+        public void SaveNewJob(NewJobRefer model)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+            spParameters.Add(new XP.DataAccess.DbParameter("JobId", model.JobId));
+            spParameters.Add(new XP.DataAccess.DbParameter("JobTitle", model.JobTitle));
+            spParameters.Add(new XP.DataAccess.DbParameter("Exp", model.ExpRequired));
+            spParameters.Add(new XP.DataAccess.DbParameter("Skills", model.Skills));
+            mdb.ExecuteStoredProcedure("spSaveNewJob",spParameters);
         }
 
         public DataTable GetNewJoineeList()

@@ -92,7 +92,13 @@ namespace xpPortal.BL
             dalObject.SaveFeedback(feedback, email);
         }
 
-        
+        public DataRowCollection GetJobListForReferAndEarn()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            DataTable da = dalObject.GetJobListForReferAndEarn();
+            DataRowCollection drc = da.Rows;
+            return drc;
+        }       
 
         public void AddNewJoinee(UserDetails userDetails)
         {
@@ -101,6 +107,12 @@ namespace xpPortal.BL
             dalObject.AddNewJoinee(userDetails);
         }
 
+        public void SaveNewJob(NewJobRefer newJobRefer)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            dalObject.SaveNewJob(newJobRefer);
+        }
         public DataRowCollection GetFeedbackList()
         {
             DataAccessLayer dalObject = new DataAccessLayer();
