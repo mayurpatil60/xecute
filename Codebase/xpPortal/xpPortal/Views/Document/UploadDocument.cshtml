@@ -23,14 +23,13 @@
 
 @using (Html.BeginForm("UploadDocument", "Document", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="row">
-        <div class="col-md-12">
+
             <section class="document-upload-wrapper">
                 <div class="document-upload" style="padding-top: 2rem;">
 
                     <div class="row">
-                        @*<div class="col-xs-2"></div>*@
-                        <div class="col-xs-12">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-8">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -43,11 +42,11 @@
                                             <div class="fileupload-preview fileupload-exists thumbnail"></div>
                                             <div class="button-style">
                                                 <span class="btn btn-white btn-file">
-                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image/pdf file</span>                                                    
+                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image/pdf file</span>                                  
                                                     @Html.TextBox("filePANCard", "", new { type = "file"})
                                                 </span>
-                                                <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                <input style="margin-left:10px;" class="btn btn-danger fileupload-exists" id="fileUploadPANCard" type="button" onclick="uploadFile('PANCard');" value="Upload" />
+                                                <a href="#" id="btnRemovePanCard" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                                <input style="margin-left:10px;" class="btn btn-primary fileupload-exists" id="fileUploadPANCard" type="button" onclick="uploadFile('PANCard');" value="Upload" />
                                             </div>
                                             <span class="text-center" id="PANCardMsg"></span>
                                         </div>
@@ -68,7 +67,7 @@
                                                     @Html.TextBox("fileExperienceLetter", "", new { type = "file" })
                                                 </span>
                                                 <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                <input style="margin-left:10px;" class="btn btn-danger fileupload-exists" id="fileUploadExperienceLetter" onclick="uploadFile('ExperienceLetter');" value="Upload" />
+                                                <input style="margin-left:10px;" class="btn btn-primary fileupload-exists" id="fileUploadExperienceLetter" type="button" onclick="uploadFile('ExperienceLetter');" value="Upload" />
                                             </div>
                                             <span class="text-center" id="ExperienceLetterMsg"></span>
                                         </div>
@@ -89,12 +88,13 @@
                                                     @Html.TextBox("fileSalarySlip", "", new { type = "file" })
                                                 </span>
                                                 <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                <input style="margin-left:10px;" class="btn btn-danger fileupload-exists" id="fileUploadSalarySlip" onclick="uploadFile('SalarySlip');" value="Upload" />
+                                                <input style="margin-left:10px;" class="btn btn-primary fileupload-exists" id="fileUploadSalarySlip" type="button"  onclick="uploadFile('SalarySlip');" value="Upload" />
                                             </div>
                                             <span class="text-center" id="SalarySlipMsg"></span>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="clearfix"></div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -110,7 +110,7 @@
                                                     @Html.TextBox("filedSSC", "", new { type = "file" })
                                                 </span>
                                                 <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                <input style="margin-left:10px;" class="btn btn-danger fileupload-exists" id="fileUploadSSC" onclick="uploadFile('SSC');" value="Upload" />
+                                                <input style="margin-left:10px;" class="btn btn-primary fileupload-exists" id="fileUploadSSC" type="button"  onclick="uploadFile('SSC');" value="Upload" />
                                             </div>
                                             <span class="text-center" id="SSCMsg"></span>
                                         </div>
@@ -131,7 +131,7 @@
                                                     @Html.TextBox("fileHSC", "", new { type = "file" })
                                                 </span>
                                                 <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                <input style="margin-left:10px;" class="btn btn-danger fileupload-exists" id="fileUploadHSC" onclick="uploadFile('HSC');" value="Upload" />
+                                                <input style="margin-left:10px;" class="btn btn-primary fileupload-exists" id="fileUploadHSC" type="button" onclick="uploadFile('HSC');" value="Upload" />
                                             </div>
                                             <span class="text-center" id="HSCMsg"></span>
                                         </div>
@@ -152,12 +152,13 @@
                                                     @Html.TextBox("fileGarduation", "", new { type = "file" })
                                                 </span>
                                                 <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                <input style="margin-left:10px;" class="btn btn-danger fileupload-exists" id="fileUploadGarduation" onclick="uploadFile('Graduation');" value="Upload" />
+                                                <input style="margin-left:10px;" class="btn btn-primary fileupload-exists" id="fileUploadGarduation" type="button"  onclick="uploadFile('Graduation');" value="Upload" />
                                             </div>
                                             <span class="text-center" id="GraduationMsg"></span>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="clearfix"></div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -173,7 +174,7 @@
                                                     @Html.TextBox("filePostGraduation", "", new { type = "file" })
                                                 </span>
                                                 <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                <input style="margin-left:10px;" class="btn btn-danger fileupload-exists" id="fileUploadPostGraduation" onclick="uploadFile('PostGraduation');" value="Upload" />
+                                                <input style="margin-left:10px;" class="btn btn-primary fileupload-exists" id="fileUploadPostGraduation" type="button" onclick="uploadFile('PostGraduation');" value="Upload" />
                                             </div>
                                             <span class="text-center" id="PostGraduationMsg"></span>
                                         </div>
@@ -181,15 +182,12 @@
                                 </div>
                             </div><!--row-->
                         </div><!--col-xs-8-->
-                        @*<div class="col-xs-2"></div>*@
+                        <div class="col-xs-3"></div>
                     </div><!--row-->
                     <a class="btn btn-custom btn-lg center-block" href="index.html" style="margin-top:2rem; padding-left:4rem; padding-right:4rem; width:15%;">Finish</a>
 
                 </div>
             </section>
-        </div>
-    </div>
-
 
 
 
@@ -304,11 +302,14 @@
                                 processData: false,
                                 data: uploadedFile,
                                 success: function (result) {
-                                    var ErrorMsgSpan = "#" + controlName + "Msg";                                  
+                                    var ErrorMsgSpan = "#" + controlName + "Msg";
+                                    var uploadButtonID = "#fileUpload" + controlName
                                     if (result == "1") {
-                                        $(ErrorMsgSpan).html("File uploaded successufully!");
+                                        $(ErrorMsgSpan).html("File uploaded successufully!");                                        
                                     }
-                                    else { $(ErrorMsgSpan).html("File uploaded failed!"); }
+                                    else {
+                                        $(ErrorMsgSpan).html("File uploaded failed!");                                        
+                                    }
                                 },
                                 error: function (xhr, status, p3, p4) {
                                     var err = "Error " + " " + status + " " + p3 + " " + p4;
@@ -317,8 +318,6 @@
                                 }
                             });
                         }
-
-
                         </script>
 
 }
