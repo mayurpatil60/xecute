@@ -1212,6 +1212,7 @@
     <Content Include="Views\Recruiter\FeedbackList - Copy.cshtml" />
     <Content Include="Views\Recruiter\Profile.cshtml" />
     <Content Include="Views\Recruiter\ManageRecruiter.cshtml" />
+    <Content Include="Views\Document\ViewDocument.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

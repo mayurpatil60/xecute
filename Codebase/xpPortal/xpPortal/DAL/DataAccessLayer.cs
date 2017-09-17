@@ -224,9 +224,15 @@ namespace xpPortal.DAL
         {          
             mdb.ExecuteNonQuery(InsertQuery);
         }
+        public DataSet GetDataFromQuery(string SelectQuery)
+        {            
+            DataSet ds = new DataSet();
+            ds =  mdb.ExecuteQuery(SelectQuery);
+            return ds;
+        }
 
         #endregion
 
-    
+
     }
 }

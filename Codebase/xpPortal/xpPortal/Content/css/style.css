@@ -5805,6 +5805,25 @@ right: -1px;
 	display: table;
     margin: 0 auto;
 }
+.fileupload-exists .btn-file {
+    display: none;
+}
+.fileupload .thumbnail {
+    display: inline-block;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+}
+.fileupload .thumbnail > img {
+    display: inline-block;
+    max-height: 100%;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -5813,6 +5832,6 @@ right: -1px;
     margin: 10px;
 }
 .document-upload .col-md-4 {
-	border: 1px solid #f1f2f7;
-    padding: 2rem 0rem 0rem;
+	/* border: 1px solid #f1f2f7; */
+    /* padding: 2rem 0rem 0rem;  */
 }
