@@ -86,9 +86,16 @@ namespace xpPortal.Controllers
         {
             BusinessLayer bl = new BusinessLayer();
 
-            return View("Queries", bl.GetQueries());
+            return View("Queries", bl.GetJoineeQueries());
         }
 
+        public ActionResult GetAllQueriesCount()
+        {
+            BusinessLayer bl = new BusinessLayer();
+            List<UserDetails> list= bl.GetJoineeQueries();
+            int count = list.Count;
+            return Json(count, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult AddNewJoinee()
         {
@@ -184,7 +191,15 @@ namespace xpPortal.Controllers
             return RedirectToAction("JobListForReferAndEarn");
         }
 
-
+        [HttpPost]
+        public ActionResult SubmitQueryReply(string replyToEmail,Query query)
+        {
+            LoginViewModel model = new LoginViewModel();
+            model.UserName = replyToEmail;
+            BusinessLayer bl = new BusinessLayer();
+            int recordsAffected = bl.SubmitQueryReply(query, model);
+            return Json(recordsAffected, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }

@@ -62,10 +62,7 @@ namespace xpPortal.Controllers
         {
             return View();
         }
-        public ActionResult Refer()
-        {
-            return View();
-        }
+      
         public ActionResult Events()
         {
 
@@ -206,13 +203,17 @@ namespace xpPortal.Controllers
         }
 
 
-        public ActionResult GetUserSpecificQueriesAndReplies()
+        public ActionResult GetUserSpecificQueriesAndReplies(string email)
         {
             string userName = string.Empty;
 
             if (userName == "" && Session["userName"] != null)
             {
                 userName = Session["userName"].ToString();
+                if (!string.IsNullOrEmpty(email))
+                {
+                    userName = email;
+                }
             }
             else if (userName == null && Session["userName"] == null)
                 return RedirectToActionPermanent("Index", "Login");

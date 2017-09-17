@@ -36,11 +36,16 @@ namespace xpPortal.Controllers
             if (roleName == Models.Enum.Roles.Recruiter.ToString())
             {
                 NewJoinee collection = new NewJoinee();
-                collection.NewJoineeList=bl.GetNewJoineeList();
+                collection.NewJoineeList = bl.GetNewJoineeList();
                 return View("RecruiterDashboard", collection);
             }
             else
-                return View("Dashboard");
+            {
+                NewJoinee collection = new NewJoinee();
+                collection.NewJoineeList = bl.GetDocumentListByUser(Session["userName"].ToString());
+                return View("Dashboard", collection);
+            }
+                
         }
 
         private void SetSessionVariables(UserDetails model)

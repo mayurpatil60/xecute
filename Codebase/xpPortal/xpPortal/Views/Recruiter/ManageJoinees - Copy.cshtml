@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "ManageJoinees";
+    Layout = "~/Views/Shared/RecruiterLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <h2>Add Joinee</h2>
+    
+    <form class="form-horizontal">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Full Name</label>
+                <input type="text" class="form-control" placeholder="Full Name" required>
+            </div>
+            <div class="col-md-4">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Email" required>
+            </div>
+            <div class="col-md-4">
+                <label style="display:block">
+                    Assign Buddy
+                    <!--<a class="btn-link pull-right" href="buddy.html" style="color: #909090;">Add buddy</a>-->
+                </label>
+                <select class="form-control m-bot15" required>
+                    <option selected>Select Buddy</option>
+                    <option value="mike">Mike Boltana</option>
+                    <option value="michael">Michael Doe</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label style="display:block">Contact Person</label>
+                <select class="form-control m-bot15" required>
+                    <option selected>Select contact person</option>
+                    <option value="john">John Doe</option>
+                    <option value="joe">Joe Boltana</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label style="display:block;">&nbsp;</label>
+                <btn type="submit" class="btn btn-primary btn-block">Add</btn>
+            </div>
+        </div>
+    </form>
+    <hr style="margin-top: 5px; margin-bottom: 35px; border-top: 1px solid #dddddd;" />
+
+
+    <section class="panel">
+        <!--<header class="panel-heading">
+            Joinee
+        </header>-->
+        <div class="panel-body profile-nav">
+            <table class="table table-hover tm-membr">
+                <thead>
+                    <tr>
+                        <th width="30"></th>
+                        <th>Joinee Name</th>
+                        <th width="350">Email</th>
+                        <th>Buddy Name</th>
+                        <th>Contact Person</th>
+                        <th width="30">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="tm-avatar">
+                                <img src="images/lock_thumb.jpg" alt="" />
+                            </div>
+                        </td>
+                        <td>
+                            <span class="tm">John Boltana</span>
+                        </td>
+                        <td>
+                            <span class="tm">john@email.com</span>
+                        </td>
+                        <td>
+                            <span class="tm">Mike Rose</span>
+                        </td>
+                        <td>
+                            <span class="tm">Joe Doe</span>
+                        </td>
+                        <td>
+                            <div class="todo-actionlist" style="position: inherit;">
+                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
+                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="tm-avatar">
+                                <img src="images/lock_thumb.jpg" alt="" />
+                            </div>
+                        </td>
+                        <td>
+                            <span class="tm">John Boltana</span>
+                        </td>
+                        <td>
+                            <span class="tm">john@email.com</span>
+                        </td>
+                        <td>
+                            <span class="tm">Mike Rose</span>
+                        </td>
+                        <td>
+                            <span class="tm">Joe Doe</span>
+                        </td>
+                        <td>
+                            <div class="todo-actionlist" style="position: inherit;">
+                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
+                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="tm-avatar">
+                                <img src="images/lock_thumb.jpg" alt="" />
+                            </div>
+                        </td>
+                        <td>
+                            <span class="tm">John Boltana</span>
+                        </td>
+                        <td>
+                            <span class="tm">john@email.com</span>
+                        </td>
+                        <td>
+                            <span class="tm">Mike Rose</span>
+                        </td>
+                        <td>
+                            <span class="tm">Joe Doe</span>
+                        </td>
+                        <td>
+                            <div class="todo-actionlist" style="position: inherit;">
+                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
+                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section><!--panel-->
+
+
+</div><!--container-fluid-->

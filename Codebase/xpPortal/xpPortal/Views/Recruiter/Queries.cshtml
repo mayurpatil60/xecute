@@ -1,29 +1,57 @@
-﻿@model IEnumerable<xpPortal.Models.Query>
+﻿@using xpPortal.Models
+@model IEnumerable<xpPortal.Models.UserDetails>
+
 
 @{
     Layout = "~/Views/Shared/RecruiterLayout.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="row">
+    <div class="col-sm-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Queries
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                </span>
+            </header>
+            <div class="panel-body">
+                <table id="JoineeQuery" class="table  table-hover general-table">
+                    <thead>
+                        <tr>
+                            <th> S.No</th>
+                            <th class="hidden-phone">Name</th>
+                            <th>Email</th>
+                            <th>Joining Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody style="cursor:pointer">
+                        @{ int i = 0;
+                            foreach (UserDetails obj in Model)
+                            {
+                                i++;
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Quesries</title>
-</head>
-<body>
-    <section class="panel">
-        <header class="panel-heading">
-            Queries
-            <span class="tools pull-right">
-                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        @obj.FirstName @*+ @obj.LastName;}*@
+                                    </td>
+                                    <td>@obj.Email</td>
+                                    <td>@obj.JoiningDate.ToString("MMM dd,yyyy")</td>
+                                    <td>Due</td>
+                                </tr>
+                            }
+                        }
 
-            </span>
-        </header>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-    </section>
+    </div>
     <div class="panel-body">
-        <div class="row" id="QueryContainer">
+        <div class="row" id="QueryContainer" style="display:none">
             <div class="col-sm-12">
                 <div class="timeline">
                     <article class="timeline-item alt">
@@ -33,29 +61,6 @@
                             </div>
                         </div>
                     </article>
-                    @foreach (var item in Model)
-                    {
-                        <article class="timeline-item alt">
-                            <div class="timeline-desk">
-                                <div class="panel">
-                                    <div class="panel-body" style="cursor:pointer" id="QueryDiv">
-                                        <span class="arrow-alt"></span>
-                                        <span class="timeline-icon yellow">
-                                            <i class="fa fa-comment-o"></i>
-                                        </span>
-                                        <span class="timeline-date">12:25 am</span>
-                                        <h1 class="yellow">1 hour ago</h1>
-                                        <h1 class="green">
-                                            @Html.DisplayFor(modelItem => item.Subject)
-                                        </h1>
-                                        <p>@Html.DisplayFor(modelItem => item.QueryDetail)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                    }
-
                 </div>
             </div>
         </div>
@@ -68,22 +73,103 @@
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
                     <h4 class="modal-title">Reply</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding:1%">
 
-                    <textarea rows="5" class="form-control large" id="txtReply" placeholder="Reply here"></textarea>        
-                    <button data-dismiss="modal" type="submit" class="btn btn-success" id="btnReplySubmit">Submit</button>
-                    
+                    <textarea rows="5" class="form-control large" id="txtReply" placeholder="Reply here"></textarea>
+                    <button style="margin-top:1%" data-dismiss="modal" type="submit" class="btn btn-success" id="btnReplySubmit">Submit</button>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-</body>
-</html>
 
 <script>
+    $(document).ready(function () {
 
-    var queryReplyElement = $('<article class="timeline-item">' +
+        GetUserSpecificQueriesAndReplies();
+
+    });
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var email = $($('#JoineeQuery tbody tr')[0]).find('td')[2].innerText;
+    $('#JoineeQuery tbody tr').click(function () {
+        $('#QueryContainer').hide();
+        $('.timeline').find('article.loaded').remove();
+        email = $(this).find('td')[2].innerText;
+        GetUserSpecificQueriesAndReplies();
+
+    });
+
+    function GetUserSpecificQueriesAndReplies() {
+        var url = "../Joinee/GetUserSpecificQueriesAndReplies?email=" + email;
+        
+        $.ajax({
+            url: url,
+            type: "GET",
+            datatype: "JSON",
+            contentType: 'application/json',
+            traditional: true,
+            success: function (data) {
+                
+                if (data.length > 0) {
+                    $('#QueryContainer').show();
+                    DisplayQuerySection(data);
+                }
+                else {
+                    $('#QueryContainer').hide();
+                }
+
+            }
+        });
+    }
+
+    function DisplayQuerySection(data) {
+
+        for (var i = 0,j=0; i < data.length; i++,j++) {
+            var query = data[i].QueryDetail;
+            var createdDateTime = data[i].CreatedDateTime;
+
+            var ele = $('.timeline').find('article')[0];
+            var elementClone = $(userQueryElement).clone();
+            $(elementClone).attr('id', i);
+            $(elementClone).find('p').html(query);
+            
+            $(elementClone).find('h1').html(new Date(createdDateTime).toLocaleDateString("en-US", options));
+            $(elementClone).insertAfter($(ele));
+
+            if (data[i].Reply != '') {
+                var queryReply = data[i].Reply;
+                var queryReplyDateTime = data[i].ReplyDateTime;
+
+                var qelementClone = $(queryReplyElement).clone();
+                $(qelementClone).attr('id', j);
+
+                $(qelementClone).find('p').html(queryReply);
+                $(qelementClone).find('h1').html(new Date(createdDateTime).toLocaleDateString("en-US", options));
+                $(qelementClone).insertAfter($(ele));
+            }
+
+        }
+    }
+
+    var userQueryElement = $('<article class="timeline-item alt loaded">' +
+        '<div class="timeline-desk">' +
+            '<div class="panel">' +
+                '<div class="panel-body">' +
+                    '<span class="arrow-alt"></span>' +
+                    '<span class="timeline-icon yellow">' +
+                        '<i class="fa fa-comment-o"></i>' +
+                    '</span>' +
+                    '<span class="timeline-date">12:25 am</span>' +
+                    '<h1 class="yellow">1 hour ago</h1>' +
+                    '<p>Thanks. </p>' +
+                '</div>' +
+            '</div>' +
+        '</div>' +
+    '</article>');
+
+    var queryReplyElement = $('<article class="timeline-item loaded">' +
        '<div class="timeline-desk">' +
            '<div class="panel">' +
                '<div class="panel-body">' +
@@ -99,48 +185,55 @@
        '</div>' +
    '</article>');
 
+    //console.log(today.toLocaleDateString("en-US"));
+    //console.log(today.toLocaleDateString("en-US", options));
+    
     $('#btnReplySubmit').click(function () {
-
-        var content = $('#txtReply').val();
         
-        var ele = $('.timeline').find('article')[0];
-        var elementClone = $(queryReplyElement).clone();
-        $(elementClone).attr('id', 909);
-        $(elementClone).find('p').html(content);
-        //$(elementClone).find('h1').html(new Date().toString().substring(4, 24));
-        $(elementClone).find('h1').html(new Date().toString().substring(16, 21));
-        
-        $(elementClone).insertAfter($(ele));
-        $('#QueryContainer').show();
+        var url = "../Recruiter/SubmitQueryReply";
 
-        $('#txtReply').val('');
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: JSON.stringify({ replyToEmail: email , subject:null, reply: $('#txtReply').val() }),
+            datatype: "JSON",
+            contentType: 'application/json',
+            traditional: true,
+            success: function (data) {
+                
+                if (data > 0) {
+                    //var content = $('#txtQueryDetail').val();
 
-        //var url = "../Recruiter/SubmitQueryReply";
+                    //var ele = $('.timeline').find('article')[0];
+                    //var elementClone = $(userQueryElement).clone();
+                    //$(elementClone).attr('id', 999);
+                    //$(elementClone).find('p').html(content);
+                    //debugger
+                    //$(elementClone).find('h1').html(new Date().toString().substring(16, 21));
+                    //$(elementClone).insertAfter($(ele));
+                    //$('#QueryContainer').show();
 
-        //$.ajax({
-        //    url: url,
-        //    type: "POST",
-        //    data: JSON.stringify({ subject: $('#txtSubject').val(), queryDetail: $('#txtQueryDetail').val() }),
-        //    datatype: "JSON",
-        //    contentType: 'application/json',
-        //    traditional: true,
-        //    success: function (data) {
-        //        debugger
-        //        if (data > 0) {
-        //            var content = $('#txtQueryDetail').val();
+                    //$('#txtSubject').val('');
+                    //$('#txtQueryDetail').val('');
 
-        //            var ele = $('.timeline').find('article')[0];
-        //            var elementClone = $(userQueryElement).clone();
-        //            $(elementClone).attr('id', 999);
-        //            $(elementClone).find('p').html(content);
-        //            $(elementClone).find('h1').html('Just now');
-        //            $(elementClone).insertAfter($(ele));
-        //            $('#QueryContainer').show();
+                    /////
 
-        //            $('#txtSubject').val('');
-        //            $('#txtQueryDetail').val('');
-        //        }
-        //    }
-        //});
+
+                    content = $('#txtReply').val();
+
+                    ele = $('.timeline').find('article')[0];
+                    elementClone = $(queryReplyElement).clone();
+                    $(elementClone).attr('id', 909);
+                    $(elementClone).find('p').html(content);
+                    //$(elementClone).find('h1').html(new Date().toString().substring(4, 24));
+                    $(elementClone).find('h1').html(new Date().toLocaleDateString("en-US", options));
+
+                    $(elementClone).insertAfter($(ele));
+                    $('#QueryContainer').show();
+
+                    $('#txtReply').val('');
+                }
+            }
+        });
     });
 </script>

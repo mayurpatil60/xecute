@@ -137,7 +137,7 @@ namespace xpPortal.BL
             DataRowCollection drc = da.Rows;
             return drc;
         }
-
+        
         //public List<UserDetails> GetNewJoineeList2()
         //{
         //    DataAccessLayer dalObject = new DataAccessLayer();
@@ -239,13 +239,44 @@ namespace xpPortal.BL
         public DataRowCollection GetDocumentListByUser(string emailID)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
-            DataSet ds = dalObject.GetDataFromQuery("select doc.DocumentId, doc.DocumentName, doc.DocumentType, '../../UploadedDocuments/'+ doc.DocumentLink as DocumentLink, case doc.Status when 0 then 'Not Submitted' when 1 then 'Submitted' when 2 then 'Approved' when 3 then 'Rejected' ELSE 'Not Submitted' END DocStatus, 'Verify' As Approve from Document doc inner join login on doc.UserLoginID = Login.Id where Login.UserName = '" + emailID +"'");            
+            DataSet ds = dalObject.GetDataFromQuery("select doc.DocumentId, doc.documentLink as DocumentName, doc.DocumentType, '../../UploadedDocuments/'+ doc.DocumentLink as DocumentLink, case doc.Status when 0 then 'Not Submitted' when 1 then 'Submitted' when 2 then 'Approved' when 3 then 'Rejected' ELSE 'Not Submitted' END DocStatus, 'Verify' As Approve from Document doc inner join login on doc.UserLoginID = Login.Id where Login.UserName = '" + emailID +"' order by doc.status desc;");            
             if (ds != null && ds.Tables.Count > 0)
             {
                 DataRowCollection drc = ds.Tables[0].Rows;
                 return drc;
             }            
             return null;
+        }
+
+        public int SubmitQueryReply(Query reply, LoginViewModel model)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            int recordsInserted = dalObject.SubmitQueryReply(reply, model);
+
+            return recordsInserted;
+        }
+
+        public List<UserDetails> GetJoineeQueries()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable dt = dalObject.GetJoineeQueries();
+            List<UserDetails> joineeQueries = new List<UserDetails>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                UserDetails joineeQueryObj = new UserDetails();
+                joineeQueryObj.FirstName = dr["FirstName"].ToString();
+                joineeQueryObj.LastName = dr["LastName"].ToString();
+                if (dr["JoiningDate"] != null)
+                {
+                    joineeQueryObj.JoiningDate = DateTime.Parse(dr["JoiningDate"].ToString());
+                }
+                joineeQueryObj.Email = dr["Email"].ToString();
+
+                joineeQueries.Add(joineeQueryObj);
+            }
+            return joineeQueries;
         }
     }
 }
