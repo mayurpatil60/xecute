@@ -82,7 +82,7 @@
             '</div>' +
         '</div>' +
     '</article>');
-
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
     $(document).ready(function () {
 
         GetUserSpecificQueriesAndReplies();
@@ -109,7 +109,7 @@
                     var elementClone = $(userQueryElement).clone();
                     $(elementClone).attr('id', 999);
                     $(elementClone).find('p').html(content);
-                    $(elementClone).find('h1').html('Just now');
+                    $(elementClone).find('h1').html(new Date().toLocaleDateString("en-US", options));
                     $(elementClone).insertAfter($(ele));
                     $('#QueryContainer').show();
 
@@ -126,7 +126,6 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: JSON.stringify({ subject: $('#txtSubject').val(), queryDetail: $('#txtQueryDetail').val()}),
             datatype: "JSON",
             contentType: 'application/json',
             traditional: true,
@@ -147,7 +146,7 @@
 
     function DisplayQuerySection(data) {
 
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0,j=0; i < data.length; i++,j++) {
             var query = data[i].QueryDetail;
             var createdDateTime = data[i].CreatedDateTime;
 
@@ -155,16 +154,19 @@
             var elementClone = $(userQueryElement).clone();
             $(elementClone).attr('id', i);
             $(elementClone).find('p').html(query);
-            $(elementClone).find('h1').html('Just now');
+            $(elementClone).find('h1').html(new Date(createdDateTime).toLocaleDateString("en-US", options));
             $(elementClone).insertAfter($(ele));
 
             if (data[i].Reply!='') {
                 var queryReply = data[i].Reply;
                 var queryReplyDateTime = data[i].ReplyDateTime;
 
-                $(queryReplyElement).find('p').html(queryReply);
-                $(queryReplyElement).find('h1').html('Just now');
-                $(queryReplyElement).insertAfter($(ele));
+                var qelementClone = $(queryReplyElement).clone();
+                $(qelementClone).attr('id', j);
+
+                $(qelementClone).find('p').html(queryReply);
+                $(qelementClone).find('h1').html(new Date(queryReplyDateTime).toLocaleDateString("en-US", options));
+                $(qelementClone).insertAfter($(ele));
             }
 
         }

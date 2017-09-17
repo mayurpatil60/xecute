@@ -27,7 +27,6 @@ namespace xpPortal.DAL
         /// </summary>
         public DataAccessLayer()
         {
-
             pDBName = WebConfigurationManager.AppSettings["DBName"];
             pDBServer = WebConfigurationManager.AppSettings["DBServer"];
             mdb = new DBAccess(pDBServer, pDBName);
@@ -188,6 +187,16 @@ namespace xpPortal.DAL
             return dt;
         }
 
+        public int SubmitQueryReply(Query reply, LoginViewModel model)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+            spParameters.Add(new XP.DataAccess.DbParameter("Email", model.UserName));
+            spParameters.Add(new XP.DataAccess.DbParameter("Reply", reply.Reply));
+            
+            return int.Parse(mdb.ExecuteScalar("spSaveQueryReply", spParameters).ToString());
+        }
+
         //private long int GetSalt()
         //{
         //    List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
@@ -241,8 +250,16 @@ namespace xpPortal.DAL
             mdb.ExecuteNonQuery(InsertQuery);
         }
 
+        public DataTable GetJoineeQueries()
+        {
+            mdb = new DBAccess(pDBServer, pDBName);
+
+            DataTable dt = mdb.GetDataTable("spGetJoineeQueries");
+
+            return dt;
+        }
         #endregion
 
-    
+
     }
 }

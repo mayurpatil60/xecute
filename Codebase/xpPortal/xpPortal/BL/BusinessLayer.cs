@@ -130,7 +130,7 @@ namespace xpPortal.BL
             DataRowCollection drc = da.Rows;
             return drc;
         }
-
+        
         //public List<UserDetails> GetNewJoineeList2()
         //{
         //    DataAccessLayer dalObject = new DataAccessLayer();
@@ -217,6 +217,37 @@ namespace xpPortal.BL
         {
             DataAccessLayer dalObject = new DataAccessLayer();
             dalObject.InsertIntoTable(InsertQuery);
+        }
+
+        public int SubmitQueryReply(Query reply, LoginViewModel model)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            int recordsInserted = dalObject.SubmitQueryReply(reply, model);
+
+            return recordsInserted;
+        }
+
+        public List<UserDetails> GetJoineeQueries()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable dt = dalObject.GetJoineeQueries();
+            List<UserDetails> joineeQueries = new List<UserDetails>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                UserDetails joineeQueryObj = new UserDetails();
+                joineeQueryObj.FirstName = dr["FirstName"].ToString();
+                joineeQueryObj.LastName = dr["LastName"].ToString();
+                if (dr["JoiningDate"] != null)
+                {
+                    joineeQueryObj.JoiningDate = DateTime.Parse(dr["JoiningDate"].ToString());
+                }
+                joineeQueryObj.Email = dr["Email"].ToString();
+
+                joineeQueries.Add(joineeQueryObj);
+            }
+            return joineeQueries;
         }
     }
 }
