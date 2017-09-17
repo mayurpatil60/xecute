@@ -5,96 +5,140 @@
     ViewBag.Title = "NewJoineeList";
 }
 
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="images/favicon.png">
-    <title>Login</title>
-    <!--Core CSS -->
-    @*<link href="bs3/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-reset.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />*@
-
-    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-reset.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="~/Content/Style.css" rel="stylesheet">
-    <link href="~/Content/style-responsive.css" rel="stylesheet" />
+    
     <script type="text/javascript" src="jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
+
 <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 18px;height: 46px;padding-top: 4px;">
     Open Opportunities
 </h2>
-<form id="submitFull" class="form-horizontal">
     <section class="panel">
         <div class="panel-body profile-nav">
-            <table class="table table-hover tm-membr" id="example">
-                <thead>
-                    <tr>
-                        <th width="30"></th>
-                        <th style="text-align:center">
-                            Job Id
-                        </th>
-                        <th style="text-align:center">
-                            Job Title
-                        </th>
-                        <th style="text-align:center">
-                            Experience Required
-                        </th>
-                        <th style="text-align:center">
-                            Skills Required
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
+            <form id="submitFull" class="form-horizontal">
+                <table class="table table-hover tm-membr" id="example">
+                    <thead>
+                        <tr>
+                            <th width="30"></th>
+                            <th style="text-align:center">
+                                Job Id
+                            </th>
+                            <th style="text-align:center">
+                                Job Title
+                            </th>
+                            <th style="text-align:center">
+                                Experience Required
+                            </th>
+                            <th style="text-align:center">
+                                Skills Required
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    @foreach (System.Data.DataRow row in Model.JobList)
+                        @foreach (System.Data.DataRow row in Model.JobList)
                     {
 
-                    <tr>
-                        <td>
-                            <div class="tm-avatar">
-                                <img src="images/lock_thumb.jpg" alt="" />
-                            </div>
-                        </td>
-                        @foreach (var cell in row.ItemArray)
+                            <tr>
+                                <td>
+                                    <div class="tm-avatar">
+                                        <img src="images/lock_thumb.jpg" alt="" />
+                                    </div>
+                                </td>
+                                @foreach (var cell in row.ItemArray)
                             {
-                            <td>
-                                <span class="tm">@cell.ToString()</span>
-                            </td>
+                                    <td>
+                                        <span class="tm">@cell.ToString()</span>
+                                    </td>
                             }
-                        <td>
-                            <div class="todo-actionlist" style="position: inherit;">
-                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                                <td>
+                                    <div class="todo-actionlist" style="position: inherit;">
+                                        <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
+                                        <a href="#" class="todo-remove"><i class="ico-close"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
                     }
-                </tbody>
-            </table>
-
-        </div>
+                    </tbody>
+                </table>
+            </form>
+</div>
     </section>
-</form>
-<script language="javascript">
-    $('#example tbody').on('click', 'tr', function () {
-        debugger;
-        var email = $(this).find("td").eq(4).text();
-        var dataToPost = "&EmailId=" + email;
-        $.post("GetDetailInfo", dataToPost)
-            .done(function (response, status, jqxhr) {
-                window.location.href = '/Recruiter/GetDetailInfo'
-            })
-            .fail(function (jqxhr, status, error) {
-                // this is the ""error"" callback
-            })
-    });
 
+<form id="AddBasic" class="form-horizontal">
+    <section class="basic-info-wrapper">
+        <div class="basic-info" style="padding-top: 6rem;">
+            <div id="wizard">
+                <h2>Refer Detail:</h2>
+                <section>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Candidate Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Candidate Name" name="CandidateName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Contact Number:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Contact Number" name="ContactNumber" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Skills:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Skills" name="Skills" />
+
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <button class="btn btn-lg btn-login btn-success btn-block" style="position: relative;float: left;width: 30%;
+                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-top: 15px;margin-left: 482px;"
+                                id="submitFullButton" type="button">
+                            Add
+                        </button>
+                    </div>
+            </section>
+        </div>
+    </div>
+</section>
+</form>
+
+
+<script language="javascript">
+    $(document).ready(function () {
+        $('#example tbody').on('click', 'tr', function () {
+            debugger;
+            var email = $(this).find("td").eq(4).text();
+            var dataToPost = "&EmailId=" + email;
+            $.post("GetDetailInfo", dataToPost)
+                .done(function (response, status, jqxhr) {
+                    window.location.href = '/Recruiter/GetDetailInfo'
+                })
+                .fail(function (jqxhr, status, error) {
+                    // this is the ""error"" callback
+                })
+        });
+
+        $("#AddBasic").on('submit', function (e) {
+            debugger;
+            e.preventDefault();
+            var $this = $(this);
+            var dataToPost = $(this).serialize();
+
+            $.post("/Recruiter/SaveReferAndEarn", dataToPost)
+                .done(function (response, status, jqxhr) {
+                    alert("Candidate Details Sent");
+
+
+                })
+                .fail(function (jqxhr, status, error) {
+                    // this is the ""error"" callback
+                })
+        });
+    });
 </script>
+

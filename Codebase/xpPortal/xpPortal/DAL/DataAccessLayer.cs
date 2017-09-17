@@ -73,6 +73,17 @@ namespace xpPortal.DAL
             mdb.ExecuteStoredProcedure("spSaveFeedback", spParameters);
         }
 
+        public void SaveReferred(ReferAndEarnModel model)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+            spParameters.Add(new XP.DataAccess.DbParameter("Name", model.CandidateName));
+            spParameters.Add(new XP.DataAccess.DbParameter("ContactName", model.ContactNumber));
+            spParameters.Add(new XP.DataAccess.DbParameter("Email", model.Email));
+            spParameters.Add(new XP.DataAccess.DbParameter("ReferedBy", model.ReferedBy));
+            mdb.ExecuteStoredProcedure("spSaveReferred", spParameters);
+        }
+
         public void AddApplicantBasicDetails(UserDetails model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();

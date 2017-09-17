@@ -18,7 +18,8 @@ namespace xpPortal.Controllers
         {
             UserDetails bcInfo = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
-            bcInfo = blObject.GetApplicantBasicDetails("amit1990libra@gmail.com");
+            string email = Session["userName"].ToString();
+            bcInfo = blObject.GetApplicantBasicDetails(email);
 
             #region yeardata
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
@@ -80,7 +81,8 @@ namespace xpPortal.Controllers
         {
             BusinessLayer blObject = new BusinessLayer();
             blObject.AddApplicantBasicDetailsAndSendMail(basicInfo);
-            basicInfo = blObject.GetApplicantDetails("amit1990libra@gmail.com");
+          
+            basicInfo = blObject.GetApplicantDetails(basicInfo.Email);
 
             #region yeardata
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
@@ -141,15 +143,47 @@ namespace xpPortal.Controllers
                   Value = x.ToString()
               }), "Value", "Text");
             #endregion
-
-            details = blObject.GetApplicantDetails("amit1990libra@gmail.com");
+            string email = Session["userName"].ToString();
+            details = blObject.GetApplicantDetails(email);
             details.SelectedMonth = details.DOB.Month;
             details.SelectedYear = details.DOB.Year;
             details.SelectedDay = details.DOB.Day;
             return View("Index", details);
         }
 
+        public ActionResult GetJoineeInfo(string EmailId)
+        {
+            #region yeardata
+            BusinessLayer blObject = new BusinessLayer();
+            ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
+             new SelectListItem()
+             {
+                 Text = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedMonthNames[x - 1],
+                 Value = x.ToString()
+             }), "Value", "Text");
 
+            ViewBag.Years = new SelectList(Enumerable.Range(1980, 2000).Select(x =>
+               new SelectListItem()
+               {
+                   Text = x.ToString(),
+                   Value = x.ToString()
+               }), "Value", "Text");
+
+            ViewBag.Days = new SelectList(Enumerable.Range(1, 31).Select(x =>
+              new SelectListItem()
+              {
+                  Text = x.ToString(),
+                  Value = x.ToString()
+              }), "Value", "Text");
+            #endregion
+            UserDetails details = new UserDetails();
+          //  details = blObject.GetApplicantDetails(EmailId);
+            //details.SelectedMonth = details.DOB.Month;
+            //details.SelectedYear = details.DOB.Year;
+            //details.SelectedDay = details.DOB.Day;
+            return View("NewJoineeDetail", details);
+
+        }
 
         //[HttpPost]
         //public ActionResult SubmitQuery(Query query)
@@ -160,7 +194,7 @@ namespace xpPortal.Controllers
         //    bl.SubmitQuery(query,model);
         //    return View();
         //}
-        
+
         [HttpPost]
         public ActionResult SubmitQuery(Query query)
         {
@@ -213,6 +247,14 @@ namespace xpPortal.Controllers
         {
                                       
             return View();
+        }
+
+        public void SaveReferAndEarn(ReferAndEarnModel model)
+        {
+            model.ReferedBy = Session["userName"].ToString();
+            BusinessLayer bl = new BusinessLayer();
+            bl.SaveReferred(model);
+
         }
     }
 }

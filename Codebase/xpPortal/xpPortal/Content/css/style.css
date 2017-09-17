@@ -24,6 +24,11 @@ ul li {
     /*list-style:none;*/
 }
 
+.header-class{
+    background-color:#767676 !important;
+    color:white;
+}
+
 a,a:hover,a:focus {
     text-decoration:none;
     outline:none;
