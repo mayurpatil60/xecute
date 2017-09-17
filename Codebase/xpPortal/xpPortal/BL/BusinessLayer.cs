@@ -92,15 +92,27 @@ namespace xpPortal.BL
             dalObject.SaveFeedback(feedback, email);
         }
 
-        
+        public DataRowCollection GetJobListForReferAndEarn()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            DataTable da = dalObject.GetJobListForReferAndEarn();
+            DataRowCollection drc = da.Rows;
+            return drc;
+        }       
 
-        public void AddNewJoinee(UserDetails userDetails)
+        public void AddNewJoinee(AddNewJoineeModel userDetails)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
 
             dalObject.AddNewJoinee(userDetails);
         }
 
+        public void SaveNewJob(NewJobRefer newJobRefer)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            dalObject.SaveNewJob(newJobRefer);
+        }
         public DataRowCollection GetFeedbackList()
         {
             DataAccessLayer dalObject = new DataAccessLayer();
@@ -150,13 +162,13 @@ namespace xpPortal.BL
         public UserDetails GetApplicantDetails(string email)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
-
-            DataTable dt = dalObject.GetApplicantDetails(email);
+            string emailWithoutSpace = email.Trim();
+            DataTable dt = dalObject.GetApplicantDetails(emailWithoutSpace);
 
             UserDetails details = new UserDetails();
 
-            details.FirstName = dt.Rows[0]["FirstName"].ToString();
-            details.LastName = dt.Rows[0]["LastName"].ToString();
+            details.FirstName = dt.Rows[0]["FirstName"].ToString() != null ? dt.Rows[0]["FirstName"].ToString() : "";
+            details.LastName = dt.Rows[0]["LastName"].ToString() != null ? dt.Rows[0]["LastName"].ToString() : ""; ;
             details.PhoneNo = dt.Rows[0]["PhoneNo"] != null ? dt.Rows[0]["PhoneNo"].ToString() : "";
             details.Email = dt.Rows[0]["EmailId"].ToString();
             details.BloodGroup = dt.Rows[0]["BloodGroup"] != null ? dt.Rows[0]["BloodGroup"].ToString():"";

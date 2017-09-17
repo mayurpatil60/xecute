@@ -202,6 +202,13 @@ namespace xpPortal.Controllers
             return View("InterviewFeedbackJoinee");
         }
 
+        public ActionResult ReferAndEarn()
+        {
+            BusinessLayer bl = new BusinessLayer();
+            ReferAndEarnModel model = new ReferAndEarnModel();
+            model.JobList = bl.GetJobListForReferAndEarn();
+            return View("ReferAndEarn", model);
+        }
         public ActionResult SubmitQuery()
         {
                                       
