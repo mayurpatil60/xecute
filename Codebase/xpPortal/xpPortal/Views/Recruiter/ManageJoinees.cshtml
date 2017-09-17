@@ -1,4 +1,5 @@
-﻿
+﻿@using xpPortal.Models
+@model NewJoinee
 @{
     ViewBag.Title = "ManageJoinees";
     Layout = "~/Views/Shared/RecruiterLayout.cshtml";
@@ -7,22 +8,22 @@
 <div class="container-fluid">
     <h2>Add Joinee</h2>
     <p>You can add the new joinee by entering the email id of Joinee and selecting the Buddy and Contact Person. Once you add the new joinee automated mail will be forwarded to joinee from where he/she can able to login.</p>
-    <form class="form-horizontal">
+    <form id="AddBasic" class="form-horizontal">
         <div class="row">
             <div class="col-md-4">
                 <label>Full Name</label>
-                <input type="text" class="form-control" placeholder="Full Name" required>
+                <input type="text" class="form-control" placeholder="Full Name" name="FullName" />
             </div>
             <div class="col-md-4">
                 <label>Email</label>
-                <input type="text" class="form-control" placeholder="Email" required>
+                <input type="text" style="position: relative;float: left;" class="form-control" placeholder="Email Address" id="emailName" name="Email" required />
             </div>
             <div class="col-md-4">
                 <label style="display:block">
                     Assign Buddy
                     <!--<a class="btn-link pull-right" href="buddy.html" style="color: #909090;">Add buddy</a>-->
                 </label>
-                <select class="form-control m-bot15" required>
+                <select class="form-control m-bot15" id="BuddyName" name="Buddy">
                     <option selected>Select Buddy</option>
                     <option value="mike">Mike Boltana</option>
                     <option value="michael">Michael Doe</option>
@@ -30,7 +31,7 @@
             </div>
             <div class="col-md-4">
                 <label style="display:block">Contact Person</label>
-                <select class="form-control m-bot15" required>
+                <select class="form-control m-bot15" id="ContactName" name="contactName">
                     <option selected>Select contact person</option>
                     <option value="john">John Doe</option>
                     <option value="joe">Joe Boltana</option>
@@ -38,7 +39,7 @@
             </div>
             <div class="col-md-3">
                 <label style="display:block;">&nbsp;</label>
-                <btn type="submit" class="btn btn-primary btn-block">Add</btn>
+                <button type="submit" id="submitFullButton" class="btn btn-primary btn-block">Add</button>
             </div>
         </div>
     </form>
@@ -50,93 +51,51 @@
             Joinee
         </header>-->
         <div class="panel-body profile-nav">
-            <table class="table table-hover tm-membr">
+            <table class="table table-hover tm-membr" id="manageJoinee">
                 <thead>
                     <tr>
                         <th width="30"></th>
-                        <th>Joinee Name</th>
-                        <th width="350">Email</th>
-                        <th>Buddy Name</th>
-                        <th>Contact Person</th>
-                        <th width="30">Actions</th>
+                        <th>
+                            FirstName
+                        </th>
+                        <th>
+                            Middle Name
+                        </th>
+                        <th>
+                            LastName
+                        </th>
+                        <th>
+                            Email Name
+                        </th>
+                        <th>
+                            Contact Number
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div class="tm-avatar">
-                                <img src="images/lock_thumb.jpg" alt="" />
-                            </div>
-                        </td>
-                        <td>
-                            <span class="tm">John Boltana</span>
-                        </td>
-                        <td>
-                            <span class="tm">john@email.com</span>
-                        </td>
-                        <td>
-                            <span class="tm">Mike Rose</span>
-                        </td>
-                        <td>
-                            <span class="tm">Joe Doe</span>
-                        </td>
-                        <td>
-                            <div class="todo-actionlist" style="position: inherit;">
-                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="tm-avatar">
-                                <img src="images/lock_thumb.jpg" alt="" />
-                            </div>
-                        </td>
-                        <td>
-                            <span class="tm">John Boltana</span>
-                        </td>
-                        <td>
-                            <span class="tm">john@email.com</span>
-                        </td>
-                        <td>
-                            <span class="tm">Mike Rose</span>
-                        </td>
-                        <td>
-                            <span class="tm">Joe Doe</span>
-                        </td>
-                        <td>
-                            <div class="todo-actionlist" style="position: inherit;">
-                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="tm-avatar">
-                                <img src="images/lock_thumb.jpg" alt="" />
-                            </div>
-                        </td>
-                        <td>
-                            <span class="tm">John Boltana</span>
-                        </td>
-                        <td>
-                            <span class="tm">john@email.com</span>
-                        </td>
-                        <td>
-                            <span class="tm">Mike Rose</span>
-                        </td>
-                        <td>
-                            <span class="tm">Joe Doe</span>
-                        </td>
-                        <td>
-                            <div class="todo-actionlist" style="position: inherit;">
-                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach (System.Data.DataRow row in Model.NewJoineeList)
+                    {
+
+                        <tr>
+                            <td>
+                                <div class="tm-avatar">
+                                    <img src="images/lock_thumb.jpg" alt="" />
+                                </div>
+                            </td>
+                            @foreach (var cell in row.ItemArray)
+                            {
+                                <td>
+                                    <span class="tm">@cell.ToString()</span>
+                                </td>
+                            }
+                            <td>
+                                <div class="todo-actionlist" style="position: inherit;">
+                                    <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
+                                    <a href="#" class="todo-remove"><i class="ico-close"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -144,3 +103,39 @@
 
 
 </div><!--container-fluid-->
+
+<script language="javascript">
+    $(document).ready(function () {
+        $('#manageJoinee tbody').on('click', 'tr', function () {
+            debugger;
+            var email = $(this).find("td").eq(4).text();
+            var dataToPost = "&EmailId=" + email;
+            $.post("GetDetailInfo", dataToPost)
+                .done(function (response, status, jqxhr) {
+                    var value = $(response).find('#emailName').val();
+                    window.location.href = '/Recruiter/GetDetailInfo?EmailId='+value;
+                })
+                .fail(function (jqxhr, status, error) {
+                    // this is the ""error"" callback
+                })
+        });
+
+        $("#AddBasic").on('submit', function (e) {
+            debugger;
+            e.preventDefault();
+            var $this = $(this);
+            var dataToPost = $(this).serialize();
+
+            $.post("/Recruiter/SaveNewJoinee", dataToPost)
+                .done(function (response, status, jqxhr) {
+                    alert("New Joinee Successfully Added.");
+                   
+                     window.location.href = '/Recruiter/ManageJoinees'
+                })
+                .fail(function (jqxhr, status, error) {
+                    // this is the ""error"" callback
+                })
+        })
+    });
+
+</script>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -79,7 +80,7 @@ namespace xpPortal.Controllers
                     fname = Path.Combine(Server.MapPath("~/UploadedDocuments/"), fname);
                     file.SaveAs(fname);
                     BusinessLayer objBl = new BusinessLayer();
-                    objBl.InsertIntoTable("insert into document(DocumentName, DocumentType, DocumentLink, UserLoginId, Status) values ('" + Request.Form["ControlName"].ToString() + "', '" + Request.Form["ControlName"].ToString() + "', '" + documentLink + "', " + Session["LoginID"].ToString() + ", 0);");
+                    objBl.InsertIntoTable("insert into document(DocumentName, DocumentType, DocumentLink, UserLoginId, Status) values ('" + Request.Form["ControlName"].ToString() + "', '" + Request.Form["ControlName"].ToString() + "', '" + documentLink + "', " + Session["LoginID"].ToString() + ", 1);");
                     }
                     // Returns message that successfully uploaded  
                     return Json("1");                               
@@ -89,6 +90,34 @@ namespace xpPortal.Controllers
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json("0");
             }           
+        }
+
+        [HttpGet]
+        public ActionResult ViewDocument(string emailID)
+        {
+            BusinessLayer objBl = new BusinessLayer();
+            NewJoinee model = new NewJoinee();
+            DataRowCollection drc = objBl.GetDocumentListByUser(emailID);
+            model.NewJoineeList = drc;
+            return View("ViewDocument", model);
+        }
+
+        [HttpGet]
+        public string Approvedocument(int documentID)
+        {
+            BusinessLayer objBl = new BusinessLayer();
+            string strResult = "";
+            objBl.InsertIntoTable("update document set status = 2 where documentID = "+ documentID);
+            return strResult;
+        }
+
+        [HttpGet]
+        public string RejectDocument(int documentID)
+        {
+            BusinessLayer objBl = new BusinessLayer();
+            string strResult = "";
+            objBl.InsertIntoTable("update document set status = 3 where documentID = " + documentID);
+            return strResult;
         }
     }
 

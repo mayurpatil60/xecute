@@ -5,137 +5,131 @@
     ViewBag.Title = "UserDetailedInfo";
 }
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="images/favicon.png">
-    <title>Login</title>
-    <!--Core CSS -->
-    @*<link href="bs3/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-reset.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />*@
 
-    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-reset.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="~/Content/Style.css" rel="stylesheet">
-    <link href="~/Content/style-responsive.css" rel="stylesheet" />
     <script type="text/javascript" src="jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
-<section id="main-content" class="merge-left">
-    <section class="wrapper" style="margin-top: 27px;">
-        <!-- page start-->
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-8">
-                <section class="basic-info-wrapper">
-                    <div class="basic-info">
-                        <div id="wizard">
-                            <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 14px;height: 41px;padding-top: 3px;">
-                                Basic Info
-                            </h2>
-                            <section>
-                                <form id="submitBasic" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">First Name:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Middle Name:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Last Name:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="@Model.LastName">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Contact Number:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Contact Number" name="PhoneNo" value="@Model.PhoneNo">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Email Address:</label>
-                                        <div class="col-lg-6">
-                                            <input type="text" style="position: relative;float: left;width: 65%;" class="form-control" placeholder="Email Address" id="emailName" name="Email" value="@Model.Email">
-                                            <button class="btn btn-lg btn-login btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
-                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 10px;background-color: lawngreen;" type="submit">
-                                                Save
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </section>
-                            <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 14px;height: 41px;padding-top: 3px;">Detailed Info</h2>
-                            <section>
-                                <form id="submitFull" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Passport:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Passport" name="PassportNo" value="@Model.PassportNo">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Gender:</label>
-                                        <div class="col-lg-4">
-                                            @Html.RadioButtonFor(model => model.Gender, "Male", new { @checked = true }) Male
-                                            @Html.RadioButtonFor(model => model.Gender, "Female", new { @checked = true }) Female
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">DOB:</label>
-                                        <div class="col-lg-4">
-                                            @Html.DropDownListFor(model => model.SelectedDay, (IEnumerable<SelectListItem>)ViewBag.Days, "Day")
-                                            @Html.DropDownListFor(model => model.SelectedMonth, (IEnumerable<SelectListItem>)ViewBag.Months, "Month")
-                                            @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Emergency Contact Number:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Mobile" name="EmergencyContactNo" value="@Model.EmergencyContactNo">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Blood Group</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Blood Group" name="BloodGroup" value="@Model.BloodGroup">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Address</label>
-                                        <div class="col-lg-4">
-                                            <textarea class="form-control" cols="60" rows="5" name="CurrentAddress" value="@Model.CurrentAddress"></textarea>
-                                        </div>
-
-                                    </div>
-                                    <button class="btn btn-lg btn-login btn-block" style="width: 20%;
-                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 136px;margin-top: 20px;background-color: lawngreen;"
-                                            id="submitFullButton" type="submit">
-                                        Save
-                                    </button>
-                                </form>
-                            </section>
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Basic Info
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                 
+                </span>
+            </header>
+            <div class="panel-body">
+                <form id="submitBasic" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">First Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
                         </div>
                     </div>
-                </section>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Middle Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Last Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="@Model.LastName">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Contact Number:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Contact Number" name="PhoneNo" value="@Model.PhoneNo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Email Address:</label>
+                        <div class="col-lg-6">
+                            <input type="text" style="position: relative;float: left;width: 65%;" class="form-control" placeholder="Email Address" id="emailName" name="Email" value="@Model.Email">
+                          
+                        </div>
+                       
+                    </div>
+                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 415px;" type="submit">
+                        Save
+                    </button>
+                </form>
             </div>
-            <div class="col-sm-2"></div>
-        </div>
-        <!-- page end-->
-    </section>
-</section>
+        </section>
+
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Detailed Info
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+
+                </span>
+            </header>
+            <div class="panel-body">
+                <form id="submitFull" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Passport:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Passport" name="PassportNo" value="@Model.PassportNo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Gender:</label>
+                        <div class="col-lg-4">
+                            @Html.RadioButtonFor(model => model.Gender, "Male", new { @checked = true }) Male
+                            @Html.RadioButtonFor(model => model.Gender, "Female", new { @checked = true }) Female
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">DOB:</label>
+                        <div class="col-lg-4">
+                            @Html.DropDownListFor(model => model.SelectedDay, (IEnumerable<SelectListItem>)ViewBag.Days, "Day")
+                            @Html.DropDownListFor(model => model.SelectedMonth, (IEnumerable<SelectListItem>)ViewBag.Months, "Month")
+                            @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Emergency Contact Number:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Mobile" name="EmergencyContactNo" value="@Model.EmergencyContactNo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Blood Group</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Blood Group" name="BloodGroup" value="@Model.BloodGroup">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Address</label>
+                        <div class="col-lg-4">
+                            <textarea class="form-control" cols="60" rows="5" name="CurrentAddress" value="@Model.CurrentAddress"></textarea>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-lg btn-login btn-success btn-block" style="width: 14%;
+                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 415px;margin-top: 20px;"
+                            id="submitFullButton" type="submit">
+                        Save
+                    </button>
+                </form>
+            </div>
+
+        </section>>
+
+    </div>
+
+
+    <!--notification end-->
+</div>
 <script language="javascript">
     $(document).ready(function () {
         $("#submitBasic").on('submit', function (e) {

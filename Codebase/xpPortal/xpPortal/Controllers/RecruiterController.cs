@@ -29,7 +29,10 @@ namespace xpPortal.Controllers
 
         public ActionResult ManageJoinees()
         {
-            return View();
+            NewJoinee model = new NewJoinee();
+            BusinessLayer blObject = new BusinessLayer();
+            model.NewJoineeList = blObject.GetNewJoineeList();
+            return View("ManageJoinees",model);
         }
 
         public ActionResult RelocationAssistant()
@@ -121,12 +124,11 @@ namespace xpPortal.Controllers
 
         }
 
-        public ActionResult SaveNewJoinee(UserDetails basicInfo)
+        public void SaveNewJoinee(AddNewJoineeModel basicInfo)
         {
             UserDetails model = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
             blObject.AddNewJoinee(basicInfo);
-            return View("AddNewJoinee", model);
         }
 
         public ActionResult GetAllFeedback()

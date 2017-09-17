@@ -92,6 +92,13 @@ namespace xpPortal.BL
             dalObject.SaveFeedback(feedback, email);
         }
 
+        public void SaveReferred(ReferAndEarnModel model)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            dalObject.SaveReferred(model);
+        }
+
         public DataRowCollection GetJobListForReferAndEarn()
         {
             DataAccessLayer dalObject = new DataAccessLayer();
@@ -100,7 +107,7 @@ namespace xpPortal.BL
             return drc;
         }       
 
-        public void AddNewJoinee(UserDetails userDetails)
+        public void AddNewJoinee(AddNewJoineeModel userDetails)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
 
@@ -150,11 +157,13 @@ namespace xpPortal.BL
             DataTable dt= dalObject.GetApplicantBasicDetails(email);
 
             UserDetails details = new UserDetails();
-
-            details.FirstName = dt.Rows[0]["FirstName"].ToString();
-            details.LastName = dt.Rows[0]["LastName"].ToString();
-            details.PhoneNo = dt.Rows[0]["PhoneNo"]!=null?dt.Rows[0]["PhoneNo"].ToString():"";
-            details.Email = dt.Rows[0]["EmailId"].ToString();
+            if (dt.Rows.Count > 0)
+            {
+                details.FirstName = dt.Rows[0]["FirstName"].ToString();
+                details.LastName = dt.Rows[0]["LastName"].ToString();
+                details.PhoneNo = dt.Rows[0]["PhoneNo"] != null ? dt.Rows[0]["PhoneNo"].ToString() : "";
+                details.Email = dt.Rows[0]["EmailId"].ToString();
+            }
             return details;
         }
 
@@ -162,27 +171,29 @@ namespace xpPortal.BL
         public UserDetails GetApplicantDetails(string email)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
-
-            DataTable dt = dalObject.GetApplicantDetails(email);
+            string emailWithoutSpace = email.Trim();
+            DataTable dt = dalObject.GetApplicantDetails(emailWithoutSpace);
 
             UserDetails details = new UserDetails();
-
-            details.FirstName = dt.Rows[0]["FirstName"].ToString();
-            details.LastName = dt.Rows[0]["LastName"].ToString();
-            details.PhoneNo = dt.Rows[0]["PhoneNo"] != null ? dt.Rows[0]["PhoneNo"].ToString() : "";
-            details.Email = dt.Rows[0]["EmailId"].ToString();
-            details.BloodGroup = dt.Rows[0]["BloodGroup"] != null ? dt.Rows[0]["BloodGroup"].ToString():"";
-            details.EmergencyContactNo = dt.Rows[0]["EmergencyContactNumber"] !=null ? dt.Rows[0]["EmergencyContactNumber"].ToString():"";
-            details.CurrentAddress = dt.Rows[0]["CurrentAddress"] !=null? dt.Rows[0]["CurrentAddress"].ToString():"";
-            details.Gender = dt.Rows[0]["Gender"] !=null? dt.Rows[0]["Gender"].ToString():"";
-            details.PassportNo = dt.Rows[0]["PassportNumber"] !=null? dt.Rows[0]["PassportNumber"].ToString():"";
-            if (dt.Rows[0]["DOB"].ToString() != "")
+            if (dt.Rows.Count > 1)
             {
-                details.DOB = DateTime.Parse(dt.Rows[0]["DOB"].ToString());
-            }
-            else
-            {
-                details.DOB = DateTime.Now;
+                details.FirstName = dt.Rows[0]["FirstName"].ToString() != null ? dt.Rows[0]["FirstName"].ToString() : "";
+                details.LastName = dt.Rows[0]["LastName"].ToString() != null ? dt.Rows[0]["LastName"].ToString() : ""; ;
+                details.PhoneNo = dt.Rows[0]["PhoneNo"] != null ? dt.Rows[0]["PhoneNo"].ToString() : "";
+                details.Email = dt.Rows[0]["EmailId"].ToString();
+                details.BloodGroup = dt.Rows[0]["BloodGroup"] != null ? dt.Rows[0]["BloodGroup"].ToString() : "";
+                details.EmergencyContactNo = dt.Rows[0]["EmergencyContactNumber"] != null ? dt.Rows[0]["EmergencyContactNumber"].ToString() : "";
+                details.CurrentAddress = dt.Rows[0]["CurrentAddress"] != null ? dt.Rows[0]["CurrentAddress"].ToString() : "";
+                details.Gender = dt.Rows[0]["Gender"] != null ? dt.Rows[0]["Gender"].ToString() : "";
+                details.PassportNo = dt.Rows[0]["PassportNumber"] != null ? dt.Rows[0]["PassportNumber"].ToString() : "";
+                if (dt.Rows[0]["DOB"].ToString() != "")
+                {
+                    details.DOB = DateTime.Parse(dt.Rows[0]["DOB"].ToString());
+                }
+                else
+                {
+                    details.DOB = DateTime.Now;
+                }
             }
             return details;
         }
@@ -217,6 +228,17 @@ namespace xpPortal.BL
         {
             DataAccessLayer dalObject = new DataAccessLayer();
             dalObject.InsertIntoTable(InsertQuery);
+        }
+        public DataRowCollection GetDocumentListByUser(string emailID)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            DataSet ds = dalObject.GetDataFromQuery("select doc.DocumentId, doc.DocumentName, doc.DocumentType, '../../UploadedDocuments/'+ doc.DocumentLink as DocumentLink, case doc.Status when 0 then 'Not Submitted' when 1 then 'Submitted' when 2 then 'Approved' when 3 then 'Rejected' ELSE 'Not Submitted' END DocStatus, 'Verify' As Approve from Document doc inner join login on doc.UserLoginID = Login.Id where Login.UserName = '" + emailID +"'");            
+            if (ds != null && ds.Tables.Count > 0)
+            {
+                DataRowCollection drc = ds.Tables[0].Rows;
+                return drc;
+            }            
+            return null;
         }
 
         public int SubmitQueryReply(Query reply, LoginViewModel model)

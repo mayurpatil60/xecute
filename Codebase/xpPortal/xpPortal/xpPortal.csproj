@@ -1134,6 +1134,7 @@
     </Compile>
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\GenericHelper.cs" />
+    <Compile Include="Models\AddNewJoineeModel.cs" />
     <Compile Include="Models\Buddy.cs" />
     <Compile Include="Models\Constant.cs" />
     <Compile Include="Models\EmailData.cs" />
@@ -1217,6 +1218,7 @@
     <Content Include="Views\Login\Login2.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
     <Content Include="Views\Recruiter\ManageJoinees - Copy.cshtml" />
+    <Content Include="Views\Document\ViewDocument.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
