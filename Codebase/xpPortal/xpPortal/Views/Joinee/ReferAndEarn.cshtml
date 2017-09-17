@@ -32,55 +32,69 @@
     Open Opportunities
 </h2>
 <form id="submitFull" class="form-horizontal">
-    <div>
-        <table class="table table-striped table-hover table-bordered" id="example">
-            <thead>
-                <tr>
-                   
-                    <th style="text-align:center">
-                        Job Id
-                    </th>
-                    <th style="text-align:center">
-                        Job Title
-                    </th>
-                    <th style="text-align:center">
-                        Experience Required
-                    </th>
-                    <th style="text-align:center">
-                        SkillsRequired
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach (System.Data.DataRow row in Model.JobList)
-                {
-
-                    <tr style="text-align:center">
-                        @foreach (var cell in row.ItemArray)
-                        {
-                            <td>@cell.ToString()</td>
-                        }
+    <section class="panel">
+        <div class="panel-body profile-nav">
+            <table class="table table-hover tm-membr" id="example">
+                <thead>
+                    <tr>
+                        <th width="30"></th>
+                        <th style="text-align:center">
+                            Job Id
+                        </th>
+                        <th style="text-align:center">
+                            Job Title
+                        </th>
+                        <th style="text-align:center">
+                            Experience Required
+                        </th>
+                        <th style="text-align:center">
+                            Skills Required
+                        </th>
                     </tr>
+                </thead>
+                <tbody>
 
-                }
-            </tbody>
-        </table>
+                    @foreach (System.Data.DataRow row in Model.JobList)
+                    {
 
-    </div>
+                    <tr>
+                        <td>
+                            <div class="tm-avatar">
+                                <img src="images/lock_thumb.jpg" alt="" />
+                            </div>
+                        </td>
+                        @foreach (var cell in row.ItemArray)
+                            {
+                            <td>
+                                <span class="tm">@cell.ToString()</span>
+                            </td>
+                            }
+                        <td>
+                            <div class="todo-actionlist" style="position: inherit;">
+                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
+                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </section>
 </form>
 <script language="javascript">
-        $('#example tbody').on('click', 'tr', function () {
-            debugger;
-            var email = $(this).find("td").eq(4).text();
-            var dataToPost = "&EmailId=" + email;
-            $.post("GetDetailInfo", dataToPost)
-                .done(function (response, status, jqxhr) {
-                    window.location.href = '/Recruiter/GetDetailInfo'
-                })
-                .fail(function (jqxhr, status, error) {
-                    // this is the ""error"" callback
-                })
-        });
+    $('#example tbody').on('click', 'tr', function () {
+        debugger;
+        var email = $(this).find("td").eq(4).text();
+        var dataToPost = "&EmailId=" + email;
+        $.post("GetDetailInfo", dataToPost)
+            .done(function (response, status, jqxhr) {
+                window.location.href = '/Recruiter/GetDetailInfo'
+            })
+            .fail(function (jqxhr, status, error) {
+                // this is the ""error"" callback
+            })
+    });
 
 </script>

@@ -112,7 +112,8 @@
             var dataToPost = "&EmailId=" + email;
             $.post("GetDetailInfo", dataToPost)
                 .done(function (response, status, jqxhr) {
-                    window.location.href = '/Recruiter/GetDetailInfo'
+                    var value = $(response).find('#emailName').val();
+                    window.location.href = '/Recruiter/GetDetailInfo?EmailId='+value;
                 })
                 .fail(function (jqxhr, status, error) {
                     // this is the ""error"" callback
@@ -128,6 +129,7 @@
             $.post("/Recruiter/SaveNewJoinee", dataToPost)
                 .done(function (response, status, jqxhr) {
                     alert("New Joinee Successfully Added.");
+                   
                      window.location.href = '/Recruiter/ManageJoinees'
                 })
                 .fail(function (jqxhr, status, error) {

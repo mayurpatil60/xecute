@@ -167,8 +167,8 @@ namespace xpPortal.BL
 
             UserDetails details = new UserDetails();
 
-            details.FirstName = dt.Rows[0]["FirstName"].ToString();
-            details.LastName = dt.Rows[0]["LastName"].ToString();
+            details.FirstName = dt.Rows[0]["FirstName"].ToString() != null ? dt.Rows[0]["FirstName"].ToString() : "";
+            details.LastName = dt.Rows[0]["LastName"].ToString() != null ? dt.Rows[0]["LastName"].ToString() : ""; ;
             details.PhoneNo = dt.Rows[0]["PhoneNo"] != null ? dt.Rows[0]["PhoneNo"].ToString() : "";
             details.Email = dt.Rows[0]["EmailId"].ToString();
             details.BloodGroup = dt.Rows[0]["BloodGroup"] != null ? dt.Rows[0]["BloodGroup"].ToString():"";
