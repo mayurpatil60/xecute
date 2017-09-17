@@ -6,93 +6,99 @@
 }
 
 <head>
-   
+
     <!--Core CSS -->
     @*<link href="bs3/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-reset.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />*@
 
-  
+
     <script type="text/javascript" src="jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
+<div class="row">
+<div class="col-sm-12">
+    <!--notification start-->
+    <section class="panel">
+        <header class="panel-heading header-class">
+            Joinee List
+            <span class="tools pull-right">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
 
-<div class="container-fluid">
-    <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 18px;height: 46px;padding-top: 4px;">
-        Joinee List
-    </h2>
-    <form id="submitFull" class="form-horizontal">
-        <section class="panel">
-            <!--<header class="panel-heading">
-                Joinee
-            </header>-->
-            <div class="panel-body profile-nav">
-                <table class="table table-hover tm-membr" id="example">
-                    <thead>
-                        <tr>
-                            <th width="30"></th>
-                            <th>
-                                FirstName
-                            </th>
-                            <th>
-                                Middle Name
-                            </th>
-                            <th>
-                                LastName
-                            </th>
-                            <th>
-                                Email Name
-                            </th>
-                            <th>
-                                Contact Number
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            </span>
+        </header>
+        <div class="panel-body">
+            <form id="submitFull" class="form-horizontal">
+                    <table class="table table-hover tm-membr" id="example">
+                            <thead>
+                                <tr>
+                                    <th width="30"></th>
+                                    <th>
+                                        FirstName
+                                    </th>
+                                    <th>
+                                        Middle Name
+                                    </th>
+                                    <th>
+                                        LastName
+                                    </th>
+                                    <th>
+                                        Email Name
+                                    </th>
+                                    <th>
+                                        Contact Number
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        @foreach (System.Data.DataRow row in Model.NewJoineeList)
-                        {
-
-
-                            <tr>
-                                <td>
-                                    <div class="tm-avatar">
-                                        <img src="images/lock_thumb.jpg" alt="" />
-                                    </div>
-                                </td>
-                                @foreach (var cell in row.ItemArray)
+                                @foreach (System.Data.DataRow row in Model.NewJoineeList)
                                 {
-                                    <td>
-                                        <span class="tm">@cell.ToString()</span>
-                                    </td>
+
+
+                                    <tr>
+                                        <td>
+                                            <div class="tm-avatar">
+                                                <img src="images/lock_thumb.jpg" alt="" />
+                                            </div>
+                                        </td>
+                                        @foreach (var cell in row.ItemArray)
+                                        {
+                                            <td>
+                                                <span class="tm">@cell.ToString()</span>
+                                            </td>
+                                        }
+                                        <td>
+                                            <div class="todo-actionlist" style="position: inherit;">
+                                                <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
+                                                <a href="#" class="todo-remove"><i class="ico-close"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 }
-                                <td>
-                                    <div class="todo-actionlist" style="position: inherit;">
-                                        <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                                        <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
 
-            </div>
-    </form>
+                   
+            </form>
+        </div>
+      </section>
+  </div>
+
 </div>
-<script language="javascript">
-    $('#example tbody').on('click', 'tr', function () {
-        debugger;
-        var email = $(this).find("td").eq(4).text();
-        var dataToPost = "&EmailId=" + email;
-        $.post("GetDetailInfo", dataToPost)
-            .done(function (response, status, jqxhr) {
-                var value = $(response).find('#emailName').val()
-                window.location.href = '/Recruiter/GetDetailInfo?EmailId=' + value;
-            })
-            .fail(function (jqxhr, status, error) {
-                // this is the ""error"" callback
-            })
-    });
+        <script language="javascript">
+            $('#example tbody').on('click', 'tr', function () {
+                debugger;
+                var email = $(this).find("td").eq(4).text();
+                var dataToPost = "&EmailId=" + email;
+                $.post("GetDetailInfo", dataToPost)
+                    .done(function (response, status, jqxhr) {
+                        var value = $(response).find('#emailName').val()
+                        window.location.href = '/Recruiter/GetDetailInfo?EmailId=' + value;
+                    })
+                    .fail(function (jqxhr, status, error) {
+                        // this is the ""error"" callback
+                    })
+            });
 
-</script>
+        </script>

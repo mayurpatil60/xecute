@@ -29,7 +29,7 @@ namespace xpPortal.Controllers
                  Value = x.ToString()
              }), "Value", "Text");
 
-            ViewBag.Years = new SelectList(Enumerable.Range(1980, 2000).Select(x =>
+            ViewBag.Years = new SelectList(Enumerable.Range(1980, 30).Select(x =>
                new SelectListItem()
                {
                    Text = x.ToString(),
@@ -92,7 +92,7 @@ namespace xpPortal.Controllers
              Value = x.ToString()
          }), "Value", "Text");
 
-            ViewBag.Years = new SelectList(Enumerable.Range(1980, 2000).Select(x =>
+            ViewBag.Years = new SelectList(Enumerable.Range(1980, 30).Select(x =>
                new SelectListItem()
                {
                    Text = x.ToString(),
@@ -129,7 +129,7 @@ namespace xpPortal.Controllers
                  Value = x.ToString()
              }), "Value", "Text");
 
-            ViewBag.Years = new SelectList(Enumerable.Range(1980, 2000).Select(x =>
+            ViewBag.Years = new SelectList(Enumerable.Range(1980,30).Select(x =>
                new SelectListItem()
                {
                    Text = x.ToString(),
@@ -162,7 +162,7 @@ namespace xpPortal.Controllers
                  Value = x.ToString()
              }), "Value", "Text");
 
-            ViewBag.Years = new SelectList(Enumerable.Range(1980, 2000).Select(x =>
+            ViewBag.Years = new SelectList(Enumerable.Range(1980, 30).Select(x =>
                new SelectListItem()
                {
                    Text = x.ToString(),

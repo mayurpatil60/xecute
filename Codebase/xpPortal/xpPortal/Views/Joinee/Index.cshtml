@@ -138,7 +138,7 @@
             var $this = $(this);
             var dataToPost = $(this).serialize();
 
-            $.post("Joinee/SaveBasicInfo", dataToPost)
+            $.post("SaveBasicInfo", dataToPost)
                 .done(function (response, status, jqxhr) {
                     alert("Your Details are Successfully Updated.");
                 })
@@ -154,7 +154,7 @@
             var email = document.getElementById("emailName").value;
             var dataToPost = $(this).serialize();
             dataToPost = dataToPost + "&Email=" + email;
-            $.post("Joinee/SaveDetailInfo", dataToPost)
+            $.post("SaveDetailInfo", dataToPost)
                 .done(function (response, status, jqxhr) {
                     alert("Your Details are Successfully Updated.");
                 })

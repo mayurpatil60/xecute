@@ -140,6 +140,7 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("LastName", LastName));
             spParameters.Add(new XP.DataAccess.DbParameter("BuddyName", model.Buddy));
             spParameters.Add(new XP.DataAccess.DbParameter("ContactName", model.contactName));
+            spParameters.Add(new XP.DataAccess.DbParameter("DateOfJoining", model.DateOfJoining));
             mdb.ExecuteStoredProcedure("spAddNewJoinee", spParameters);
         }
 
@@ -171,6 +172,16 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("Email", email));
             
             return mdb.GetDataTable("spGetApplicantBasicDetails", spParameters);
+        }
+
+        public DataTable VerificationDetail(string email)
+        {
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+
+           
+            spParameters.Add(new XP.DataAccess.DbParameter("Email", email));
+
+            return mdb.GetDataTable("spSaveVerificationDetail", spParameters);
         }
 
         public DataTable GetApplicantDetails(string email)

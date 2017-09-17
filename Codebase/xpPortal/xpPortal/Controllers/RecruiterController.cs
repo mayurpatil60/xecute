@@ -32,7 +32,29 @@ namespace xpPortal.Controllers
             NewJoinee model = new NewJoinee();
             BusinessLayer blObject = new BusinessLayer();
             model.NewJoineeList = blObject.GetNewJoineeList();
-            return View("ManageJoinees",model);
+            #region yeardata
+            ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
+             new SelectListItem()
+             {
+                 Text = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedMonthNames[x - 1],
+                 Value = x.ToString()
+             }), "Value", "Text");
+
+            ViewBag.Years = new SelectList(Enumerable.Range(2017, 1).Select(x =>
+                new SelectListItem()
+                {
+                    Text = x.ToString(),
+                    Value = x.ToString()
+                }), "Value", "Text");
+
+            ViewBag.Days = new SelectList(Enumerable.Range(1, 31).Select(x =>
+              new SelectListItem()
+              {
+                  Text = x.ToString(),
+                  Value = x.ToString()
+              }), "Value", "Text");
+            #endregion
+            return View("ManageJoinees", model);
         }
 
         public ActionResult RelocationAssistant()
@@ -117,10 +139,21 @@ namespace xpPortal.Controllers
 
         }
 
+        public void VerificationDetail()
+        {
+            BusinessLayer blObject = new BusinessLayer();
+            string email = Session["userName"].ToString();
+            blObject.VerificationDetail(email);
+
+        }
+
         public void SaveNewJoinee(AddNewJoineeModel basicInfo)
         {
-            UserDetails model = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
+            DateTime joining = new DateTime(Convert.ToInt32(basicInfo.SelectedYear),
+                              Convert.ToInt32(basicInfo.SelectedMonth),
+                               Convert.ToInt32(basicInfo.SelectedDay));
+            basicInfo.DateOfJoining = joining.ToString();
             blObject.AddNewJoinee(basicInfo);
         }
 

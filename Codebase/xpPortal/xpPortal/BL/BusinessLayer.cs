@@ -175,7 +175,7 @@ namespace xpPortal.BL
             DataTable dt = dalObject.GetApplicantDetails(emailWithoutSpace);
 
             UserDetails details = new UserDetails();
-            if (dt.Rows.Count > 1)
+            if (dt.Rows.Count > 0)
             {
                 details.FirstName = dt.Rows[0]["FirstName"].ToString() != null ? dt.Rows[0]["FirstName"].ToString() : "";
                 details.LastName = dt.Rows[0]["LastName"].ToString() != null ? dt.Rows[0]["LastName"].ToString() : ""; ;
@@ -198,6 +198,13 @@ namespace xpPortal.BL
             return details;
         }
 
+        public void VerificationDetail(string EmailId)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable dt = dalObject.VerificationDetail(EmailId);
+
+        }
         public void AddApplicantDetailedInfomation(UserDetails userDetails)
         {
             DataAccessLayer dalObject = new DataAccessLayer();

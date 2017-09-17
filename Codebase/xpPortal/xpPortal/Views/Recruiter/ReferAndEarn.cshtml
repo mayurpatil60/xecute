@@ -4,111 +4,113 @@
     Layout = "~/Views/Shared/RecruiterLayout.cshtml";
     ViewBag.Title = "ReferAndEarn";
 }
-<section id="main-content" class="merge-left">
-    <section class="wrapper" style="margin-top: 27px;">
-        <!-- page start-->
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-8">
-                <section class="basic-info-wrapper">
-                    <div class="basic-info">
-                        <div id="wizard">
-                            <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 14px;height: 41px;padding-top: 9px;margin-bottom: 23px;margin-left: -92px;margin-top: -19px;font-family: 'Open Sans',sans-serif;
-    font-size: 21px;}">
-                                Refer And Earn
-                            </h2>
-                            <section class="panel">
-                                <div class="panel-body profile-nav">
-                                    <table class="table table-hover tm-membr" id="example">
-                                        <thead>
-                                            <tr>
-                                                <th width="30"></th>
-                                                <th style="text-align:center">
-                                                    Job Id
-                                                </th>
-                                                <th style="text-align:center">
-                                                    Job Title
-                                                </th>
-                                                <th style="text-align:center">
-                                                    Experience Required
-                                                </th>
-                                                <th style="text-align:center">
-                                                    Skills Required
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Refer And Earn
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
 
-                                            @foreach (System.Data.DataRow row in Model.JobList)
+                </span>
+            </header>
+            <div class="panel-body">
+                <table class="table table-hover tm-membr" id="example">
+                    <thead>
+                        <tr>
+                            <th width="30"></th>
+                            <th style="text-align:center">
+                                Job Id
+                            </th>
+                            <th style="text-align:center">
+                                Job Title
+                            </th>
+                            <th style="text-align:center">
+                                Experience Required
+                            </th>
+                            <th style="text-align:center">
+                                Skills Required
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (System.Data.DataRow row in Model.JobList)
             {
 
-                                                <tr>
-                                                    <td>
-                                                        <div class="tm-avatar">
-
-                                                        </div>
-                                                    </td>
-                                                    @foreach (var cell in row.ItemArray)
-                                                    {
-                                                        <td style="text-align:center">
-                                                            <span class="tm">@cell.ToString()</span>
-                                                        </td>
-                                                    }
-                                                </tr>
-
-                                            }
-                                        </tbody>
-                                    </table>
+                        <tr>
+                            <td>
+                                <div class="tm-avatar">
 
                                 </div>
-                            </section>
+                            </td>
+                            @foreach (var cell in row.ItemArray)
+                                {
+                                <td style="text-align:center">
+                                    <span class="tm">@cell.ToString()</span>
+                                </td>
+                                }
+                        </tr>
 
-                            <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 18px;height: 46px;padding-top: 4px;">
-                                Add Opportunities
-                            </h2>
-                            <section>
-                                <form id="submitBasic" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Job Title:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Job Title" name="JobTitle" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Exp. Required:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Experience" name="ExpRequired" />
-                                        </div>
-                                    </div>
+                        }
+                    </tbody>
+                </table>
 
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Skills Required:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="SkillsRequired" name="Skills" />
+            </div>
 
-                                        </div>
-                                    </div>
+        </section>
+    </div>
+</div>
 
-                                    <div class="form-group">
-                                        <button class="btn btn-lg btn-login btn-block" style="width: 20%;
-                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 136px;margin-top: 20px;background-color: lawngreen;"
-                                                id="submitFullButton" type="submit">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </form>
-                            </section>
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Refer And Earn
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
 
+                </span>
+            </header>
+            <div class="panel-body">
+                <form id="submitBasic" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Job Title:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Job Title" name="JobTitle" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Exp. Required:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Experience" name="ExpRequired" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Skills Required:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="SkillsRequired" name="Skills" />
 
                         </div>
                     </div>
-                </section>
-            </div>
-            <div class="col-sm-2"></div>
-        </div>
-        <!-- page end-->
-    </section>
+
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 427px;" type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+                </div>
 </section>
+
+
+    </div>
+</div>
+ 
 <script language="javascript">
     $(document).ready(function () {
         //$("#submitBasic").on('submit', function (e) {

@@ -11,50 +11,64 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
-<h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 18px;height: 46px;padding-top: 4px;">
-    Feedback-You Can Improve
-</h2>
-<form id="submitFull" class="form-horizontal">
-    <section class="panel">
-        <div class="panel-body profile-nav">
-            <table class="table table-hover tm-membr" id="example">
-                <thead>
-                    <tr>
-                        <th width="30"></th>
-                        <th style="text-align:center">
-                            Email
-                        </th>
-                        <th style="text-align:center">
-                            Feedback
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                    @foreach (System.Data.DataRow row in Model.FeedbackList)
-                    {
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Feedback-You Can Improve
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
 
-                        <tr>
-                            <td >
-                                <div class="tm-avatar">
+                </span>
+            </header>
+            <div class="panel-body">
+                <form id="submitFull" class="form-horizontal">
+                    <section class="panel">
+                        <div class="panel-body profile-nav">
+                            <table class="table table-hover tm-membr" id="example">
+                                <thead>
+                                    <tr>
+                                        <th width="30"></th>
+                                        <th style="text-align:center">
+                                            Email
+                                        </th>
+                                        <th style="text-align:center">
+                                            Feedback
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                </div>
-                            </td>
-                            @foreach (var cell in row.ItemArray)
-                            {
-                                <td style="text-align:center">
-                                    <span class="tm">@cell.ToString()</span>
-                                </td>
-                            }
-                        </tr>
+                                    @foreach (System.Data.DataRow row in Model.FeedbackList)
+                                    {
 
-                    }
-                </tbody>
-            </table>
+                                    <tr>
+                                        <td>
+                                            <div class="tm-avatar">
 
-        </div>
-</section>
-</form>
+                                            </div>
+                                        </td>
+                                        @foreach (var cell in row.ItemArray)
+                                            {
+                                            <td style="text-align:center">
+                                                <span class="tm">@cell.ToString()</span>
+                                            </td>
+                                            }
+                                    </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
 <script language="javascript">
     //$('#example tbody').on('click', 'tr', function () {
     //    debugger;
