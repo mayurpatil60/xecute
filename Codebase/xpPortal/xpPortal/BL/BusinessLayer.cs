@@ -232,7 +232,7 @@ namespace xpPortal.BL
         public DataRowCollection GetDocumentListByUser(string emailID)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
-            DataSet ds = dalObject.GetDataFromQuery("select doc.DocumentId, doc.DocumentName, doc.DocumentType, '../../UploadedDocuments/'+ doc.DocumentLink as DocumentLink, case doc.Status when 0 then 'Not Submitted' when 1 then 'Submitted' when 2 then 'Approved' when 3 then 'Rejected' ELSE 'Not Submitted' END DocStatus, 'Verify' As Approve from Document doc inner join login on doc.UserLoginID = Login.Id where Login.UserName = '" + emailID +"'");            
+            DataSet ds = dalObject.GetDataFromQuery("select doc.DocumentId, doc.documentLink as DocumentName, doc.DocumentType, '../../UploadedDocuments/'+ doc.DocumentLink as DocumentLink, case doc.Status when 0 then 'Not Submitted' when 1 then 'Submitted' when 2 then 'Approved' when 3 then 'Rejected' ELSE 'Not Submitted' END DocStatus, 'Verify' As Approve from Document doc inner join login on doc.UserLoginID = Login.Id where Login.UserName = '" + emailID +"' order by doc.status desc;");            
             if (ds != null && ds.Tables.Count > 0)
             {
                 DataRowCollection drc = ds.Tables[0].Rows;
