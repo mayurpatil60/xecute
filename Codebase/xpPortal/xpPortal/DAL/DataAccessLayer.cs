@@ -101,14 +101,34 @@ namespace xpPortal.DAL
             return mdb.GetDataTableWithoutParameter("spGetNewJoineeList");
         }
 
-        public void AddNewJoinee(UserDetails model)
+        public void AddNewJoinee(AddNewJoineeModel model)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
-
+            string[] nameSplit = model.FullName.Split();
+            string FirstName = "";
+            string MiddleName = "";
+            string LastName = "";
+            if (nameSplit.Length > 1 && nameSplit.Length < 3)
+            {
+                FirstName = nameSplit[0];
+                LastName = nameSplit[1];
+            }
+            else if (nameSplit.Length > 1 && nameSplit.Length <= 3)
+            {
+                FirstName = nameSplit[0];
+                MiddleName = nameSplit[1];
+                LastName = nameSplit[2];
+            }
+            else
+            {
+                FirstName = nameSplit[0];
+            }
             spParameters.Add(new XP.DataAccess.DbParameter("Email", model.Email));
-            spParameters.Add(new XP.DataAccess.DbParameter("FirstName", model.FirstName));
-            spParameters.Add(new XP.DataAccess.DbParameter("MiddleName", model.MiddleName));
-            spParameters.Add(new XP.DataAccess.DbParameter("LastName", model.LastName));
+            spParameters.Add(new XP.DataAccess.DbParameter("FirstName", FirstName));
+            spParameters.Add(new XP.DataAccess.DbParameter("MiddleName", MiddleName));
+            spParameters.Add(new XP.DataAccess.DbParameter("LastName", LastName));
+            spParameters.Add(new XP.DataAccess.DbParameter("BuddyName", model.Buddy));
+            spParameters.Add(new XP.DataAccess.DbParameter("ContactName", model.contactName));
             mdb.ExecuteStoredProcedure("spAddNewJoinee", spParameters);
         }
 

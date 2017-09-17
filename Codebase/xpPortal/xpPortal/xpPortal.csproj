@@ -1130,6 +1130,7 @@
     </Compile>
     <Compile Include="Helper\EmailHelper.cs" />
     <Compile Include="Helper\GenericHelper.cs" />
+    <Compile Include="Models\AddNewJoineeModel.cs" />
     <Compile Include="Models\Buddy.cs" />
     <Compile Include="Models\Constant.cs" />
     <Compile Include="Models\EmailData.cs" />

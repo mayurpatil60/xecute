@@ -100,7 +100,7 @@ namespace xpPortal.BL
             return drc;
         }       
 
-        public void AddNewJoinee(UserDetails userDetails)
+        public void AddNewJoinee(AddNewJoineeModel userDetails)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
 
@@ -162,8 +162,8 @@ namespace xpPortal.BL
         public UserDetails GetApplicantDetails(string email)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
-
-            DataTable dt = dalObject.GetApplicantDetails(email);
+            string emailWithoutSpace = email.Trim();
+            DataTable dt = dalObject.GetApplicantDetails(emailWithoutSpace);
 
             UserDetails details = new UserDetails();
 
