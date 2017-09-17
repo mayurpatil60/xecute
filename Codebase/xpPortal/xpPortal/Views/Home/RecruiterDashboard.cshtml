@@ -9,19 +9,18 @@
 <div class="row">
     <div class="col-md-4">
         <div class="mini-stat clearfix">
-            <span class="mini-stat-icon orange"><i class="ico-clock2"></i></span>
+            <span class="mini-stat-icon orange"><i class="fa fa-user"></i></span>
             <div class="mini-stat-info">
-                @*<span>2<small>d</small>:5<small>h</small>:30<small>m</small></span>*@
-                <span>12</span>
+                <span id="NewJoineesCount"></span>
                 New Joinees
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="mini-stat clearfix">
-            <span class="mini-stat-icon tar"><i class="fa fa-tag"></i></span>
+            <span class="mini-stat-icon tar"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
             <div class="mini-stat-info">
-                <span>4</span>
+                <span id="QueryCount"></span>
                 Queries
             </div>
         </div>
@@ -65,7 +64,7 @@
                             {
                                 i++;
 
-                                <tr>
+                                <tr style="cursor:pointer">
                                     <td>@i</td>
                                     <td>@dr["FirstName"] @dr["MiddleName"] @dr["LastName"]</td>
                                     <td>@dr["EmailId"]</td>
@@ -110,55 +109,7 @@
                                 </tr>
                             }
                         }
-                        @*<tr>
-
-                            <td><a href="#">Graphics</a></td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo imit</td>
-                            <td>1320.00$ </td>
-                            <td><span class="label label-info label-mini">Due</span></td>
-                            <td>
-                                <div class="progress progress-striped progress-xs">
-                                    <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success">
-                                        <span class="sr-only">40% Complete (success)</span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#">
-                                    ThemeBucket
-                                </a>
-                            </td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo</td>
-                            <td>556.00$ </td>
-                            <td><span class="label label-warning label-mini">Due</span></td>
-                            <td>
-                                <div class="progress progress-striped progress-xs">
-                                    <div style="width: 70%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-danger">
-                                        <span class="sr-only">70% Complete (success)</span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="#">
-                                    XYZ
-                                </a>
-                            </td>
-                            <td class="hidden-phone">Lorem Ipsum dorolo</td>
-                            <td>13240.00$ </td>
-                            <td><span class="label label-success label-mini">Paid</span></td>
-                            <td>
-                                <div class="progress progress-striped progress-xs">
-                                    <div style="width: 55%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-warning">
-                                        <span class="sr-only">55% Complete (success)</span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>*@
-
+                       
                     </tbody>
                 </table>
             </div>
@@ -169,53 +120,13 @@
     <div class="col-md-8">
         <section class="panel">
             <div class="wdgt-row">
-                <img src="~/images/weather_image.jpg" height="243" alt="">
+                <img src="~/images/weather_image.jpg" height="315" alt="">
                 <div class="wdt-head">
                     Upcoming Events
                 </div>
-                <!--<div class="country-select">
-                    <select class="styled">
-                        <option>New York </option>
-                        <option>London </option>
-                        <option>Australia </option>
-                        <option>China </option>
-                        <option>Canada </option>
-                    </select>
-                </div>-->
+                
             </div>
-            <div class="panel-body">
-                <div class="row weather-full-info">
-                    <div class="col-md-3 today-status">
-                        <h1>Team Outing</h1>
-                        <i class=" ico-cloudy "></i>
-                    </div>
-                    <div class="col-md-9">
-                        <ul>
-
-                            <li>
-                                <h2>Events</h2>
-                                <i class=" ico-rainy2 text-danger"></i>
-                            </li>
-                            <li>
-                                <h2>Outing</h2>
-                                <i class=" ico-lightning3 text-info"></i>
-                            </li>
-                            <li>
-                                <h2>Activities</h2>
-                                <i class=" ico-sun3 text-success"></i>
-                            </li>
-                            <li>
-                                <h2>Programs</h2>
-                                <i class=" ico-snowy3 text-warning"></i>
-                            </li>
-                            <li>
-                                <h2>Competition</h2>
-                                <i class=" ico-cloudy "></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+           
         </section>
     </div>
     <div class="col-md-4">
@@ -254,8 +165,14 @@
 </div>
 
 <script language="javascript">
+    $(document).ready(function () {
+
+        $('#NewJoineesCount').text($('#JoineeTable tbody tr').length);
+        GetAllQueriesCount();
+    });
+    
     $('#JoineeTable tbody').on('click', 'tr', function () {
-            debugger;
+       
             var email = $(this).find("td").eq(2).text();
             var dataToPost = "&EmailId=" + email;
             $.post("../Recruiter/GetDetailInfo", dataToPost)
@@ -267,18 +184,9 @@
                 })
         });
 
-</script>
-
-@*<script>
-    $(document).ready(function () {
-
-        GetNewJoineeList();
-
-    });
-
-    function GetNewJoineeList() {
+    function GetAllQueriesCount() {
         debugger
-        var url = "../Recruiter/GetNewJoineeList";
+        var url = "../Recruiter/GetAllQueriesCount";
 
         $.ajax({
             url: url,
@@ -288,24 +196,8 @@
             traditional: true,
             success: function (data) {
                 debugger
-                if (data != null || data != undefined) {
-
-
-
-                    //var content = $('#txtQueryDetail').val();
-
-                    //var ele = $('.timeline').find('article')[0];
-                    //var elementClone = $(userQueryElement).clone();
-                    //$(elementClone).attr('id', 999);
-                    //$(elementClone).find('p').html(content);
-                    //$(elementClone).find('h1').html('Just now');
-                    //$(elementClone).insertAfter($(ele));
-                    //$('#QueryContainer').show();
-
-                    //$('#txtSubject').val('');
-                    //$('#txtQueryDetail').val('');
-                }
+                $('#QueryCount').text(data);
             }
         });
     }
-</script>*@
+</script>
