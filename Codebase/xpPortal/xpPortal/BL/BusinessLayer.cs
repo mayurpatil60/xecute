@@ -175,7 +175,7 @@ namespace xpPortal.BL
             DataTable dt = dalObject.GetApplicantDetails(emailWithoutSpace);
 
             UserDetails details = new UserDetails();
-            if (dt.Rows.Count > 1)
+            if (dt.Rows.Count > 0)
             {
                 details.FirstName = dt.Rows[0]["FirstName"].ToString() != null ? dt.Rows[0]["FirstName"].ToString() : "";
                 details.LastName = dt.Rows[0]["LastName"].ToString() != null ? dt.Rows[0]["LastName"].ToString() : ""; ;
@@ -198,6 +198,13 @@ namespace xpPortal.BL
             return details;
         }
 
+        public void VerificationDetail(string EmailId)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable dt = dalObject.VerificationDetail(EmailId);
+
+        }
         public void AddApplicantDetailedInfomation(UserDetails userDetails)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
@@ -232,7 +239,7 @@ namespace xpPortal.BL
         public DataRowCollection GetDocumentListByUser(string emailID)
         {
             DataAccessLayer dalObject = new DataAccessLayer();
-            DataSet ds = dalObject.GetDataFromQuery("select doc.DocumentId, doc.DocumentName, doc.DocumentType, '../../UploadedDocuments/'+ doc.DocumentLink as DocumentLink, case doc.Status when 0 then 'Not Submitted' when 1 then 'Submitted' when 2 then 'Approved' when 3 then 'Rejected' ELSE 'Not Submitted' END DocStatus, 'Verify' As Approve from Document doc inner join login on doc.UserLoginID = Login.Id where Login.UserName = '" + emailID +"'");            
+            DataSet ds = dalObject.GetDataFromQuery("select doc.DocumentId, doc.documentLink as DocumentName, doc.DocumentType, '../../UploadedDocuments/'+ doc.DocumentLink as DocumentLink, case doc.Status when 0 then 'Not Submitted' when 1 then 'Submitted' when 2 then 'Approved' when 3 then 'Rejected' ELSE 'Not Submitted' END DocStatus, 'Verify' As Approve from Document doc inner join login on doc.UserLoginID = Login.Id where Login.UserName = '" + emailID +"' order by doc.status desc;");            
             if (ds != null && ds.Tables.Count > 0)
             {
                 DataRowCollection drc = ds.Tables[0].Rows;

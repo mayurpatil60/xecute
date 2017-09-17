@@ -10,118 +10,134 @@
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
-<section id="main-content" class="merge-left">
-    <section class="wrapper" style="margin-top: 27px;">
-        <!-- page start-->
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-8">
-                <section class="basic-info-wrapper">
-                    <div class="basic-info">
-                        <div id="wizard">
-                            <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 14px;height: 41px;padding-top: 3px;margin-bottom: 23px;margin-left:-92px;margin-top:-18px;">
-                                Basic Info
-                            </h2>
-                            <section>
-                                <form id="submitBasic" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">First Name:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Middle Name:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
-                                        </div>
-                                    </div>
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Basic Info
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
 
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Last Name:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="@Model.LastName">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Contact Number:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Contact Number" name="PhoneNo" value="@Model.PhoneNo">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Email Address:</label>
-                                        <div class="col-lg-6">
-                                            <input type="text" style="position: relative;float: left;width: 65%;" class="form-control" placeholder="Email Address" id="emailName" name="Email" value="@Model.Email">
-                                            <button class="btn btn-lg btn-login btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
-                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 10px;background-color: lawngreen;" type="submit">
-                                                Verify
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </section>
-                            <h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 14px;height: 41px;padding-top: 3px;margin-left: -92px;margin-bottom: 23px;margin-top: 23px;">
-                            Detailed Info</h2>
-                            <section>
-                                <form id="submitFull" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Passport:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Passport" name="PassportNo" value="@Model.PassportNo">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Gender:</label>
-                                        <div class="col-lg-4">
-                                            @Html.RadioButtonFor(model => model.Gender, "Male", new { @checked = true }) Male
-                                            @Html.RadioButtonFor(model => model.Gender, "Female", new { @checked = true }) Female
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">DOB:</label>
-                                        <div class="col-lg-4">
-                                            @Html.DropDownListFor(model => model.SelectedDay, (IEnumerable<SelectListItem>)ViewBag.Days, "Day")
-                                            @Html.DropDownListFor(model => model.SelectedMonth, (IEnumerable<SelectListItem>)ViewBag.Months, "Month")
-                                            @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Emergency Contact Number:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Mobile" name="EmergencyContactNo" value="@Model.EmergencyContactNo">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Blood Group</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Blood Group" name="BloodGroup" value="@Model.BloodGroup">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Address</label>
-                                        <div class="col-lg-4">
-                                            <textarea class="form-control" cols="60" rows="5" name="CurrentAddress" value="@Model.CurrentAddress"></textarea>
-                                        </div>
-
-                                    </div>
-                                    <button class="btn btn-lg btn-login btn-block" style="width: 20%;
-                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 136px;margin-top: 20px;background-color: lawngreen;"
-                                            id="submitFullButton" type="submit">
-                                        Verify
-                                    </button>
-                                </form>
-                            </section>
+                </span>
+            </header>
+            <div class="panel-body">
+                <form id="submitBasic" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">First Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
                         </div>
                     </div>
-                </section>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Middle Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Last Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Last Name" name="LastName" value="@Model.LastName">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Contact Number:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Contact Number" name="PhoneNo" value="@Model.PhoneNo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Email Address:</label>
+                        <div class="col-lg-6">
+                            <input type="text" style="position: relative;float: left;width: 65%;" class="form-control" placeholder="Email Address" id="emailName" name="Email" value="@Model.Email">
+                            
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 415px;" type="submit">
+                        Verify
+                    </button>
+                </form>
             </div>
-            <div class="col-sm-2"></div>
-        </div>
-        <!-- page end-->
-    </section>
+
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Detailed Info
+            </header>
+            <div class="panel-body">
+                <form id="submitFull" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Passport:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Passport" name="PassportNo" value="@Model.PassportNo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Gender:</label>
+                        <div class="col-lg-4">
+                            @if (Model.Gender == "Male")
+                            {
+                                @Html.RadioButtonFor(model => model.Gender, "Male", new { @checked = true })
+                                @Html.Label("Male")
+                                @Html.RadioButtonFor(model => model.Gender, "Female")
+                                @Html.Label("Female")
+                            }
+                            else
+                            {
+                                @Html.RadioButtonFor(model => model.Gender, "Male")
+                                @Html.Label("Male")
+                                @Html.RadioButtonFor(model => model.Gender, "Female", new { @checked = true })
+                                @Html.Label("Female")
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">DOB:</label>
+                        <div class="col-lg-4">
+                            @Html.DropDownListFor(model => model.SelectedDay, (IEnumerable<SelectListItem>)ViewBag.Days, "Day")
+                            @Html.DropDownListFor(model => model.SelectedMonth, (IEnumerable<SelectListItem>)ViewBag.Months, "Month")
+                            @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Emergency Contact Number:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Mobile" name="EmergencyContactNo" value="@Model.EmergencyContactNo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Blood Group</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Blood Group" name="BloodGroup" value="@Model.BloodGroup">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Address</label>
+                        <div class="col-lg-4">
+                            <textarea class="form-control" cols="60" rows="5" name="CurrentAddress" value="@Model.CurrentAddress"></textarea>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 415px;" type="submit">
+                        Verify
+                    </button>
+                </form>
+                </div>
 </section>
+    </div>
+</div>
+               
+    
 <script language="javascript">
     $(document).ready(function () {
         //$("#submitBasic").on('submit', function (e) {
@@ -139,21 +155,16 @@
         //        })
         //})
 
-        //$("#submitFull").on('submit', function (e) {
-        //    debugger;
-        //    e.preventDefault();
-        //    var $this = $(this);
-        //    var email = document.getElementById("emailName").value;
-        //    var dataToPost = $(this).serialize();
-        //    dataToPost = dataToPost + "&Email=" + email;
-        //    $.post("Joinee/SaveDetailInfo", dataToPost)
-        //        .done(function (response, status, jqxhr) {
-        //            alert("Your Details are Successfully Updated.");
-        //        })
-        //        .fail(function (jqxhr, status, error) {
-        //            // this is the ""error"" callback
-        //        })
-        //})
+        $("#submitFull").on('submit', function (e) {
+            e.preventDefault();           
+            $.post("VerificationDetail")
+                .done(function (response, status, jqxhr) {
+                    alert("Verification Done Successfully.");
+                })
+                .fail(function (jqxhr, status, error) {
+                    // this is the ""error"" callback
+                })
+        })
     });
 </script>
 

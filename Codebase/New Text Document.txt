@@ -1,0 +1,93 @@
+USE [XPConnect]
+GO
+/****** Object:  StoredProcedure [dbo].[spGetJoineeQueries]    Script Date: 09/18/2017 00:34:57 ******/
+DROP PROCEDURE [dbo].[spGetJoineeQueries]
+GO
+/****** Object:  StoredProcedure [dbo].[spGetQueries]    Script Date: 09/18/2017 00:34:57 ******/
+DROP PROCEDURE [dbo].[spGetQueries]
+GO
+/****** Object:  StoredProcedure [dbo].[spGetUserSpecificQueriesAndReplies]    Script Date: 09/18/2017 00:34:57 ******/
+DROP PROCEDURE [dbo].[spGetUserSpecificQueriesAndReplies]
+GO
+/****** Object:  StoredProcedure [dbo].[spSaveQuery]    Script Date: 09/18/2017 00:34:57 ******/
+DROP PROCEDURE [dbo].[spSaveQuery]
+GO
+/****** Object:  StoredProcedure [dbo].[spSaveQueryReply]    Script Date: 09/18/2017 00:34:57 ******/
+DROP PROCEDURE [dbo].[spSaveQueryReply]
+GO
+/****** Object:  StoredProcedure [dbo].[spSaveQueryReply]    Script Date: 09/18/2017 00:34:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[spSaveQueryReply](
+@Email varchar(100),
+@Reply varchar(max)
+)
+as
+
+declare @queryId int;
+select @queryId = MAX(queryid) from Query
+where Email=@Email
+
+insert into QueryReply
+values(@queryId,@Reply,GETUTCDATE())
+
+select @@IDENTITY
+GO
+/****** Object:  StoredProcedure [dbo].[spSaveQuery]    Script Date: 09/18/2017 00:34:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[spSaveQuery](
+@Email varchar(100),
+@Query varchar(max),
+@Subject varchar(100)=null,
+@IsAnswered bit=nul
+)
+as
+
+insert into Query
+values(@Email,@Subject,@Query,@IsAnswered,GETDATE())
+
+select @@IDENTITY
+GO
+/****** Object:  StoredProcedure [dbo].[spGetUserSpecificQueriesAndReplies]    Script Date: 09/18/2017 00:34:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[spGetUserSpecificQueriesAndReplies](
+@Email varchar(100)
+)
+as
+
+select * from Query q left join QueryReply qr on q.QueryId=qr.QueryId
+where Email=@Email
+order by CreatedDateTime
+GO
+/****** Object:  StoredProcedure [dbo].[spGetQueries]    Script Date: 09/18/2017 00:34:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[spGetQueries]
+as
+
+select * from Query
+order by CreatedDateTime desc
+GO
+/****** Object:  StoredProcedure [dbo].[spGetJoineeQueries]    Script Date: 09/18/2017 00:34:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[spGetJoineeQueries]
+as
+
+select Email,b.FirstName,b.LastName,JoiningDate  from Query q join BasicInfo b on b.EmailId=q.Email
+join UserDetailedInfo ud on ud.UserId=b.UserId
+--where Email=@Email
+group by Email,b.FirstName,b.LastName,JoiningDate
+GO

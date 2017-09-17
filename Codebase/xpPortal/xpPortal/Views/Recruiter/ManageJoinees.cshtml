@@ -5,76 +5,42 @@
     Layout = "~/Views/Shared/RecruiterLayout.cshtml";
 }
 
-<div class="container-fluid">
-    <h2>Add Joinee</h2>
-    <p>You can add the new joinee by entering the email id of Joinee and selecting the Buddy and Contact Person. Once you add the new joinee automated mail will be forwarded to joinee from where he/she can able to login.</p>
-    <form id="AddBasic" class="form-horizontal">
-        <div class="row">
-            <div class="col-md-4">
-                <label>Full Name</label>
-                <input type="text" class="form-control" placeholder="Full Name" name="FullName" />
-            </div>
-            <div class="col-md-4">
-                <label>Email</label>
-                <input type="text" style="position: relative;float: left;" class="form-control" placeholder="Email Address" id="emailName" name="Email" required />
-            </div>
-            <div class="col-md-4">
-                <label style="display:block">
-                    Assign Buddy
-                    <!--<a class="btn-link pull-right" href="buddy.html" style="color: #909090;">Add buddy</a>-->
-                </label>
-                <select class="form-control m-bot15" id="BuddyName" name="Buddy">
-                    <option selected>Select Buddy</option>
-                    <option value="mike">Mike Boltana</option>
-                    <option value="michael">Michael Doe</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <label style="display:block">Contact Person</label>
-                <select class="form-control m-bot15" id="ContactName" name="contactName">
-                    <option selected>Select contact person</option>
-                    <option value="john">John Doe</option>
-                    <option value="joe">Joe Boltana</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label style="display:block;">&nbsp;</label>
-                <button type="submit" id="submitFullButton" class="btn btn-primary btn-block">Add</button>
-            </div>
-        </div>
-    </form>
-    <hr style="margin-top: 5px; margin-bottom: 35px; border-top: 1px solid #dddddd;" />
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Joinee List
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
 
-
-    <section class="panel">
-        <!--<header class="panel-heading">
-            Joinee
-        </header>-->
-        <div class="panel-body profile-nav">
-            <table class="table table-hover tm-membr" id="manageJoinee">
-                <thead>
-                    <tr>
-                        <th width="30"></th>
-                        <th>
-                            FirstName
-                        </th>
-                        <th>
-                            Middle Name
-                        </th>
-                        <th>
-                            LastName
-                        </th>
-                        <th>
-                            Email Name
-                        </th>
-                        <th>
-                            Contact Number
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (System.Data.DataRow row in Model.NewJoineeList)
-                    {
+                </span>
+            </header>
+            <div class="panel-body">
+                <table class="table table-hover tm-membr" id="manageJoinee">
+                    <thead>
+                        <tr>
+                            <th width="30"></th>
+                            <th>
+                                FirstName
+                            </th>
+                            <th>
+                                Middle Name
+                            </th>
+                            <th>
+                                LastName
+                            </th>
+                            <th>
+                                Email Name
+                            </th>
+                            <th>
+                                Contact Number
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (System.Data.DataRow row in Model.NewJoineeList)
+                        {
 
                         <tr>
                             <td>
@@ -83,27 +49,89 @@
                                 </div>
                             </td>
                             @foreach (var cell in row.ItemArray)
-                            {
+                                {
                                 <td>
                                     <span class="tm">@cell.ToString()</span>
                                 </td>
-                            }
-                            <td>
-                                <div class="todo-actionlist" style="position: inherit;">
-                                    <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                                    <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </section><!--panel-->
+                                }
+                          </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </section><!--panel-->
 
 
-</div><!--container-fluid-->
+    </div><!--container-fluid-->
+</div>
 
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Add Joinee
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+
+                </span>
+            </header>
+            <div class="panel-body">
+
+                <form id="AddBasic" class="form-horizontal">
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label">Full Name</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="Full Name" name="FullName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-4">
+                            <input type="text" style="position: relative;float: left;" class="form-control" placeholder="Email Address" id="emailName" name="Email" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label"> Assign Buddy</label>
+                        <div class="col-lg-4">
+                            <select class="form-control m-bot15" id="BuddyName" name="Buddy">
+                                <option selected>Select Buddy</option>
+                                <option value="mike">Sagar Pawar</option>
+                                <option value="michael">ManiKandan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label"> Contact Person</label>
+                        <div class="col-lg-4">
+                            <select class="form-control m-bot15" id="contactName" name="contactName">
+                                <option selected>Select contact person</option>
+                                <option value="mike">Sagar Pawar</option>
+                                <option value="michael">ManiKandan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Date of Joining:</label>
+                        <div class="col-lg-4">
+                            @Html.DropDownListFor(model => model.SelectedDay, (IEnumerable<SelectListItem>)ViewBag.Days, "Day")
+                            @Html.DropDownListFor(model => model.SelectedMonth, (IEnumerable<SelectListItem>)ViewBag.Months, "Month")
+                            @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 415px;" type="submit">
+                        Save
+                    </button>
+
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
 <script language="javascript">
     $(document).ready(function () {
         $('#manageJoinee tbody').on('click', 'tr', function () {
@@ -113,7 +141,7 @@
             $.post("GetDetailInfo", dataToPost)
                 .done(function (response, status, jqxhr) {
                     var value = $(response).find('#emailName').val();
-                    window.location.href = '/Recruiter/GetDetailInfo?EmailId='+value;
+                    window.location.href = '/Recruiter/GetDetailInfo?EmailId=' + value;
                 })
                 .fail(function (jqxhr, status, error) {
                     // this is the ""error"" callback
@@ -129,8 +157,8 @@
             $.post("/Recruiter/SaveNewJoinee", dataToPost)
                 .done(function (response, status, jqxhr) {
                     alert("New Joinee Successfully Added.");
-                   
-                     window.location.href = '/Recruiter/ManageJoinees'
+
+                    window.location.href = '/Recruiter/ManageJoinees'
                 })
                 .fail(function (jqxhr, status, error) {
                     // this is the ""error"" callback

@@ -74,8 +74,8 @@ namespace xpPortal.Controllers
                         {
                             fname = file.FileName;
                         }
-                    fname = Session["LoginID"].ToString() +"_"+ Request.Form["ControlName"].ToString() + "_" + fname;
                     string documentLink = fname;
+                    fname = Session["LoginID"].ToString() +"_"+ Request.Form["ControlName"].ToString() + "_" + fname;                    
                     // Get the complete folder path and store the file inside it.  
                     fname = Path.Combine(Server.MapPath("~/UploadedDocuments/"), fname);
                     file.SaveAs(fname);

@@ -66,107 +66,117 @@
 
 
 <head>
-    
+
     <script type="text/javascript" src="jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
 
-<h2 style="background-color: #1fb5ad;color: #fff;border-radius: 18px;padding-left: 18px;height: 46px;padding-top: 4px;">
-    Open Opportunities
-</h2>
-    <section class="panel">
-        <div class="panel-body profile-nav">
-            <form id="submitFull" class="form-horizontal">
-                <table class="table table-hover tm-membr" id="example">
-                    <thead>
-                        <tr>
-                            <th width="30"></th>
-                            <th style="text-align:center">
-                                Job Id
-                            </th>
-                            <th style="text-align:center">
-                                Job Title
-                            </th>
-                            <th style="text-align:center">
-                                Experience Required
-                            </th>
-                            <th style="text-align:center">
-                                Skills Required
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                Open Opportunities
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
 
-                        @foreach (System.Data.DataRow row in Model.JobList)
-                    {
+                </span>
+            </header>
 
+            <div class="panel-body">
+                <form id="submitFull" class="form-horizontal">
+                    <table class="table table-hover tm-membr" id="example">
+                        <thead>
                             <tr>
-                                <td>
-                                    <div class="tm-avatar">
-                                        <img src="images/lock_thumb.jpg" alt="" />
-                                    </div>
-                                </td>
-                                @foreach (var cell in row.ItemArray)
-                            {
-                                    <td>
-                                        <span class="tm">@cell.ToString()</span>
-                                    </td>
-                            }
-                                <td>
-                                    <div class="todo-actionlist" style="position: inherit;">
-                                        <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                                        <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                                    </div>
-                                </td>
+                                <th width="30"></th>
+                                <th style="text-align:center">
+                                    Job Id
+                                </th>
+                                <th style="text-align:center">
+                                    Job Title
+                                </th>
+                                <th style="text-align:center">
+                                    Experience Required
+                                </th>
+                                <th style="text-align:center">
+                                    Skills Required
+                                </th>
                             </tr>
-                    }
-                    </tbody>
-                </table>
-            </form>
-</div>
-    </section>
+                        </thead>
+                        <tbody>
 
-<form id="AddBasic" class="form-horizontal">
-    <section class="basic-info-wrapper">
-        <div class="basic-info" style="padding-top: 6rem;">
-            <div id="wizard">
-                <h2>Refer Detail:</h2>
-                <section>
+                            @foreach (System.Data.DataRow row in Model.JobList)
+                            {
 
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">Candidate Name:</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Candidate Name" name="CandidateName" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">Contact Number:</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Contact Number" name="ContactNumber" />
-                        </div>
-                    </div>
+                                <tr>
+                                    <td>
+                                        <div class="tm-avatar">
+                                            <img src="images/lock_thumb.jpg" alt="" />
+                                        </div>
+                                    </td>
+                                    @foreach (var cell in row.ItemArray)
+                                            {
+                                        <td  style="text-align:center">
+                                            <span class="tm">@cell.ToString()</span>
+                                        </td>
+                                            }
+                                   
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">Skills:</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Skills" name="Skills" />
-
-                        </div>
-                    </div>
-                    <div class="form-group col-lg-4">
-                        <button class="btn btn-lg btn-login btn-success btn-block" style="position: relative;float: left;width: 30%;
-                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-top: 15px;margin-left: 482px;"
-                                id="submitFullButton" type="button">
-                            Add
-                        </button>
-                    </div>
-            </section>
-        </div>
+        </section>
     </div>
-</section>
-</form>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Refer Detail
+                  <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
 
+                </span>
+            </header>
+            <div class="panel-body">
+                <form id="AddBasic" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Candidate Name:</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" placeholder="Candidate Name" name="CandidateName" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Contact Number:</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" placeholder="Contact Number" name="ContactNumber" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Skills:</label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control" placeholder="Skills" name="Skills" />
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                       
+                                    </div>
+                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 48px;" type="submit">
+                        Add
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
 
 <script language="javascript">
     $(document).ready(function () {

@@ -52,10 +52,12 @@
                     <thead>
                         <tr>
                             <th> S.No</th>
-                            <th class="hidden-phone">Full Name</th>
+                            <th class="hidden-phone">Name</th>
                             <th>Email</th>
                             <th>Status</th>
                             <th>Progress</th>
+                            <th>Details</th>
+                            <th>Approve Documents</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,6 +108,8 @@
                                             </div>
                                         }
                                     </td>
+                                    <td><a href="javascript:;" onclick="getDetailsInfo('@dr["EmailId"]');" >View</a></td>
+                                    <td><a href="javascript:;" onclick="redirectToViewDocuments('@dr["EmailId"]');">Approve</a></td>
                                 </tr>
                             }
                         }
@@ -171,18 +175,18 @@
         GetAllQueriesCount();
     });
     
-    $('#JoineeTable tbody').on('click', 'tr', function () {
+    //$('#JoineeTable tbody').on('click', 'tr', function () {
        
-            var email = $(this).find("td").eq(2).text();
-            var dataToPost = "&EmailId=" + email;
-            $.post("../Recruiter/GetDetailInfo", dataToPost)
-                .done(function (response, status, jqxhr) {
-                    window.location.href = '/Recruiter/GetDetailInfo?EmailId='+email
-                })
-                .fail(function (jqxhr, status, error) {
-                    // this is the ""error"" callback
-                })
-        });
+    //        var email = $(this).find("td").eq(2).text();
+    //        var dataToPost = "&EmailId=" + email;
+    //        $.post("../Recruiter/GetDetailInfo", dataToPost)
+    //            .done(function (response, status, jqxhr) {
+    //                window.location.href = '/Recruiter/GetDetailInfo?EmailId='+email
+    //            })
+    //            .fail(function (jqxhr, status, error) {
+    //                // this is the ""error"" callback
+    //            })
+    //    });
 
     function GetAllQueriesCount() {
         debugger
@@ -199,5 +203,23 @@
                 $('#QueryCount').text(data);
             }
         });
+    }
+
+    function redirectToViewDocuments(emailID)
+    {        
+        window.location.href = "../../Document/ViewDocument?emailID=" + emailID;
+        event.stopPropagation();
+    }
+
+    function getDetailsInfo(emailID)
+    {
+        var dataToPost = "&EmailId=" + emailID;
+        $.post("../Recruiter/GetDetailInfo", dataToPost)
+            .done(function (response, status, jqxhr) {
+                window.location.href = '/Recruiter/GetDetailInfo?EmailId='+emailID
+            })
+            .fail(function (jqxhr, status, error) {
+                // this is the ""error"" callback
+            })
     }
 </script>
