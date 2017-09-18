@@ -20,7 +20,10 @@ namespace xpPortal.Controllers
 
         public ActionResult Buddy()
         {
-            return View();
+            List<Buddy> buddyList = new List<Buddy>();
+            BusinessLayer blObject = new BusinessLayer();
+            buddyList = blObject.GetBuddyList();
+            return View(buddyList);
         }
         public ActionResult Profile()
         {
@@ -110,7 +113,7 @@ namespace xpPortal.Controllers
             model.NewJoineeList = blObject.GetNewJoineeList();
             return View("NewJoineeList", model);
         }
-
+        
 
         public ActionResult GetDetailInfo(string EmailId)
         {

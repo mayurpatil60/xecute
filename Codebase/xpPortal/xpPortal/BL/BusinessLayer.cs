@@ -78,6 +78,32 @@ namespace xpPortal.BL
             return queryList;
         }
 
+        public List<Buddy> GetBuddyList()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+            DataTable dt = dalObject.GetBuddyList();
+            List<Buddy> buddyList = new List<Buddy>();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Buddy buddy = new Buddy();
+                buddy.Id = int.Parse(dr["Id"].ToString());
+                buddy.Name = dr["Name"].ToString();
+                buddy.PhoneNo = dr["Phone"].ToString();
+                buddy.Email = dr["Email"].ToString();
+                buddy.Rating = dr["Rating"].ToString();
+                buddy.Location = dr["Location"].ToString();
+                buddyList.Add(buddy);
+            }
+
+            return buddyList;
+        }
+
+        //public DataTable SaveBuddy()
+        //{
+        //    return mdb.GetDataTable("spSaveBuddy");
+        //}
+
         public void AddApplicantBasicDetailsAndSendMail(UserDetails userDetails)
         {
             DataAccessLayer dalObject = new DataAccessLayer();

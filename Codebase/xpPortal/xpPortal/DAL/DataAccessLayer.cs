@@ -63,6 +63,16 @@ namespace xpPortal.DAL
             return mdb.GetDataTable("spGetQueries");
         }
 
+        public DataTable GetBuddyList()
+        {
+            return mdb.GetDataTable("spGetBuddyList");
+        }
+
+        public DataTable SaveBuddy()
+        {
+            return mdb.GetDataTable("spSaveBuddy");
+        }
+
         public void SaveFeedback(string feedback,string email)
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
