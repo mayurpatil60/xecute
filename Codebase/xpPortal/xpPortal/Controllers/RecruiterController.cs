@@ -114,6 +114,7 @@ namespace xpPortal.Controllers
 
         public ActionResult GetDetailInfo(string EmailId)
         {
+            EmailId = EmailId.Trim();
             #region yeardata
             BusinessLayer blObject = new BusinessLayer();
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
@@ -139,9 +140,12 @@ namespace xpPortal.Controllers
             #endregion
             UserDetails details = new UserDetails();
             details = blObject.GetApplicantDetails(EmailId);
-            details.SelectedMonth = details.DOB.Month;
-            details.SelectedYear = details.DOB.Year;
-            details.SelectedDay = details.DOB.Day;
+            if (details.DOB.Year != 1)
+            {
+                details.SelectedMonth = details.DOB.Month;
+                details.SelectedYear = details.DOB.Year;
+                details.SelectedDay = details.DOB.Day;
+            }
             return View("NewJoineeDetail", details);
 
         }

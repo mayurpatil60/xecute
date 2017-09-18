@@ -26,13 +26,13 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">First Name:</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
+                            <input type="text" id="txtFirstName" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Middle Name:</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
+                            <input type="text" id="txtMiddleName" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
-                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 415px;" type="submit">
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 34.9%;" type="submit">
                         Verify
                     </button>
                 </form>
@@ -95,7 +95,7 @@
                             {
                                 @Html.RadioButtonFor(model => model.Gender, "Male")
                                 @Html.Label("Male")
-                                @Html.RadioButtonFor(model => model.Gender, "Female", new { @checked = true })
+                                @Html.RadioButtonFor(model => model.Gender, "Female")
                                 @Html.Label("Female")
                             }
                         </div>
@@ -123,12 +123,12 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Address</label>
                         <div class="col-lg-4">
-                            <textarea class="form-control" cols="60" rows="5" name="CurrentAddress" value="@Model.CurrentAddress"></textarea>
+                            <textarea class="form-control" cols="60" rows="5" name="CurrentAddress">@Model.CurrentAddress</textarea>
                         </div>
 
                     </div>
                     <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
-                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 415px;" type="submit">
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 34.9%;" type="submit">
                         Verify
                     </button>
                 </form>
@@ -154,6 +154,11 @@
         //            // this is the ""error"" callback
         //        })
         //})
+
+        if ($('#txtFirstName').val() != '') {
+            $('#txtMiddleName').removeAttr('placeholder');
+        }
+
 
         $("#submitFull").on('submit', function (e) {
             e.preventDefault();           

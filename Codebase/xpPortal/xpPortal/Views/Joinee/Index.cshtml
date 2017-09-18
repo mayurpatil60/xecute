@@ -26,13 +26,13 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">First Name:</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
+                            <input id="txtFirstName" type="text" class="form-control" placeholder="First Name" name="FirstName" value="@Model.FirstName" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Middle Name:</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
+                            <input id="txtMiddleName" type="text" class="form-control" placeholder="Middle Name" name="MiddleName" value="@Model.MiddleName" />
                         </div>
                     </div>
 
@@ -111,7 +111,7 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Address</label>
                         <div class="col-lg-4">
-                            <textarea class="form-control" cols="60" rows="5" name="CurrentAddress" value="@Model.CurrentAddress"></textarea>
+                            <textarea id="txtAdd" class="form-control" cols="60" rows="5" name="CurrentAddress">@Model.CurrentAddress</textarea>
                         </div>
 
                     </div>
@@ -132,8 +132,14 @@
 </div>
 <script language="javascript">
     $(document).ready(function () {
+
+        if ($('#txtFirstName').val() != '')
+        {
+            $('#txtMiddleName').removeAttr('placeholder');
+        }
+
         $("#submitBasic").on('submit', function (e) {
-            debugger;
+            
             e.preventDefault();
             var $this = $(this);
             var dataToPost = $(this).serialize();
@@ -148,7 +154,7 @@
         })
 
         $("#submitFull").on('submit', function (e) {
-            debugger;
+            
             e.preventDefault();
             var $this = $(this);
             var email = document.getElementById("emailName").value;

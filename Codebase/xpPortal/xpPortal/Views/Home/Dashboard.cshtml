@@ -14,7 +14,7 @@
             <span class="mini-stat-icon orange"><i class="ico-clock2"></i></span>
             <div class="mini-stat-info">
                 
-                <span>12</span>
+                <span id="DaysToJoin">@Session["DaysToJoin"]</span>
                 Days to Join
             </div>
         </div>
@@ -43,16 +43,10 @@
     <div class="col-md-6">
         <!--todolist start-->
         <section class="panel">
-            <header class="panel-heading" style="cursor:pointer" id="headerDoc">
-                Documents
-                <!--<span class="tools pull-right">
-                <a href="javascript:;" class="fa fa-chevron-down"></a>
-                <a href="javascript:;" class="fa fa-cog"></a>
-                <a href="javascript:;" class="fa fa-times"></a>
-                </span>-->
-                @*<a style="text-decoration:underline;color:blue;float:right;" href="~/Document/UploadDocument">Upload Documents here</a>*@
+            <header class="panel-heading header-class" style="cursor:pointer" id="headerDoc">
+                <a href="../Document/UploadDocument" style="color:white;text-decoration:underline">Documents</a>
             </header>
-            <div class="panel-body profile-nav" style="max-height:270px;overflow-y:auto;">
+            <div class="panel-body profile-nav" style="height:270px;max-height:270px;overflow-y:auto;">
                 <ul class="nav nav-pills nav-stacked">
                    @{
                        if (Model.NewJoineeList != null && Model.NewJoineeList.Count > 0)
@@ -90,7 +84,7 @@
         <div class="col-md-6">
             <!--notification start-->
             <section class="panel" style="height:320px">
-                <header class="panel-heading">
+                <header class="panel-heading header-class">
                     Buddy
                 </header>
                 <div class="panel-body">
@@ -158,6 +152,9 @@
                     <span class="glyphicon glyphicon-chevron-right"></span>
                     <span class="sr-only">Next</span>
                 </a>
+                <div class="wdt-head">
+                    Upcoming Events
+                </div>
             </div>
 
         </section>
@@ -165,7 +162,7 @@
     <div class="col-md-4">
         <!--notification start-->
         <section class="panel">
-            <header class="panel-heading">
+            <header class="panel-heading header-class">
                 Contact Person
             </header>
             <div class="panel-body">
@@ -176,7 +173,7 @@
                     <a href="#">
                         <img alt="" src="~/images/avatar-mini-2.jpg">
                     </a>
-                    <h1>Jane Doe</h1>
+                    <h1>Nikita</h1>
                     <p>Recruitment Team</p>
                 </div>
                 <div class="weather-category twt-category">
@@ -186,7 +183,7 @@
                             Phone
                         </li>
                         <li style="width: 48%;">
-                            <h5 style="text-transform: none;">jim@abc.com</h5>
+                            <h5 style="text-transform: none;">nik@abc.com</h5>
                             Email
                         </li>
                     </ul>

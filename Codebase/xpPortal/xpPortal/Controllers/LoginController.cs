@@ -156,7 +156,11 @@ namespace xpPortal.Controllers
                 Session["LoginID"] = dtUserDetails.Rows[0]["loginID"].ToString();
                 Session["RoleName"] = dtUserDetails.Rows[0]["RoleName"].ToString();                
                 Session["FirstName"] = dtUserDetails.Rows[0]["FirstName"].ToString();
-                Session["LastName"] = dtUserDetails.Rows[0]["LastName"].ToString();                
+                Session["LastName"] = dtUserDetails.Rows[0]["LastName"].ToString();
+                if (dtUserDetails.Rows[0]["JOiningDate"] != DBNull.Value)
+                {
+                    Session["DOJ"] = DateTime.Parse(dtUserDetails.Rows[0]["JOiningDate"].ToString()).ToString("MMM dd, yyyy");
+                }
             }
         }
 

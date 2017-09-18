@@ -51,6 +51,8 @@ namespace xpPortal.Controllers
         private void SetSessionVariables(UserDetails model)
         {
             Session["firstName"] = model.FirstName;
+            Session["userName"] = model.Email;
+            Session["DaysToJoin"] = ((int)(model.JoiningDate.Subtract(DateTime.Now)).TotalDays).ToString();
         }
     }
 }

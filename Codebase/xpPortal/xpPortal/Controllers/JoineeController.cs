@@ -20,7 +20,15 @@ namespace xpPortal.Controllers
             BusinessLayer blObject = new BusinessLayer();
             string email = Session["userName"].ToString();
             bcInfo = blObject.GetApplicantBasicDetails(email);
-
+            UserDetails detailedInfo = blObject.GetApplicantDetails(email);
+            //
+            bcInfo.PassportNo = detailedInfo.PassportNo;
+            bcInfo.Gender = detailedInfo.Gender;
+            bcInfo.DOB = detailedInfo.DOB;
+            bcInfo.EmergencyContactNo = detailedInfo.EmergencyContactNo;
+            bcInfo.BloodGroup = detailedInfo.BloodGroup;
+            bcInfo.CurrentAddress = detailedInfo.CurrentAddress;
+            
             #region yeardata
             ViewBag.Months = new SelectList(Enumerable.Range(1, 12).Select(x =>
              new SelectListItem()
@@ -43,6 +51,9 @@ namespace xpPortal.Controllers
                   Value = x.ToString()
               }), "Value", "Text");
             #endregion
+            bcInfo.SelectedMonth = detailedInfo.DOB.Month;
+            bcInfo.SelectedYear = detailedInfo.DOB.Year;
+            bcInfo.SelectedDay = detailedInfo.DOB.Day;
 
             return View("Index", bcInfo);
         }
@@ -214,6 +225,10 @@ namespace xpPortal.Controllers
                 {
                     userName = email;
                 }
+            }
+            else if (!string.IsNullOrEmpty(email))
+            {
+                userName = email;
             }
             else if (userName == null && Session["userName"] == null)
                 return RedirectToActionPermanent("Index", "Login");

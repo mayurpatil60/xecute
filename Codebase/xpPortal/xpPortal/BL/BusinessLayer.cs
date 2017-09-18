@@ -163,6 +163,10 @@ namespace xpPortal.BL
                 details.LastName = dt.Rows[0]["LastName"].ToString();
                 details.PhoneNo = dt.Rows[0]["PhoneNo"] != null ? dt.Rows[0]["PhoneNo"].ToString() : "";
                 details.Email = dt.Rows[0]["EmailId"].ToString();
+                if (dt.Rows[0]["JoiningDate"] != DBNull.Value)
+                {
+                    details.JoiningDate = DateTime.Parse(dt.Rows[0]["JoiningDate"].ToString());
+                }
             }
             return details;
         }
@@ -186,14 +190,11 @@ namespace xpPortal.BL
                 details.CurrentAddress = dt.Rows[0]["CurrentAddress"] != null ? dt.Rows[0]["CurrentAddress"].ToString() : "";
                 details.Gender = dt.Rows[0]["Gender"] != null ? dt.Rows[0]["Gender"].ToString() : "";
                 details.PassportNo = dt.Rows[0]["PassportNumber"] != null ? dt.Rows[0]["PassportNumber"].ToString() : "";
-                if (dt.Rows[0]["DOB"].ToString() != "")
+                if (dt.Rows[0]["DOB"]!=DBNull.Value)
                 {
                     details.DOB = DateTime.Parse(dt.Rows[0]["DOB"].ToString());
                 }
-                else
-                {
-                    details.DOB = DateTime.Now;
-                }
+                
             }
             return details;
         }

@@ -16,7 +16,7 @@
 
                 </span>
             </header>
-            <div class="panel-body">
+            <div class="panel-body" style="max-height:400px;overflow-y:auto">
                 <table class="table table-hover tm-membr" id="manageJoinee">
                     <thead>
                         <tr>
@@ -28,10 +28,13 @@
                                 Middle Name
                             </th>
                             <th>
-                                LastName
+                                Last Name
                             </th>
                             <th>
-                                Email Name
+                                Email
+                            </th>
+                            <th>
+                                Joining Date
                             </th>
                             <th>
                                 Contact Number
@@ -42,7 +45,7 @@
                         @foreach (System.Data.DataRow row in Model.NewJoineeList)
                         {
 
-                        <tr>
+                        <tr style="cursor:pointer">
                             <td>
                                 <div class="tm-avatar">
                                     <img src="images/lock_thumb.jpg" alt="" />
@@ -51,7 +54,14 @@
                             @foreach (var cell in row.ItemArray)
                                 {
                                 <td>
-                                    <span class="tm">@cell.ToString()</span>
+                                    @if (cell.ToString().Contains('/'))
+                                    {
+                                        <span class="tm">@DateTime.Parse(@cell.ToString()).ToString("MMM dd, yyyy")</span>
+                                    }
+                                    else
+                                    {
+                                    <span class="">@cell.ToString()</span>
+                                    }
                                 </td>
                                 }
                           </tr>
@@ -99,8 +109,8 @@
                         <div class="col-lg-4">
                             <select class="form-control m-bot15" id="BuddyName" name="Buddy">
                                 <option selected>Select Buddy</option>
-                                <option value="mike">Sagar Pawar</option>
-                                <option value="michael">ManiKandan</option>
+                                <option value="mike">Raman Shindey</option>
+                                <option value="michael">Vishwanath Reddy</option>
                             </select>
                         </div>
                     </div>
@@ -109,8 +119,8 @@
                         <div class="col-lg-4">
                             <select class="form-control m-bot15" id="contactName" name="contactName">
                                 <option selected>Select contact person</option>
-                                <option value="mike">Sagar Pawar</option>
-                                <option value="michael">ManiKandan</option>
+                                <option value="mike">Bharti Wadhwani</option>
+                                <option value="michael">Praveen Sharma</option>
                             </select>
                         </div>
                     </div>
@@ -123,7 +133,7 @@
                         </div>
                     </div>
                     <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
-                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 415px;" type="submit">
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 455px;" type="submit">
                         Save
                     </button>
 
