@@ -18,6 +18,9 @@ namespace xpPortal.Controllers
         {
             UserDetails bcInfo = new UserDetails();
             BusinessLayer blObject = new BusinessLayer();
+
+            //if (userName == null && Session["userName"] == null)
+            //    return RedirectToActionPermanent("Index", "Login");
             string email = Session["userName"].ToString();
             bcInfo = blObject.GetApplicantBasicDetails(email);
             UserDetails detailedInfo = blObject.GetApplicantDetails(email);
@@ -265,12 +268,13 @@ namespace xpPortal.Controllers
             return View();
         }
 
-        public void SaveReferAndEarn(ReferAndEarnModel model)
+        public ActionResult SaveReferAndEarn(ReferAndEarnModel model)
         {
             model.ReferedBy = Session["userName"].ToString();
             BusinessLayer bl = new BusinessLayer();
             bl.SaveReferred(model);
 
+            return RedirectToAction("ReferAndEarn");
         }
     }
 }

@@ -67,7 +67,7 @@
 
                                 <tr style="cursor:default">
                                     <td>@i</td>
-                                    <td>@dr["FirstName"] @dr["MiddleName"] @dr["LastName"]</td>
+                                    <td>@dr["FullName"]</td>
                                     <td>@dr["EmailId"]</td>
                                     <td>@DateTime.Parse(dr["JoiningDate"].ToString()).ToString("MMM dd, yyyy")</td>
                                     @if (i == 1)

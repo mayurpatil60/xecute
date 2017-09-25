@@ -68,9 +68,15 @@ namespace xpPortal.DAL
             return mdb.GetDataTable("spGetBuddyList");
         }
 
-        public DataTable SaveBuddy()
+        public void SaveBuddy(Buddy buddy)
         {
-            return mdb.GetDataTable("spSaveBuddy");
+            List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
+            spParameters.Add(new XP.DataAccess.DbParameter("Name", buddy.Name));
+            spParameters.Add(new XP.DataAccess.DbParameter("Email",buddy.Email));
+            spParameters.Add(new XP.DataAccess.DbParameter("Phone", buddy.PhoneNo));
+            spParameters.Add(new XP.DataAccess.DbParameter("Location", buddy.Location));
+            
+            mdb.ExecuteStoredProcedure("spSaveBuddy",spParameters);
         }
 
         public void SaveFeedback(string feedback,string email)
@@ -86,10 +92,11 @@ namespace xpPortal.DAL
         {
             List<XP.DataAccess.DbParameter> spParameters = new List<XP.DataAccess.DbParameter>();
 
-            spParameters.Add(new XP.DataAccess.DbParameter("Name", model.CandidateName));
-            spParameters.Add(new XP.DataAccess.DbParameter("ContactName", model.ContactNumber));
-            spParameters.Add(new XP.DataAccess.DbParameter("Email", model.Email));
-            spParameters.Add(new XP.DataAccess.DbParameter("ReferedBy", model.ReferedBy));
+            spParameters.Add(new XP.DataAccess.DbParameter("FullName", model.CandidateName));
+            spParameters.Add(new XP.DataAccess.DbParameter("ContactNumber", model.ContactNumber));
+            spParameters.Add(new XP.DataAccess.DbParameter("EmailId", model.Email));
+            spParameters.Add(new XP.DataAccess.DbParameter("ReferredBy", model.ReferedBy));
+            spParameters.Add(new XP.DataAccess.DbParameter("Skills", model.Skills));
             mdb.ExecuteStoredProcedure("spSaveReferred", spParameters);
         }
 
@@ -151,6 +158,11 @@ namespace xpPortal.DAL
             spParameters.Add(new XP.DataAccess.DbParameter("ContactName", model.contactName));
             spParameters.Add(new XP.DataAccess.DbParameter("DateOfJoining", model.DateOfJoining));
             mdb.ExecuteStoredProcedure("spAddNewJoinee", spParameters);
+        }
+
+        public DataTable GetReferralList()
+        {
+            return mdb.GetDataTableWithoutParameter("spGetReferralList");
         }
 
         public DataTable GetFeedbackList()

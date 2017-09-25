@@ -1,4 +1,5 @@
-﻿
+﻿@using xpPortal.Models
+@model IEnumerable<xpPortal.Models.Buddy>
 @{
     ViewBag.Title = "ManageRecruiter";
     Layout = "~/Views/Shared/RecruiterLayout.cshtml";
@@ -11,139 +12,114 @@
 
 
 <div class="row">
+    <div class="col-sm-12">
+
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Recruiter List
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+
+                </span>
+            </header>
+            <div class="panel-body" style="max-height:400px;overflow-y:auto">
+                <table class="table table-hover tm-membr" id="manageJoinee">
+                    <thead>
+                        <tr>
+                            <th width="30">S.No </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Phone No
+                            </th>
+                            <th>
+                                Location
+                            </th>
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 0;
+                            foreach (Buddy obj in Model)
+                            {
+                                i++;
+
+                                <tr>
+                                    <td>@i</td>
+                                    <td>
+                                        @obj.Name @*+ @obj.LastName;}*@
+                                    </td>
+                                    <td>@obj.Email</td>
+                                    <td>@obj.PhoneNo</td>
+                                    <td>@obj.Location</td>
+                                   
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </section><!--panel-->
+
+
+    </div><!--container-fluid-->
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <section class="panel">
+            <header class="panel-heading header-class">
+                Add Recruiter
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+
+                </span>
+            </header>
+
+        </section>
+    </div>
+</div>
+
+
+<div class="row">
+
     <div class="col-md-6">
-        <h2>Add Recruiter</h2>
-        
-        <div class="container-fluid" style="margin-top:4%">
-            <form class="form-horizontal">
+
+
+        <div class="container-fluid">
+            <form class="form-horizontal" action="">
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" placeholder="Name" required>
+                    <label style="padding-left:0.5%">Name</label>
+                    <input type="text" class="form-control" placeholder="Name" name="Name" required>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" class="form-control" placeholder="Email" required>
+                    <label style="padding-left:0.5%">Email</label>
+                    <input type="text" class="form-control" placeholder="Email" name="Email" required>
                 </div>
                 <div class="form-group">
-                    <label>Mobile</label>
-                    <input type="text" class="form-control" placeholder="Mobile" required>
+                    <label style="padding-left:0.5%">Phone</label>
+                    <input type="text" class="form-control" placeholder="Phone" name="PhoneNo" required>
+                </div>
+                <div class="form-group">
+                    <label style="padding-left:0.5%">Location</label>
+                    <input type="text" class="form-control" placeholder="Location" name="Location" required>
                 </div>
                 <br />
                 <div class="form-group">
-                    <btn type="submit" class="btn btn-primary btn-block center-block" style="width: 30%;float:right">Add</btn>
+                    <a href="#" class="btn btn-primary btn-block center-block" style="width: 30%;float:right">Add</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="col-md-6">
-        <section class="panel">
-            <header class="panel-heading header-class">
-                Recruiter
-            </header>
-            <div class="panel-body profile-nav">
-                <div class=" wk-progress tm-membr">
-                    <div class="col-md-2 col-xs-2">
-                        <div class="tm-avatar">
-                            <img src="images/avatar-mini-3.jpg" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-7">
-                        <span class="tm">Ram Kadam</span>
-                    </div>
-                    <div class="col-md-4 col-xs-7">
-                        <span class="todo-actionlist rating" style="font-size: 17px; top: 8px;">
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                        </span>
-                    </div>
-                    <div class="col-md-2 col-xs-3">
-                        <div class="todo-actionlist pull-right clearfix">
-                            <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                            <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class=" wk-progress tm-membr">
-                    <div class="col-md-2 col-xs-2">
-                        <div class="tm-avatar">
-                            <img src="images/avatar-mini-2.jpg" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-7">
-                        <span class="tm">Rohan Dalmiya</span>
-                    </div>
-                    <div class="col-md-4 col-xs-7">
-                        <span class="todo-actionlist rating" style="font-size: 17px; top: 8px;">
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                        </span>
-                    </div>
-                    <div class="col-md-2 col-xs-3">
-                        <div class="todo-actionlist pull-right clearfix">
-                            <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                            <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class=" wk-progress tm-membr">
-                    <div class="col-md-2 col-xs-2">
-                        <div class="tm-avatar">
-                            <img src="images/avatar-mini-2.jpg" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-7">
-                        <span class="tm">Mayur Patil</span>
-                    </div>
-                    <div class="col-md-4 col-xs-7">
-                        <span class="todo-actionlist rating" style="font-size: 17px; top: 8px;">
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                        </span>
-                    </div>
-                    <div class="col-md-2 col-xs-3">
-                        <div class="todo-actionlist pull-right clearfix">
-                            <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                            <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class=" wk-progress tm-membr">
-                    <div class="col-md-2 col-xs-2">
-                        <div class="tm-avatar">
-                            <img src="images/avatar-mini-4.jpg" alt="" />
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-7">
-                        <span class="tm">Manikandan L</span>
-                    </div>
-                    <div class="col-md-4 col-xs-7">
-                        <span class="todo-actionlist rating" style="font-size: 17px; top: 8px;">
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                        </span>
-                    </div>
-                    <div class="col-md-2 col-xs-3">
-                        <div class="todo-actionlist pull-right clearfix">
-                            <a href="#" class="todo-edit"><i class="ico-pencil"></i></a>
-                            <a href="#" class="todo-remove"><i class="ico-close"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+
 
 </div>

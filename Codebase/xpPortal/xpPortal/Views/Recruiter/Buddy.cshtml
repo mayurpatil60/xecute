@@ -81,7 +81,7 @@
 
         <section class="panel">
             <header class="panel-heading header-class">
-                Buddy List
+                Add Buddy 
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
 
@@ -96,29 +96,29 @@
             <div class="row">
 
                 <div class="col-md-6">
-                    <h2>Add Buddy</h2>
+                    
 
                     <div class="container-fluid">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="../Recruiter/SaveBuddy">
                             <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name" required>
+                                <label style="padding-left:0.5%">Name</label>
+                                <input type="text" class="form-control" placeholder="Name" name="Name" required>
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control" placeholder="Email" required>
+                                <label style="padding-left:0.5%">Email</label>
+                                <input type="text" class="form-control" placeholder="Email"  name="Email" required>
                             </div>
                             <div class="form-group">
-                                <label>Mobile</label>
-                                <input type="text" class="form-control" placeholder="Mobile" required>
+                                <label style="padding-left:0.5%">Phone</label>
+                                <input type="text" class="form-control" placeholder="Phone" name="PhoneNo" required>
                             </div>
                             <div class="form-group">
-                                <label>Position</label>
-                                <input type="text" class="form-control" placeholder="Position" required>
+                                <label style="padding-left:0.5%">Location</label>
+                                <input type="text" class="form-control" placeholder="Location" name="Location" required>
                             </div>
                             <br />
                             <div class="form-group">
-                                <btn type="submit" class="btn btn-primary btn-block center-block" style="width: 30%;float:right">Add</btn>
+                                <button type="submit" class="btn btn-primary btn-block center-block" style="width: 30%;float:right">Add</button>
                             </div>
                         </form>
                     </div>

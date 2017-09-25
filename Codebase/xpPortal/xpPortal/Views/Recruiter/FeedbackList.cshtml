@@ -17,7 +17,7 @@
         <!--notification start-->
         <section class="panel">
             <header class="panel-heading header-class">
-                Feedback-You Can Improve
+                Feedback
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
 
@@ -30,11 +30,10 @@
                             <table class="table table-hover tm-membr" id="example">
                                 <thead>
                                     <tr>
-                                        <th width="30"></th>
-                                        <th style="text-align:center">
+                                        <th style="padding-left:2%">
                                             Email
                                         </th>
-                                        <th style="text-align:center">
+                                        <th style="padding-left:2%">
                                             Feedback
                                         </th>
                                     </tr>
@@ -45,14 +44,10 @@
                                     {
 
                                     <tr>
-                                        <td>
-                                            <div class="tm-avatar">
-
-                                            </div>
-                                        </td>
+                                       
                                         @foreach (var cell in row.ItemArray)
                                             {
-                                            <td style="text-align:center">
+                                            <td>
                                                 <span class="tm">@cell.ToString()</span>
                                             </td>
                                             }

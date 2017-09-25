@@ -18,7 +18,7 @@
                 Basic Info
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
-                 
+
                 </span>
             </header>
             <div class="panel-body">
@@ -53,11 +53,11 @@
                         <label class="col-lg-2 control-label">Email Address:</label>
                         <div class="col-lg-6">
                             <input type="text" style="position: relative;float: left;width: 65%;" class="form-control" placeholder="Email Address" id="emailName" name="Email" value="@Model.Email">
-                          
+
                         </div>
-                       
+
                     </div>
-                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
+                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 9.2%;
                                             padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 415px;" type="submit">
                         Save
                     </button>
@@ -84,8 +84,8 @@
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Gender:</label>
                         <div class="col-lg-4">
-                            @Html.RadioButtonFor(model => model.Gender, "Male", new { @checked = true }) Male
-                            @Html.RadioButtonFor(model => model.Gender, "Female", new { @checked = true }) Female
+                            @Html.RadioButtonFor(model => model.Gender, "Male", new { @checked = Model.Gender == "Male" ? "checked" : "" }) Male
+                            @Html.RadioButtonFor(model => model.Gender, "Female", new { @checked = Model.Gender == "Female" ? "checked" : "" }) Female
                         </div>
                     </div>
                     <div class="form-group">
@@ -115,15 +115,63 @@
                         </div>
 
                     </div>
-                    <button class="btn btn-lg btn-login btn-success btn-block" style="width: 14%;
-                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 415px;margin-top: 20px;"
+                    <button class="btn btn-lg btn-login btn-success btn-block" style="width: 9.2%;
+                                        padding-bottom: 23px;height: 36px;padding-top: 6px;margin-left: 415px;margin-top: 15px;"
                             id="submitFullButton" type="submit">
                         Save
                     </button>
                 </form>
             </div>
 
-        </section>>
+        </section>
+
+        <section class="panel">
+            <header style="z-index:999;background-color:#767676;position:relative;cursor:pointer" class="panel-heading header-class" id="headerDoc">
+
+                <div>
+                    <a href="#" style="color:white;">Employment Details</a>
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+
+                    </span>
+                </div>
+
+            </header>
+            <div class="panel-body profile-nav" style="height:270px;max-height:270px;overflow-y:auto;">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Company Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="" name="" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">From:</label>
+                        <div class="col-lg-4">
+                            @Html.DropDownListFor(model => model.SelectedDay, (IEnumerable<SelectListItem>)ViewBag.Days, "Day")
+                            @Html.DropDownListFor(model => model.SelectedMonth, (IEnumerable<SelectListItem>)ViewBag.Months, "Month")
+                            @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">To:</label>
+                        <div class="col-lg-4">
+                            @Html.DropDownListFor(model => model.SelectedDay, (IEnumerable<SelectListItem>)ViewBag.Days, "Day")
+                            @Html.DropDownListFor(model => model.SelectedMonth, (IEnumerable<SelectListItem>)ViewBag.Months, "Month")
+                            @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Job Title</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" placeholder="" name="" value="">
+                        </div>
+                        <button class="btn btn-success" value="">Add more</button>
+                    </div>
+                </form>
+            </div>
+        </section>
 
     </div>
 
@@ -133,13 +181,12 @@
 <script language="javascript">
     $(document).ready(function () {
 
-        if ($('#txtFirstName').val() != '')
-        {
+        if ($('#txtFirstName').val() != '') {
             $('#txtMiddleName').removeAttr('placeholder');
         }
 
         $("#submitBasic").on('submit', function (e) {
-            
+
             e.preventDefault();
             var $this = $(this);
             var dataToPost = $(this).serialize();
@@ -154,7 +201,7 @@
         })
 
         $("#submitFull").on('submit', function (e) {
-            
+
             e.preventDefault();
             var $this = $(this);
             var email = document.getElementById("emailName").value;

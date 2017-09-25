@@ -4,18 +4,18 @@
     Layout = "~/Views/Shared/LayoutMaster.cshtml";
     ViewBag.Title = "NewJoineeList";
 }
-<div class="row">
-    <div class="col-md-12">
-        <!--notification start-->
-        
-        <section class="panel">
-            <header class="panel-heading">
-                We are an enterprise software services firm with a unique approach to software.
-            </header>
-        </section>
-        <!--notification end-->
-    </div>
-</div>
+@*<div class="row">
+        <div class="col-md-12">
+            <!--notification start-->
+
+            <section class="panel">
+                <header class="panel-heading">
+                    We are an enterprise software services firm with a unique approach to software.
+                </header>
+            </section>
+            <!--notification end-->
+        </div>
+    </div>*@
 
 
 
@@ -51,10 +51,10 @@
                                     Job Title
                                 </th>
                                 <th style="text-align:center">
-                                    Experience Required
+                                    Experience
                                 </th>
                                 <th style="text-align:center">
-                                    Skills Required
+                                    Skills
                                 </th>
                             </tr>
                         </thead>
@@ -70,12 +70,12 @@
                                         </div>
                                     </td>
                                     @foreach (var cell in row.ItemArray)
-                                            {
-                                        <td  style="text-align:center">
+                                    {
+                                        <td style="text-align:center">
                                             <span class="tm">@cell.ToString()</span>
                                         </td>
-                                            }
-                                   
+                                    }
+
                                 </tr>
                             }
                         </tbody>
@@ -92,39 +92,46 @@
         <section class="panel">
             <header class="panel-heading header-class">
                 Refer Detail
-                  <span class="tools pull-right">
+                <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
 
                 </span>
             </header>
             <div class="panel-body">
-                <form id="AddBasic" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Candidate Name:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Candidate Name" name="CandidateName" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Contact Number:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Contact Number" name="ContactNumber" />
-                                        </div>
-                                    </div>
+                <form id="AddBasic" class="form-horizontal" action="../Joinee/SaveReferAndEarn">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Candidate Name:</label>
+                        <div class="col-lg-4">
+                            <input type="text" id="name" class="form-control" placeholder="Candidate Name" name="CandidateName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Email:</label>
+                        <div class="col-lg-4">
+                            <input type="text" id="email" class="form-control" placeholder="Email" name="Email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Contact Number:</label>
+                        <div class="col-lg-4">
+                            <input type="text" id="phone" class="form-control" placeholder="Contact Number" name="ContactNumber" />
+                        </div>
+                    </div>
 
-                                    <div class="form-group">
-                                        <label class="col-lg-2 control-label">Skills:</label>
-                                        <div class="col-lg-4">
-                                            <input type="text" class="form-control" placeholder="Skills" name="Skills" />
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Skills:</label>
+                        <div class="col-lg-4">
+                            <input type="text" id="skills" class="form-control" placeholder="Skills" name="Skills" />
 
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-lg-4">
-                                       
-                                    </div>
-                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
-                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 48px;" type="submit">
-                        Add
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-4">
+
+                    </div>
+                    <button class="btn btn-lg btn-login btn-success btn-block" id="refer" style="position: relative;float: left;width: 9%;
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 9.2%;" type="submit">
+                        Submit
                     </button>
                 </form>
             </div>
@@ -133,36 +140,19 @@
 </div>
 
 <script language="javascript">
-    $(document).ready(function () {
-        $('#example tbody').on('click', 'tr', function () {
-            debugger;
-            var email = $(this).find("td").eq(4).text();
-            var dataToPost = "&EmailId=" + email;
-            $.post("GetDetailInfo", dataToPost)
-                .done(function (response, status, jqxhr) {
-                    window.location.href = '/Recruiter/GetDetailInfo'
-                })
-                .fail(function (jqxhr, status, error) {
-                    // this is the ""error"" callback
-                })
-        });
 
-        $("#AddBasic").on('submit', function (e) {
-            debugger;
-            e.preventDefault();
-            var $this = $(this);
-            var dataToPost = $(this).serialize();
+    //$("#refer").on('click', function (e) {
+    
+    //    $.ajax({
+    //        url: "../Joinee/SaveReferAndEarn",
+    //        type: "POST",
+    //        data: { candidateName: $('#name').val(), contactNumber: $('#phone').val(), email: $('email').val(), skills: $('skills').val() },
+    //        datatype: "JSON",
+    //        contentType: 'application/json',
+    //        traditional: true,
+    //        success: function (data) {
 
-            $.post("/Recruiter/SaveReferAndEarn", dataToPost)
-                .done(function (response, status, jqxhr) {
-                    alert("Candidate Details Sent");
-
-
-                })
-                .fail(function (jqxhr, status, error) {
-                    // this is the ""error"" callback
-                })
-        });
-    });
+    //        }
+    //    });
+    //});
 </script>
-

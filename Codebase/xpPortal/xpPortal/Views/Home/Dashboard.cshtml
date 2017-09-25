@@ -13,7 +13,7 @@
         <div class="mini-stat clearfix">
             <span class="mini-stat-icon orange"><i class="ico-clock2"></i></span>
             <div class="mini-stat-info">
-                
+
                 <span id="DaysToJoin">@Session["DaysToJoin"]</span>
                 Days to Join
             </div>
@@ -43,88 +43,91 @@
     <div class="col-md-6">
         <!--todolist start-->
         <section class="panel">
-            <header class="panel-heading header-class" style="cursor:pointer" id="headerDoc">
-                <a href="../Document/UploadDocument" style="color:white;text-decoration:underline">Documents</a>
+            <header title="Click here to upload documents" style="z-index:999;background:#767676;position:relative;cursor:pointer" class="panel-heading header-class shine-me" id="headerDoc">
+                <div>
+                    <a href="../Document/UploadDocument" style="color:white;text-decoration:underline"> Documents</a>
+                    <span class="fa fa-upload" style="float:right;padding-top:1%"></span>
+                </div>
             </header>
             <div class="panel-body profile-nav" style="height:270px;max-height:270px;overflow-y:auto;">
                 <ul class="nav nav-pills nav-stacked">
-                   @{
-                       if (Model.NewJoineeList != null && Model.NewJoineeList.Count > 0)
-                       {
-                           foreach (System.Data.DataRow row in Model.NewJoineeList)
-                           {
-                            <li>
-                                <a href="javascript:;">
-                                    <i class="fa fa-file"></i> @row["DocumentName"].ToString()
-                                    @if (@row["DocStatus"].ToString() == "Submitted")
-                                    { <span class="badge label-warning pull-right r-activity">@row["DocStatus"].ToString()</span> }
-                                    else if (@row["DocStatus"].ToString() == "Approved")
-                                    { <span class="badge label-success pull-right r-activity">@row["DocStatus"].ToString()</span> }
-                                    else if (@row["DocStatus"].ToString() == "Rejected")
-                                    { <span class="badge label-danger pull-right r-activity">@row["DocStatus"].ToString()</span> }
-                                    else
-                                    { <span class="badge label-danger pull-right r-activity">@row["DocStatus"].ToString()</span> }
-                                </a>
-                            </li>
-                           }
-                       }
-                       else
-                       {
-                        <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 1 <span class="badge label-success pull-right r-activity">Approved</span></a></li>
-                        <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 2 <span class="badge label-danger pull-right r-activity">Rejected</span></a></li>
-                        <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 3 <span class="badge label-success pull-right r-activity">Approved</span></a></li>
-                        <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 4 <span class="badge label-warning pull-right r-activity">In Progress</span></a></li>
-                       }
-                }
+                    @{
+                        if (Model.NewJoineeList != null && Model.NewJoineeList.Count > 0)
+                        {
+                            foreach (System.Data.DataRow row in Model.NewJoineeList)
+                            {
+                                <li>
+                                    <a href="javascript:;" style="cursor:default">
+                                        <i class="fa fa-file"></i> @row["DocumentName"].ToString()
+                                        @if (@row["DocStatus"].ToString() == "Submitted")
+                                        { <span class="badge label-warning pull-right r-activity">@row["DocStatus"].ToString()</span> }
+                                        else if (@row["DocStatus"].ToString() == "Approved")
+                                        { <span class="badge label-success pull-right r-activity">@row["DocStatus"].ToString()</span> }
+                                        else if (@row["DocStatus"].ToString() == "Rejected")
+                                        { <span class="badge label-danger pull-right r-activity">@row["DocStatus"].ToString()</span> }
+                                        else
+                                        { <span class="badge label-danger pull-right r-activity">@row["DocStatus"].ToString()</span> }
+                                    </a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li><a href="javascript:;"> <i class="fa fa-file"></i> No Documents uploaded yet </a></li>
+                            @*<li><a href="javascript:;"> <i class="fa fa-file"></i> Document 2 <span class="badge label-danger pull-right r-activity">Rejected</span></a></li>
+                            <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 3 <span class="badge label-success pull-right r-activity">Approved</span></a></li>
+                            <li><a href="javascript:;"> <i class="fa fa-file"></i> Document 4 <span class="badge label-warning pull-right r-activity">In Progress</span></a></li>*@
+                        }
+                    }
                 </ul>
             </div>
         </section>
         <!--todolist end-->
     </div>
-        <div class="col-md-6">
-            <!--notification start-->
-            <section class="panel" style="height:320px">
-                <header class="panel-heading header-class">
-                    Buddy
-                </header>
-                <div class="panel-body">
-                    <p>
-                        No need to worry, we've got you covered. Your Buddy will help you out.
-                    </p>
-                    <div class="user-heading alt">
-                        <a href="#">
-                            <img alt="" src="~/images/lock_thumb.jpg">
-                        </a>
-                        <h1>Aditya</h1>
-                        <p>Onboarding Team</p>
-                    </div>
-                    <div class="weather-category twt-category" style="margin-top:40px">
-                        <ul>
-                            <li class="active">
-                                <h5 style="text-transform: none;">9800 098 000</h5>
-                                Phone
-                            </li>
-                            <li>
-                                <h5 style="text-transform: none;">aditya@xpanxion.co.in</h5>
-                                Email
-                            </li>
-                            <li>
-                                <h5 style="text-transform: none;">Aditya_g</h5>
-                                Skype
-                            </li>
-                        </ul>
-                    </div>
+    <div class="col-md-6">
+        <!--notification start-->
+        <section class="panel" style="height:320px">
+            <header class="panel-heading header-class">
+                Buddy
+            </header>
+            <div class="panel-body">
+                <p>
+                    No need to worry, we've got you covered. Your Buddy will help you out.
+                </p>
+                <div class="user-heading alt">
+                    <a href="#">
+                        <img alt="" src="~/images/lock_thumb.jpg">
+                    </a>
+                    <h1>Aditya</h1>
+                    <p>Onboarding Team</p>
                 </div>
-            </section>
+                <div class="weather-category twt-category" style="margin-top:40px">
+                    <ul>
+                        <li class="active">
+                            <h5 style="text-transform: none;">9800 098 000</h5>
+                            Phone
+                        </li>
+                        <li>
+                            <h5 style="text-transform: none;">aditya@xpanxion.co.in</h5>
+                            Email
+                        </li>
+                        <li>
+                            <h5 style="text-transform: none;">Aditya_g</h5>
+                            Skype
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-            <!--notification end-->
-        </div>
+        <!--notification end-->
+    </div>
 </div>
 
 <div class="row">
     <div class="col-md-8">
         <section class="panel">
-           
+
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -163,11 +166,11 @@
         <!--notification start-->
         <section class="panel">
             <header class="panel-heading header-class">
-                Contact Person
+                Recruitment Connect
             </header>
             <div class="panel-body">
                 <p>
-                    Contact Person will help you out in queries related to documents.
+                    Get in touch for any process related help.
                 </p>
                 <div class="user-heading alt">
                     <a href="#">
@@ -194,9 +197,29 @@
     </div>
 </div>
 
+@*<div class='overlay'>
+    <div style="top:25%;">
+        <ul class="sidebar-menu">
+
+            <li>
+                <a href="~/Joinee/Index">
+                    <i class="fa fa-user"></i>
+                    <span>Applicant Detail</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>*@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        //$('.overlay').show();
+
+        //setInterval(function () {
+        //    $('.overlay').hide();
+        //}, 5000);
+
 
         $("#headerDoc").click(function () {
             window.location.href = "../../Document/UploadDocument";
@@ -208,3 +231,17 @@
 
 </script>
 
+@*<style>
+    .overlay {
+        display: none;
+        background: white;
+        opacity: 0.9;
+        z-index: 99;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+</style>*@

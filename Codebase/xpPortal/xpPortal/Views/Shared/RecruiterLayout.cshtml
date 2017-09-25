@@ -94,7 +94,7 @@
                 <div class="leftside-navigation" style="overflow-y:auto">
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
-                            <a class="active" href="~/Home/Index">
+                            <a id="dashboard" href="~/Home/Index">
                                 <i class="fa fa-dashboard"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -107,37 +107,37 @@
                         </li>*@
                       
                         <li>
-                            <a href="~/Recruiter/ManageJoinees">
+                            <a id="joinees" href="~/Recruiter/ManageJoinees">
                                 <i class="fa fa-user"></i>
                                 <span>Joinees</span>
                             </a>
                         </li>
                         <li>
-                            <a href="~/Recruiter/ManageRecruiter">
+                            <a id="recruiter" href="~/Recruiter/ManageRecruiter">
                                 <i class="fa fa-user"></i>
                                 <span>Recruiter</span>
                             </a>
                         </li>
                         <li>
-                            <a href="~/Recruiter/Buddy">
+                            <a id="buddy" href="~/Recruiter/Buddy">
                                 <i class="fa fa-user"></i>
                                 <span>Buddy</span>
                             </a>
                         </li>
                         <li>
-                            <a href="~/Recruiter/GetQueries">
+                            <a id="query" href="~/Recruiter/GetQueries">
                                 <i class="fa fa-user"></i>
                                 <span>Queries</span>
                             </a>
                         </li>
                         <li>
-                            <a href="~/Recruiter/JobListForReferAndEarn">
+                            <a id="refer" href="~/Recruiter/JobListForReferAndEarn">
                                 <i class="fa fa-user"></i>
                                 <span>Referral</span>
                             </a>
                         </li>
                         <li>
-                            <a href="~/Recruiter/GetAllFeedback">
+                            <a id="feedback" href="~/Recruiter/GetAllFeedback">
                                 <i class="fa fa-user"></i>
                                 <span>Feedbacks</span>
                             </a>
@@ -223,3 +223,40 @@
     <script src="~/Content/js/scripts.js"></script>
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        debugger
+        var module = window.location.href.split('/')[4];
+        var controller = window.location.href.split('/')[3];
+        if(controller=="Home" && module=="Index")
+        {
+            $('#dashboard').addClass('active');
+        }
+        else if (controller == "Recruiter" && module == "ManageRecruiter")
+        {
+            $('#recruiter').addClass('active');
+        }
+        else if (controller == "Recruiter" && module == "ManageJoinees") {
+            $('#joinees').addClass('active');
+        }
+        else if (controller == "Recruiter" && module == "GetQueries") {
+            $('#query').addClass('active');
+        }
+        else if (controller == "Recruiter" && module == "Buddy") {
+            $('#buddy').addClass('active');
+        }
+        else if (controller == "Recruiter" && module == "JobListForReferAndEarn") {
+            $('#refer').addClass('active');
+        }
+        else if (controller == "Recruiter" && module == "GetAllFeedback") {
+            $('#feedback').addClass('active');
+        }
+        else if (controller == "Recruiter" && module == "Events") {
+            $('#events').addClass('active');
+        }
+        else
+            $('#dashboard').addClass('active');
+
+    });
+</script>

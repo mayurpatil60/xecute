@@ -10,7 +10,7 @@
         <!--notification start-->
         <section class="panel">
             <header class="panel-heading header-class">
-                Joinee List
+                Joinees
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
 
@@ -20,16 +20,16 @@
                 <table class="table table-hover tm-membr" id="manageJoinee">
                     <thead>
                         <tr>
-                            <th width="30"></th>
+                            <th width="30">S.No</th>
                             <th>
-                                FirstName
+                                Full Name
                             </th>
-                            <th>
-                                Middle Name
-                            </th>
-                            <th>
-                                Last Name
-                            </th>
+                            @*<th>
+                                    Middle Name
+                                </th>
+                                <th>
+                                    Last Name
+                                </th>*@
                             <th>
                                 Email
                             </th>
@@ -37,34 +37,38 @@
                                 Joining Date
                             </th>
                             <th>
-                                Contact Number
+                                Phone No
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (System.Data.DataRow row in Model.NewJoineeList)
-                        {
-
-                        <tr style="cursor:pointer">
-                            <td>
-                                <div class="tm-avatar">
-                                    <img src="images/lock_thumb.jpg" alt="" />
-                                </div>
-                            </td>
-                            @foreach (var cell in row.ItemArray)
-                                {
-                                <td>
-                                    @if (cell.ToString().Contains('/'))
+                        @{
+                            int i = 0;
+                            foreach (System.Data.DataRow row in Model.NewJoineeList)
+                            {
+                                i++;
+                                <tr style="cursor:pointer">
+                                    <td>@i</td>
+                                    @*<td>
+                                        <div class="tm-avatar">
+                                            <img src="images/lock_thumb.jpg" alt="" />
+                                        </div>
+                                    </td>*@
+                                    @foreach (var cell in row.ItemArray)
                                     {
-                                        <span class="tm">@DateTime.Parse(@cell.ToString()).ToString("MMM dd, yyyy")</span>
+                                        <td>
+                                            @if (cell.ToString().Contains('/'))
+                                            {
+                                                <span class="tm">@DateTime.Parse(@cell.ToString()).ToString("MMM dd, yyyy")</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="">@cell.ToString()</span>
+                                            }
+                                        </td>
                                     }
-                                    else
-                                    {
-                                    <span class="">@cell.ToString()</span>
-                                    }
-                                </td>
-                                }
-                          </tr>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
@@ -92,20 +96,20 @@
                 <form id="AddBasic" class="form-horizontal">
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label">Full Name</label>
+                        <label class="col-lg-2 control-label">Full Name:</label>
                         <div class="col-lg-4">
                             <input type="text" class="form-control" placeholder="Full Name" name="FullName" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label">Email</label>
+                        <label class="col-lg-2 control-label">Email:</label>
                         <div class="col-lg-4">
                             <input type="text" style="position: relative;float: left;" class="form-control" placeholder="Email Address" id="emailName" name="Email" required />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label"> Assign Buddy</label>
+                        <label class="col-lg-2 control-label"> Assign Buddy:</label>
                         <div class="col-lg-4">
                             <select class="form-control m-bot15" id="BuddyName" name="Buddy">
                                 <option selected>Select Buddy</option>
@@ -115,7 +119,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label"> Contact Person</label>
+                        <label class="col-lg-2 control-label"> Contact Person:</label>
                         <div class="col-lg-4">
                             <select class="form-control m-bot15" id="contactName" name="contactName">
                                 <option selected>Select contact person</option>
@@ -132,8 +136,8 @@
                             @Html.DropDownListFor(model => model.SelectedYear, (IEnumerable<SelectListItem>)ViewBag.Years, "Year")
                         </div>
                     </div>
-                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 14%;
-                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 455px;" type="submit">
+                    <button class="btn btn-lg btn-login btn-success btn-block" id="submitPartial" style="position: relative;float: left;width: 9%;
+                                            padding-bottom: 23px;height: 34px;padding-top: 5px;margin-left: 25%;" type="submit">
                         Save
                     </button>
 

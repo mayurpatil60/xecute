@@ -9,7 +9,7 @@
         <!--notification start-->
         <section class="panel">
             <header class="panel-heading header-class">
-                Refer And Earn
+                Referrals
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
 
@@ -19,17 +19,82 @@
                 <table class="table table-hover tm-membr" id="example">
                     <thead>
                         <tr>
-                            <th width="30"></th>
-                            <th style="text-align:center">
+                            <th >S.No</th>
+                            <th style="padding-left:2%">
+                                Name
+                            </th>
+                            <th style="padding-left:2%">
+                                Email
+                            </th>
+                            <th style="padding-left:2%">
+                                Phone No
+                            </th>
+                            <th style="padding-left:2%">
+                                Skills
+                            </th>
+                            <th style="padding-left:2%">
+                                Referred By
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                                    int i = 0;
+                                    foreach (System.Data.DataRow row in Model.ReferralList)
+                                    {
+                                i++;
+
+                                <tr>
+                                    <td>
+                                        <div class="tm-avatar">
+                                            @i
+                                        </div>
+                                    </td>
+                                    @foreach (var cell in row.ItemArray)
+                                {
+                                        <td>
+                                            <span class="tm">@cell.ToString()</span>
+                                        </td>
+                                    }
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <!--notification start-->
+        <section class="panel">
+            <header class="panel-heading header-class">
+                New Jobs
+                <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+
+                </span>
+            </header>
+            <div class="panel-body">
+                <table class="table table-hover tm-membr" id="example">
+                    <thead>
+                        <tr>
+                            <th style="padding-left:2%"></th>
+                            <th style="padding-left:2%">
                                 Job Id
                             </th>
-                            <th style="text-align:center">
+                            <th style="padding-left:2%">
                                 Job Title
                             </th>
-                            <th style="text-align:center">
+                            <th style="padding-left:2%">
                                 Experience Required
                             </th>
-                            <th style="text-align:center">
+                            <th style="padding-left:2%">
                                 Skills Required
                             </th>
                         </tr>
@@ -47,7 +112,7 @@
                             </td>
                             @foreach (var cell in row.ItemArray)
                                 {
-                                <td style="text-align:center">
+                                <td >
                                     <span class="tm">@cell.ToString()</span>
                                 </td>
                                 }
@@ -68,7 +133,7 @@
         <!--notification start-->
         <section class="panel">
             <header class="panel-heading header-class">
-                Refer And Earn
+                Add Job
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
 

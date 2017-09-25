@@ -163,7 +163,16 @@ namespace xpPortal.BL
             DataRowCollection drc = da.Rows;
             return drc;
         }
-        
+
+        public DataRowCollection GetReferralList()
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            DataTable da = dalObject.GetReferralList();
+            DataRowCollection drc = da.Rows;
+            return drc;
+        }
+
         //public List<UserDetails> GetNewJoineeList2()
         //{
         //    DataAccessLayer dalObject = new DataAccessLayer();
@@ -304,6 +313,13 @@ namespace xpPortal.BL
                 joineeQueries.Add(joineeQueryObj);
             }
             return joineeQueries;
+        }
+
+        public void SaveBuddy(Buddy buddy)
+        {
+            DataAccessLayer dalObject = new DataAccessLayer();
+
+            dalObject.SaveBuddy(buddy);
         }
     }
 }

@@ -74,7 +74,10 @@ namespace xpPortal.Controllers
         }
         public ActionResult ManageRecruiter()
         {
-            return View();
+            List<Buddy> buddyList = new List<Buddy>();
+            BusinessLayer blObject = new BusinessLayer();
+            buddyList = blObject.GetBuddyList().OrderBy(x=>x.Name).Take(2).ToList();
+            return View(buddyList);
         }
 
         public ActionResult AddApplicantAndSendMail(UserDetails userDetails)
@@ -185,6 +188,7 @@ namespace xpPortal.Controllers
             BusinessLayer bl = new BusinessLayer();
             ReferAndEarnModel model = new ReferAndEarnModel();
             model.JobList = bl.GetJobListForReferAndEarn();
+            model.ReferralList = bl.GetReferralList();
             return View("ReferAndEarn", model);
         }
 
@@ -208,5 +212,13 @@ namespace xpPortal.Controllers
             return Json(recordsAffected, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult SaveBuddy(Buddy buddy)
+        {
+            BusinessLayer bl = new BusinessLayer();
+
+            bl.SaveBuddy(buddy);
+
+            return RedirectToAction("Buddy");
+        }
     }
 }
